@@ -109,30 +109,30 @@ export default function Navbar() {
 
   return (
     <>
-      <header className="w-full sticky top-0 bg-surface/85 backdrop-blur-md dark:bg-surface-container-lowest/80 border-b border-outline-variant dark:border-outline z-50 transition-all duration-300">
-        <nav className="max-w-[1440px] mx-auto px-margin-desktop flex justify-between items-center h-20 md:h-24">
+      <header className="w-full sticky top-0 bg-surface border-b border-neutral-200 z-50 transition-all duration-300">
+        <nav className="max-w-[1440px] mx-auto px-margin-desktop flex justify-between items-center h-20 lg:h-24">
           
           {/* Brand Logo */}
           <Link href="/" className="flex items-center gap-unit-sm shrink-0">
             <img
               alt="Dr. Ayuba's Corner Brand Identity"
-              className="h-10 md:h-12 w-auto object-contain hover:scale-105 transition-transform"
+              className="h-12 lg:h-16 w-auto object-contain"
               src="/images/Dr_Abuba_Logo_Full-no_bg.png"
             />
           </Link>
 
           {/* Desktop Navigation Links */}
-          <div className="hidden lg:flex items-center gap-unit-lg whitespace-nowrap">
+          <div className="hidden lg:flex items-center gap-8 whitespace-nowrap">
             {navLinks.map((link) => {
               const isActive = pathname === link.href;
               return (
                 <Link
                   key={link.name}
                   href={link.href}
-                  className={`relative font-label-lg text-label-lg transition-colors py-2 ${
+                  className={`relative font-label-lg text-label-lg transition-colors duration-200 py-2 tracking-wide ${
                     isActive
-                      ? 'text-primary font-bold dark:text-primary-fixed'
-                      : 'text-on-surface-variant hover:text-primary'
+                      ? 'text-primary font-semibold'
+                      : 'text-neutral-600 hover:text-primary'
                   }`}
                 >
                   {link.name}
@@ -145,26 +145,26 @@ export default function Navbar() {
           </div>
 
           {/* Actions Column */}
-          <div className="flex items-center gap-unit-md whitespace-nowrap text-primary dark:text-primary-fixed-dim">
+          <div className="flex items-center gap-4 lg:gap-6 whitespace-nowrap text-primary">
             
             {/* Search Trigger */}
             <button
               onClick={() => setIsSearchOpen(true)}
-              className="p-2 hover:bg-surface-container rounded-full transition-all focus:outline-none focus:ring-2 focus:ring-secondary/40"
+              className="p-2 hover:bg-neutral-100 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-secondary/40"
               aria-label="Search"
             >
-              <span className="material-symbols-outlined block text-[24px]">search</span>
+              <span className="material-symbols-outlined block text-[22px]">search</span>
             </button>
 
             {/* Shopping Cart Trigger */}
             <button
               onClick={() => setIsCartOpen(true)}
-              className="p-2 hover:bg-surface-container rounded-full transition-all relative focus:outline-none focus:ring-2 focus:ring-secondary/40"
+              className="p-2 hover:bg-neutral-100 rounded-full transition-colors relative focus:outline-none focus:ring-2 focus:ring-secondary/40"
               aria-label="Shopping Cart"
             >
-              <span className="material-symbols-outlined block text-[24px]">shopping_cart</span>
+              <span className="material-symbols-outlined block text-[22px]">shopping_cart</span>
               {cartCount > 0 && (
-                <span className="absolute -top-1 -right-1 bg-secondary text-white text-[10px] w-5 h-5 rounded-full flex items-center justify-center font-bold animate-pulse">
+                <span className="absolute -top-1 -right-1 bg-secondary text-white text-[10px] w-5 h-5 rounded-full flex items-center justify-center font-bold">
                   {cartCount}
                 </span>
               )}
@@ -173,16 +173,16 @@ export default function Navbar() {
             {/* Profile User Icon */}
             <Link
               href="/profile"
-              className="p-2 hover:bg-surface-container rounded-full transition-all focus:outline-none focus:ring-2 focus:ring-secondary/40"
+              className="p-2 hover:bg-neutral-100 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-secondary/40"
               aria-label="Profile Account"
             >
-              <span className="material-symbols-outlined block text-[24px]">account_circle</span>
+              <span className="material-symbols-outlined block text-[22px]">account_circle</span>
             </Link>
 
             {/* Mobile Nav Toggle */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="p-2 lg:hidden hover:bg-surface-container rounded-full transition-all focus:outline-none focus:ring-2 focus:ring-secondary/40"
+              className="p-2 lg:hidden hover:bg-neutral-100 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-secondary/40"
               aria-label="Toggle Menu"
             >
               <span className="material-symbols-outlined block text-[24px]">
