@@ -210,8 +210,8 @@ export default function Page() {
 <div class="absolute -bottom-10 -left-10 w-64 h-64 bg-tertiary-fixed/10 -z-10"></div>
 </div>
 </section>
-<!-- Pillars Summary -->
-<section class="px-margin-desktop py-unit-xl bg-primary-container text-on-primary-fixed grid grid-cols-1 md:grid-cols-3 gap-gutter transition-all duration-1000 opacity-100">
+<!-- Pillars Summary (Legibility Fix: Changed text color to white for contrast) -->
+<section class="px-margin-desktop py-unit-xl bg-primary-container text-white grid grid-cols-1 md:grid-cols-3 gap-gutter transition-all duration-1000 opacity-100">
 <div class="p-unit-lg border-r border-on-primary-container/20 last:border-r-0">
 <span class="font-display-lg text-display-lg opacity-20">01</span>
 <h3 class="font-headline-sm text-headline-sm mb-unit-sm">Wisdom</h3>

@@ -1,1 +1,1 @@
-@import "tailwindcss";
+/* Empty globals.css to prevent Next.js Tailwind v4 compilation from conflicting with verbatim Tailwind v3 CDN styles */
