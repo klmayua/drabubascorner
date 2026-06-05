@@ -132,26 +132,29 @@ export default function Navbar() {
                   key={link.name}
                   href={link.href}
                   className={`relative font-medium text-[15px] tracking-wide transition-colors duration-200 py-2 group ${
-                    isActive
-                      ? 'text-primary font-semibold'
-                      : 'text-neutral-600 hover:text-primary'
+                    isActive ? 'font-semibold' : ''
                   }`}
+                  style={{ color: isActive ? '#1F2937' : '#1F1F1F' }}
                 >
                   {link.name}
-                  <span className={`absolute bottom-0 left-0 h-[2px] bg-secondary rounded-full transition-all duration-200 ${isActive ? 'w-full' : 'w-0 group-hover:w-full'}`} />
+                  <span 
+                    className="absolute bottom-0 left-0 h-[2px] bg-[#C5A059] rounded-full transition-all duration-200 ease-out"
+                    style={{ width: isActive ? '100%' : '0%', backgroundColor: '#C5A059' }} 
+                  />
                 </Link>
               );
             })}
           </div>
 
           {/* Actions Column */}
-          <div className="flex items-center gap-4 lg:gap-6 whitespace-nowrap text-primary">
+          <div className="flex items-center gap-6 lg:gap-8 whitespace-nowrap">
             
             {/* Search Trigger */}
             <button
               onClick={() => setIsSearchOpen(true)}
-              className="p-2 hover:text-primary text-neutral-800 transition-colors focus:outline-none"
+              className="p-2 transition-colors duration-200 focus:outline-none"
               aria-label="Search"
+              style={{ color: '#1F1F1F' }}
             >
               <Search size={20} strokeWidth={1.75} />
             </button>
@@ -159,12 +162,13 @@ export default function Navbar() {
             {/* Shopping Cart Trigger */}
             <button
               onClick={() => setIsCartOpen(true)}
-              className="p-2 hover:text-primary text-neutral-800 transition-colors relative focus:outline-none"
+              className="p-2 transition-colors duration-200 relative focus:outline-none"
               aria-label="Shopping Cart"
+              style={{ color: '#1F1F1F' }}
             >
               <ShoppingBag size={20} strokeWidth={1.75} />
               {cartCount > 0 && (
-                <span className="absolute -top-1 -right-1 bg-secondary text-white text-[10px] w-5 h-5 rounded-full flex items-center justify-center font-bold">
+                <span className="absolute -top-1 -right-1 bg-[#C5A059] text-white text-[10px] w-5 h-5 rounded-full flex items-center justify-center font-bold">
                   {cartCount}
                 </span>
               )}
@@ -173,8 +177,9 @@ export default function Navbar() {
             {/* Profile User Icon */}
             <Link
               href="/profile"
-              className="p-2 hover:text-primary text-neutral-800 transition-colors focus:outline-none"
+              className="p-2 transition-colors duration-200 focus:outline-none"
               aria-label="Profile Account"
+              style={{ color: '#1F1F1F' }}
             >
               <CircleUser size={20} strokeWidth={1.75} />
             </Link>
