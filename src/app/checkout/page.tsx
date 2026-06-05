@@ -1,13 +1,44 @@
-import React from 'react';
+'use client';
 
-export const metadata = {
-  title: "Procurement & Checkout (Desktop) - Dr. Abuba Portal",
-  description: "Verbatim design imported from Stitch project.",
-};
+import React, { useEffect, useRef } from 'react';
 
 export default function Page() {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!containerRef.current) return;
+    
+    // Find all script tags inside the container
+    const scripts = Array.from(containerRef.current.querySelectorAll('script'));
+    
+    // Execute scripts sequentially to preserve execution order dependencies (like Tailwind -> tailwind.config)
+    const runScriptsSequentially = async (index = 0) => {
+      if (index >= scripts.length) return;
+      const oldScript = scripts[index];
+      const newScript = document.createElement('script');
+      
+      Array.from(oldScript.attributes).forEach((attr) => {
+        newScript.setAttribute(attr.name, attr.value);
+      });
+      
+      newScript.textContent = oldScript.textContent;
+      
+      if (newScript.src) {
+        newScript.onload = () => runScriptsSequentially(index + 1);
+        newScript.onerror = () => runScriptsSequentially(index + 1);
+        oldScript.parentNode?.replaceChild(newScript, oldScript);
+      } else {
+        oldScript.parentNode?.replaceChild(newScript, oldScript);
+        runScriptsSequentially(index + 1);
+      }
+    };
+    
+    runScriptsSequentially();
+  }, []);
+
   return (
     <div 
+      ref={containerRef}
       className="bg-background text-on-background font-body-md selection:bg-tertiary-fixed selection:text-on-tertiary-fixed" 
       style={ {} }
     >
@@ -135,8 +166,6 @@ export default function Page() {
             border: 1px solid rgba(0, 3, 15, 0.1);
         }
     </style>
-      ` }} />
-      <div dangerouslySetInnerHTML={{ __html: `
 
 <!-- Top Navigation Header - Transactional Mode (Simplified) -->
 <header class="w-full top-0 sticky bg-surface border-b border-outline-variant z-50">

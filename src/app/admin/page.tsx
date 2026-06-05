@@ -1,13 +1,44 @@
-import React from 'react';
+'use client';
 
-export const metadata = {
-  title: "Institutional Admin Dashboard (Desktop) - Dr. Abuba Portal",
-  description: "Verbatim design imported from Stitch project.",
-};
+import React, { useEffect, useRef } from 'react';
 
 export default function Page() {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!containerRef.current) return;
+    
+    // Find all script tags inside the container
+    const scripts = Array.from(containerRef.current.querySelectorAll('script'));
+    
+    // Execute scripts sequentially to preserve execution order dependencies (like Tailwind -> tailwind.config)
+    const runScriptsSequentially = async (index = 0) => {
+      if (index >= scripts.length) return;
+      const oldScript = scripts[index];
+      const newScript = document.createElement('script');
+      
+      Array.from(oldScript.attributes).forEach((attr) => {
+        newScript.setAttribute(attr.name, attr.value);
+      });
+      
+      newScript.textContent = oldScript.textContent;
+      
+      if (newScript.src) {
+        newScript.onload = () => runScriptsSequentially(index + 1);
+        newScript.onerror = () => runScriptsSequentially(index + 1);
+        oldScript.parentNode?.replaceChild(newScript, oldScript);
+      } else {
+        oldScript.parentNode?.replaceChild(newScript, oldScript);
+        runScriptsSequentially(index + 1);
+      }
+    };
+    
+    runScriptsSequentially();
+  }, []);
+
   return (
     <div 
+      ref={containerRef}
       className="flex min-h-screen overflow-x-hidden" 
       style={ {} }
     >
@@ -155,8 +186,6 @@ export default function Page() {
             border-radius: 10px;
         }
     </style>
-      ` }} />
-      <div dangerouslySetInnerHTML={{ __html: `
 
 <!-- SideNavBar (As per JSON Structure) -->
 <aside class="fixed left-0 top-0 h-screen z-40 flex flex-col bg-surface-container-low border-r border-outline-variant w-80">

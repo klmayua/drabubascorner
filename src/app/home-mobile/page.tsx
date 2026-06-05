@@ -1,13 +1,44 @@
-import React from 'react';
+'use client';
 
-export const metadata = {
-  title: "Institutional Homepage - Dr. Abuba Portal",
-  description: "Verbatim design imported from Stitch project.",
-};
+import React, { useEffect, useRef } from 'react';
 
 export default function Page() {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!containerRef.current) return;
+    
+    // Find all script tags inside the container
+    const scripts = Array.from(containerRef.current.querySelectorAll('script'));
+    
+    // Execute scripts sequentially to preserve execution order dependencies (like Tailwind -> tailwind.config)
+    const runScriptsSequentially = async (index = 0) => {
+      if (index >= scripts.length) return;
+      const oldScript = scripts[index];
+      const newScript = document.createElement('script');
+      
+      Array.from(oldScript.attributes).forEach((attr) => {
+        newScript.setAttribute(attr.name, attr.value);
+      });
+      
+      newScript.textContent = oldScript.textContent;
+      
+      if (newScript.src) {
+        newScript.onload = () => runScriptsSequentially(index + 1);
+        newScript.onerror = () => runScriptsSequentially(index + 1);
+        oldScript.parentNode?.replaceChild(newScript, oldScript);
+      } else {
+        oldScript.parentNode?.replaceChild(newScript, oldScript);
+        runScriptsSequentially(index + 1);
+      }
+    };
+    
+    runScriptsSequentially();
+  }, []);
+
   return (
     <div 
+      ref={containerRef}
       className="bg-background text-on-surface font-body-md" 
       style={ {} }
     >
@@ -123,8 +154,6 @@ export default function Page() {
             background-color: #a87f0f; /* Tonal variation of Gold from theme */
         }
     </style>
-      ` }} />
-      <div dangerouslySetInnerHTML={{ __html: `
 
 <!-- TopAppBar -->
 <header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-mobile md:px-margin-desktop py-4 bg-surface border-b border-outline-variant">

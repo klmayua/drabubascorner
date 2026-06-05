@@ -1,13 +1,44 @@
-import React from 'react';
+'use client';
 
-export const metadata = {
-  title: "Scholarly Lesson Player (Desktop) - Dr. Abuba Portal",
-  description: "Verbatim design imported from Stitch project.",
-};
+import React, { useEffect, useRef } from 'react';
 
 export default function Page() {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!containerRef.current) return;
+    
+    // Find all script tags inside the container
+    const scripts = Array.from(containerRef.current.querySelectorAll('script'));
+    
+    // Execute scripts sequentially to preserve execution order dependencies (like Tailwind -> tailwind.config)
+    const runScriptsSequentially = async (index = 0) => {
+      if (index >= scripts.length) return;
+      const oldScript = scripts[index];
+      const newScript = document.createElement('script');
+      
+      Array.from(oldScript.attributes).forEach((attr) => {
+        newScript.setAttribute(attr.name, attr.value);
+      });
+      
+      newScript.textContent = oldScript.textContent;
+      
+      if (newScript.src) {
+        newScript.onload = () => runScriptsSequentially(index + 1);
+        newScript.onerror = () => runScriptsSequentially(index + 1);
+        oldScript.parentNode?.replaceChild(newScript, oldScript);
+      } else {
+        oldScript.parentNode?.replaceChild(newScript, oldScript);
+        runScriptsSequentially(index + 1);
+      }
+    };
+    
+    runScriptsSequentially();
+  }, []);
+
   return (
     <div 
+      ref={containerRef}
       className="bg-surface font-body-md text-on-surface selection:bg-secondary-container" 
       style={ {} }
     >
@@ -141,8 +172,6 @@ export default function Page() {
             transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
     </style>
-      ` }} />
-      <div dangerouslySetInnerHTML={{ __html: `
 
 <!-- TopNavBar (Large Shell Implementation) -->
 <header class="w-full top-0 sticky z-50 bg-surface dark:bg-surface-container-lowest border-b border-outline-variant dark:border-outline flat no shadows">
