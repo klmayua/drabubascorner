@@ -7,9 +7,115 @@ export const metadata = {
 
 export default function Page() {
   return (
-    <>
-      <style dangerouslySetInnerHTML={{ __html: `
-
+    <div 
+      className="bg-background text-on-background" 
+      style={ {} }
+    >
+      <div dangerouslySetInnerHTML={{ __html: `
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed": "#ffdf9f",
+                        "primary-fixed": "#d7e2ff",
+                        "primary": "#00030f",
+                        "surface-container": "#edeeef",
+                        "primary-container": "#0b1d3a",
+                        "inverse-primary": "#b6c7ec",
+                        "inverse-surface": "#2e3132",
+                        "surface-bright": "#f8f9fa",
+                        "on-tertiary-container": "#a87f0f",
+                        "surface-container-high": "#e7e8e9",
+                        "on-primary-fixed-variant": "#374766",
+                        "background": "#f8f9fa",
+                        "surface-variant": "#e1e3e4",
+                        "surface": "#f8f9fa",
+                        "surface-tint": "#4f5e7f",
+                        "on-primary-fixed": "#091b38",
+                        "surface-container-low": "#f3f4f5",
+                        "tertiary-container": "#281b00",
+                        "secondary-fixed": "#c7efa1",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-fixed-dim": "#acd287",
+                        "on-surface-variant": "#44474d",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-fixed-variant": "#304f13",
+                        "surface-dim": "#d9dadb",
+                        "secondary": "#476729",
+                        "on-tertiary-fixed-variant": "#5c4300",
+                        "on-secondary-container": "#4c6e2e",
+                        "on-secondary": "#ffffff",
+                        "tertiary": "#050300",
+                        "secondary-container": "#c7efa1",
+                        "on-secondary-fixed": "#0d2000",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed": "#261a00",
+                        "outline-variant": "#c5c6ce",
+                        "on-primary-container": "#7585a8",
+                        "on-primary": "#ffffff",
+                        "on-surface": "#191c1d",
+                        "error-container": "#ffdad6",
+                        "primary-fixed-dim": "#b6c7ec",
+                        "on-error": "#ffffff",
+                        "surface-container-highest": "#e1e3e4",
+                        "outline": "#75777e",
+                        "inverse-on-surface": "#f0f1f2",
+                        "tertiary-fixed-dim": "#f1bf51",
+                        "on-error-container": "#93000a",
+                        "on-background": "#191c1d"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "unit-sm": "8px",
+                        "unit-xl": "48px",
+                        "unit-xs": "4px",
+                        "unit-md": "16px",
+                        "unit-lg": "24px",
+                        "unit-2xl": "80px",
+                        "gutter": "32px",
+                        "container-max": "1440px",
+                        "margin-desktop": "80px"
+                    },
+                    "fontFamily": {
+                        "label-lg": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "display-xl": ["Playfair Display"],
+                        "display-lg": ["Playfair Display"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Playfair Display"],
+                        "headline-lg": ["Playfair Display"],
+                        "label-md": ["Inter"],
+                        "headline-sm": ["Playfair Display"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "body-sm": ["14px", {"lineHeight": "22px", "fontWeight": "400"}],
+                        "display-xl": ["72px", {"lineHeight": "84px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "display-lg": ["60px", {"lineHeight": "72px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "26px", "fontWeight": "400"}],
+                        "headline-md": ["36px", {"lineHeight": "44px", "fontWeight": "600"}],
+                        "headline-lg": ["48px", {"lineHeight": "56px", "fontWeight": "600"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.03em", "fontWeight": "500"}],
+                        "headline-sm": ["28px", {"lineHeight": "36px", "fontWeight": "500"}],
+                        "body-lg": ["20px", {"lineHeight": "32px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
         body {
             background-color: #f8f9fa;
             color: #191c1d;
@@ -51,8 +157,7 @@ export default function Page() {
         .course-card-accent {
             border-top: 4px solid #476729;
         }
-    
-
+    </style>
       ` }} />
       <div dangerouslySetInnerHTML={{ __html: `
 
@@ -295,6 +400,6 @@ export default function Page() {
     </script>
 
       ` }} />
-    </>
+    </div>
   );
 }

@@ -7,9 +7,111 @@ export const metadata = {
 
 export default function Page() {
   return (
-    <>
-      <style dangerouslySetInnerHTML={{ __html: `
-
+    <div 
+      className="bg-background text-on-surface font-body-md" 
+      style={ {} }
+    >
+      <div dangerouslySetInnerHTML={{ __html: `
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-primary-fixed-variant": "#374766",
+                      "surface-dim": "#dcd9d9",
+                      "on-error": "#ffffff",
+                      "tertiary-fixed-dim": "#f1bf51",
+                      "primary-fixed": "#d7e2ff",
+                      "on-secondary-fixed-variant": "#304f13",
+                      "tertiary-container": "#281b00",
+                      "on-secondary-container": "#4c6e2e",
+                      "surface-container-high": "#eae7e7",
+                      "secondary": "#476729",
+                      "surface-container-low": "#f6f3f2",
+                      "inverse-surface": "#303030",
+                      "outline": "#75777e",
+                      "on-background": "#1b1c1c",
+                      "primary-fixed-dim": "#b6c7ec",
+                      "tertiary": "#050300",
+                      "on-primary-fixed": "#091b38",
+                      "on-surface": "#1b1c1c",
+                      "on-secondary": "#ffffff",
+                      "surface-bright": "#fcf9f8",
+                      "primary-container": "#0b1d3a",
+                      "tertiary-fixed": "#ffdf9f",
+                      "surface-container-lowest": "#ffffff",
+                      "surface-tint": "#4f5e7f",
+                      "secondary-fixed": "#c7efa1",
+                      "surface-variant": "#e5e2e1",
+                      "inverse-primary": "#b6c7ec",
+                      "secondary-container": "#c7efa1",
+                      "primary": "#00030f",
+                      "background": "#fcf9f8",
+                      "surface": "#fcf9f8",
+                      "on-tertiary": "#ffffff",
+                      "inverse-on-surface": "#f3f0ef",
+                      "on-secondary-fixed": "#0d2000",
+                      "on-primary": "#ffffff",
+                      "on-tertiary-container": "#a87f0f",
+                      "secondary-fixed-dim": "#acd287",
+                      "on-surface-variant": "#44474d",
+                      "on-tertiary-fixed-variant": "#5c4300",
+                      "error-container": "#ffdad6",
+                      "on-tertiary-fixed": "#261a00",
+                      "outline-variant": "#c5c6ce",
+                      "on-error-container": "#93000a",
+                      "on-primary-container": "#7585a8",
+                      "surface-container-highest": "#e5e2e1",
+                      "surface-container": "#f0eded",
+                      "error": "#ba1a1a"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "gutter": "24px",
+                      "margin-mobile": "16px",
+                      "unit": "8px",
+                      "margin-desktop": "64px",
+                      "max-width": "1280px"
+              },
+              "fontFamily": {
+                      "headline-xl": ["Playfair Display"],
+                      "headline-lg": ["Playfair Display"],
+                      "body-sm": ["Inter"],
+                      "headline-md": ["Playfair Display"],
+                      "display-lg": ["Playfair Display"],
+                      "display-lg-mobile": ["Playfair Display"],
+                      "label-md": ["Inter"],
+                      "body-md": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "label-lg": ["Inter"]
+              },
+              "fontSize": {
+                      "headline-xl": ["48px", {"lineHeight": "56px", "fontWeight": "700"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                      "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "display-lg": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "display-lg-mobile": ["40px", {"lineHeight": "48px", "fontWeight": "700"}],
+                      "label-md": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.1em", "fontWeight": "600"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
@@ -20,8 +122,7 @@ export default function Page() {
             width: 4px;
             background-color: #a87f0f; /* Tonal variation of Gold from theme */
         }
-    
-
+    </style>
       ` }} />
       <div dangerouslySetInnerHTML={{ __html: `
 
@@ -342,6 +443,6 @@ export default function Page() {
     </script>
 
       ` }} />
-    </>
+    </div>
   );
 }

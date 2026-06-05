@@ -7,9 +7,114 @@ export const metadata = {
 
 export default function Page() {
   return (
-    <>
-      <style dangerouslySetInnerHTML={{ __html: `
-
+    <div 
+      className="bg-surface text-on-surface font-body-md selection:bg-tertiary-fixed selection:text-on-tertiary-fixed" 
+      style={ {} }
+    >
+      <div dangerouslySetInnerHTML={{ __html: `
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed": "#ffdf9f",
+                        "on-error": "#ffffff",
+                        "primary": "#00030f",
+                        "surface-tint": "#4f5e7f",
+                        "tertiary": "#050300",
+                        "tertiary-container": "#281b00",
+                        "surface": "#f8f9fa",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface-variant": "#44474d",
+                        "inverse-surface": "#2e3132",
+                        "surface-dim": "#d9dadb",
+                        "on-tertiary-container": "#a87f0f",
+                        "on-primary-fixed-variant": "#374766",
+                        "surface-container": "#edeeef",
+                        "on-secondary-fixed-variant": "#304f13",
+                        "on-tertiary-fixed": "#261a00",
+                        "outline": "#75777e",
+                        "surface-bright": "#f8f9fa",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#5c4300",
+                        "primary-fixed-dim": "#b6c7ec",
+                        "on-secondary-fixed": "#0d2000",
+                        "on-primary-fixed": "#091b38",
+                        "secondary-container": "#c7efa1",
+                        "tertiary-fixed-dim": "#f1bf51",
+                        "secondary-fixed": "#c7efa1",
+                        "secondary-fixed-dim": "#acd287",
+                        "on-primary-container": "#7585a8",
+                        "error-container": "#ffdad6",
+                        "error": "#ba1a1a",
+                        "surface-variant": "#e1e3e4",
+                        "secondary": "#476729",
+                        "inverse-primary": "#b6c7ec",
+                        "on-secondary-container": "#4c6e2e",
+                        "primary-fixed": "#d7e2ff",
+                        "on-secondary": "#ffffff",
+                        "surface-container-highest": "#e1e3e4",
+                        "surface-container-high": "#e7e8e9",
+                        "background": "#f8f9fa",
+                        "surface-container-low": "#f3f4f5",
+                        "on-background": "#191c1d",
+                        "on-error-container": "#93000a",
+                        "on-primary": "#ffffff",
+                        "outline-variant": "#c5c6ce",
+                        "inverse-on-surface": "#f0f1f2",
+                        "primary-container": "#0b1d3a",
+                        "on-surface": "#191c1d"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-desktop": "80px",
+                        "gutter": "32px",
+                        "unit-xs": "4px",
+                        "unit-sm": "8px",
+                        "unit-xl": "48px",
+                        "unit-2xl": "80px",
+                        "unit-md": "16px",
+                        "container-max": "1440px",
+                        "unit-lg": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Playfair Display"],
+                        "headline-sm": ["Playfair Display"],
+                        "body-sm": ["Inter"],
+                        "body-md": ["Inter"],
+                        "display-xl": ["Playfair Display"],
+                        "headline-md": ["Playfair Display"],
+                        "label-md": ["Inter"],
+                        "label-lg": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "display-lg": ["Playfair Display"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["48px", {"lineHeight": "56px", "fontWeight": "600"}],
+                        "headline-sm": ["28px", {"lineHeight": "36px", "fontWeight": "500"}],
+                        "body-sm": ["14px", {"lineHeight": "22px", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "26px", "fontWeight": "400"}],
+                        "display-xl": ["72px", {"lineHeight": "84px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-md": ["36px", {"lineHeight": "44px", "fontWeight": "600"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.03em", "fontWeight": "500"}],
+                        "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "body-lg": ["20px", {"lineHeight": "32px", "fontWeight": "400"}],
+                        "display-lg": ["60px", {"lineHeight": "72px", "letterSpacing": "-0.01em", "fontWeight": "700"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
             display: inline-block;
@@ -30,8 +135,7 @@ export default function Page() {
             background: #ffdf9f;
             width: 80px;
         }
-    
-
+    </style>
       ` }} />
       <div dangerouslySetInnerHTML={{ __html: `
 
@@ -259,6 +363,6 @@ export default function Page() {
 
 
       ` }} />
-    </>
+    </div>
   );
 }

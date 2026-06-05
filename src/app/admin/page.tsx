@@ -7,9 +7,115 @@ export const metadata = {
 
 export default function Page() {
   return (
-    <>
-      <style dangerouslySetInnerHTML={{ __html: `
-
+    <div 
+      className="flex min-h-screen overflow-x-hidden" 
+      style={ {} }
+    >
+      <div dangerouslySetInnerHTML={{ __html: `
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary": "#050300",
+                        "primary-container": "#0b1d3a",
+                        "on-primary-container": "#7585a8",
+                        "outline": "#75777e",
+                        "surface-bright": "#f8f9fa",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed-variant": "#5c4300",
+                        "inverse-on-surface": "#f0f1f2",
+                        "on-error-container": "#93000a",
+                        "on-background": "#191c1d",
+                        "primary-fixed-dim": "#b6c7ec",
+                        "secondary": "#476729",
+                        "surface": "#f8f9fa",
+                        "background": "#f8f9fa",
+                        "secondary-container": "#c7efa1",
+                        "secondary-fixed": "#c7efa1",
+                        "on-tertiary-container": "#a87f0f",
+                        "tertiary-fixed-dim": "#f1bf51",
+                        "surface-tint": "#4f5e7f",
+                        "on-secondary-fixed-variant": "#304f13",
+                        "on-primary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "primary": "#00030f",
+                        "tertiary-fixed": "#ffdf9f",
+                        "surface-container-high": "#e7e8e9",
+                        "on-tertiary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "on-secondary-fixed": "#0d2000",
+                        "on-primary-fixed": "#091b38",
+                        "inverse-primary": "#b6c7ec",
+                        "on-primary-fixed-variant": "#374766",
+                        "primary-fixed": "#d7e2ff",
+                        "on-surface": "#191c1d",
+                        "secondary-fixed-dim": "#acd287",
+                        "tertiary-container": "#281b00",
+                        "on-secondary": "#ffffff",
+                        "surface-container-low": "#f3f4f5",
+                        "on-tertiary-fixed": "#261a00",
+                        "surface-container-highest": "#e1e3e4",
+                        "on-surface-variant": "#44474d",
+                        "surface-container": "#edeeef",
+                        "inverse-surface": "#2e3132",
+                        "surface-dim": "#d9dadb",
+                        "surface-variant": "#e1e3e4",
+                        "outline-variant": "#c5c6ce",
+                        "on-secondary-container": "#4c6e2e"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "unit-md": "16px",
+                        "container-max": "1440px",
+                        "unit-sm": "8px",
+                        "margin-desktop": "80px",
+                        "unit-2xl": "80px",
+                        "unit-lg": "24px",
+                        "unit-xs": "4px",
+                        "gutter": "32px",
+                        "unit-xl": "48px"
+                    },
+                    "fontFamily": {
+                        "display-xl": ["Playfair Display"],
+                        "label-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "display-lg": ["Playfair Display"],
+                        "body-sm": ["Inter"],
+                        "headline-md": ["Playfair Display"],
+                        "label-md": ["Inter"],
+                        "headline-sm": ["Playfair Display"],
+                        "headline-lg": ["Playfair Display"]
+                    },
+                    "fontSize": {
+                        "display-xl": ["72px", {"lineHeight": "84px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "26px", "fontWeight": "400"}],
+                        "body-lg": ["20px", {"lineHeight": "32px", "fontWeight": "400"}],
+                        "display-lg": ["60px", {"lineHeight": "72px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "body-sm": ["14px", {"lineHeight": "22px", "fontWeight": "400"}],
+                        "headline-md": ["36px", {"lineHeight": "44px", "fontWeight": "600"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.03em", "fontWeight": "500"}],
+                        "headline-sm": ["28px", {"lineHeight": "36px", "fontWeight": "500"}],
+                        "headline-lg": ["48px", {"lineHeight": "56px", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
         body {
             background-color: #F8F9FA;
             font-family: 'Inter', sans-serif;
@@ -48,8 +154,7 @@ export default function Page() {
             background: #00030f;
             border-radius: 10px;
         }
-    
-
+    </style>
       ` }} />
       <div dangerouslySetInnerHTML={{ __html: `
 
@@ -380,6 +485,6 @@ export default function Page() {
     </script>
 
       ` }} />
-    </>
+    </div>
   );
 }

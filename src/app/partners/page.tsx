@@ -7,9 +7,112 @@ export const metadata = {
 
 export default function Page() {
   return (
-    <>
-      <style dangerouslySetInnerHTML={{ __html: `
-
+    <div 
+      className="font-body-md overflow-x-hidden" 
+      style={ {} }
+    >
+      <div dangerouslySetInnerHTML={{ __html: `
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary": "#ffffff",
+                        "outline": "#75777e",
+                        "surface-container-highest": "#e1e3e4",
+                        "on-error-container": "#93000a",
+                        "surface": "#f8f9fa",
+                        "surface-tint": "#4f5e7f",
+                        "on-error": "#ffffff",
+                        "inverse-surface": "#2e3132",
+                        "error-container": "#ffdad6",
+                        "secondary-fixed-dim": "#acd287",
+                        "primary": "#00030f",
+                        "on-primary-fixed": "#091b38",
+                        "on-background": "#191c1d",
+                        "on-tertiary-fixed": "#261a00",
+                        "primary-fixed-dim": "#b6c7ec",
+                        "primary-container": "#0b1d3a",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-fixed": "#0d2000",
+                        "tertiary": "#050300",
+                        "on-tertiary-container": "#a87f0f",
+                        "on-surface-variant": "#44474d",
+                        "surface-container-lowest": "#ffffff",
+                        "outline-variant": "#c5c6ce",
+                        "on-primary-fixed-variant": "#374766",
+                        "on-primary-container": "#7585a8",
+                        "error": "#ba1a1a",
+                        "tertiary-container": "#281b00",
+                        "secondary": "#476729",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed": "#ffdf9f",
+                        "surface-container-high": "#e7e8e9",
+                        "on-secondary-fixed-variant": "#304f13",
+                        "inverse-primary": "#b6c7ec",
+                        "secondary-fixed": "#c7efa1",
+                        "primary-fixed": "#d7e2ff",
+                        "surface-container": "#edeeef",
+                        "on-surface": "#191c1d",
+                        "secondary-container": "#c7efa1",
+                        "on-secondary-container": "#4c6e2e",
+                        "tertiary-fixed-dim": "#f1bf51",
+                        "surface-bright": "#f8f9fa",
+                        "inverse-on-surface": "#f0f1f2",
+                        "surface-bright": "#f8f9fa",
+                        "surface-dim": "#d9dadb"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "unit-md": "16px",
+                        "unit-sm": "8px",
+                        "unit-xs": "4px",
+                        "gutter": "32px",
+                        "unit-xl": "48px",
+                        "margin-desktop": "80px",
+                        "container-max": "1440px",
+                        "unit-2xl": "80px",
+                        "unit-lg": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Playfair Display"],
+                        "label-lg": ["Inter"],
+                        "display-xl": ["Playfair Display"],
+                        "body-lg": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "label-md": ["Inter"],
+                        "display-lg": ["Playfair Display"],
+                        "body-md": ["Inter"],
+                        "headline-sm": ["Playfair Display"],
+                        "headline-lg": ["Playfair Display"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["36px", {"lineHeight": "44px", "fontWeight": "600"}],
+                        "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "display-xl": ["72px", {"lineHeight": "84px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-lg": ["20px", {"lineHeight": "32px", "fontWeight": "400"}],
+                        "body-sm": ["14px", {"lineHeight": "22px", "fontWeight": "400"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.03em", "fontWeight": "500"}],
+                        "display-lg": ["60px", {"lineHeight": "72px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "26px", "fontWeight": "400"}],
+                        "headline-sm": ["28px", {"lineHeight": "36px", "fontWeight": "500"}],
+                        "headline-lg": ["48px", {"lineHeight": "56px", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
         body { background-color: #F8F9FA; color: #191C1D; -webkit-font-smoothing: antialiased; }
         .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
         .glass-panel { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(12px); }
@@ -17,8 +120,7 @@ export default function Page() {
         .accent-line { width: 40px; height: 1px; background: #ffdf9f; }
         .bento-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 32px; }
         .diagonal-bg { background: linear-gradient(135deg, #00030f 0%, #0b1d3a 100%); }
-    
-
+    </style>
       ` }} />
       <div dangerouslySetInnerHTML={{ __html: `
 
@@ -303,6 +405,6 @@ export default function Page() {
     </script>
 
       ` }} />
-    </>
+    </div>
   );
 }

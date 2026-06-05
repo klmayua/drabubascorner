@@ -7,9 +7,115 @@ export const metadata = {
 
 export default function Page() {
   return (
-    <>
-      <style dangerouslySetInnerHTML={{ __html: `
-
+    <div 
+      className="bg-background text-on-background font-body-md min-h-screen flex flex-col" 
+      style={ {} }
+    >
+      <div dangerouslySetInnerHTML={{ __html: `
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary": "#050300",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-fixed-dim": "#b6c7ec",
+                    "on-tertiary": "#ffffff",
+                    "outline": "#75777e",
+                    "surface-variant": "#e1e3e4",
+                    "surface-container": "#edeeef",
+                    "tertiary-fixed": "#ffdf9f",
+                    "secondary-fixed-dim": "#acd287",
+                    "secondary-fixed": "#c7efa1",
+                    "on-surface-variant": "#44474d",
+                    "on-secondary-fixed": "#0d2000",
+                    "surface-dim": "#d9dadb",
+                    "surface-container-high": "#e7e8e9",
+                    "primary": "#00030f",
+                    "error-container": "#ffdad6",
+                    "on-primary-fixed-variant": "#374766",
+                    "background": "#f8f9fa",
+                    "on-primary-fixed": "#091b38",
+                    "on-secondary": "#ffffff",
+                    "surface-bright": "#f8f9fa",
+                    "tertiary-container": "#281b00",
+                    "on-surface": "#191c1d",
+                    "tertiary-fixed-dim": "#f1bf51",
+                    "on-background": "#191c1d",
+                    "inverse-on-surface": "#f0f1f2",
+                    "surface-container-highest": "#e1e3e4",
+                    "on-error": "#ffffff",
+                    "inverse-surface": "#2e3132",
+                    "on-tertiary-fixed-variant": "#5c4300",
+                    "on-primary-container": "#7585a8",
+                    "on-error-container": "#93000a",
+                    "surface-tint": "#4f5e7f",
+                    "surface": "#f8f9fa",
+                    "surface-container-low": "#f3f4f5",
+                    "primary-container": "#0b1d3a",
+                    "on-tertiary-fixed": "#261a00",
+                    "secondary": "#476729",
+                    "inverse-primary": "#b6c7ec",
+                    "error": "#ba1a1a",
+                    "on-secondary-container": "#4c6e2e",
+                    "on-tertiary-container": "#a87f0f",
+                    "on-primary": "#ffffff",
+                    "primary-fixed": "#d7e2ff",
+                    "outline-variant": "#c5c6ce",
+                    "on-secondary-fixed-variant": "#304f13",
+                    "secondary-container": "#c7efa1"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "unit-2xl": "80px",
+                    "unit-xs": "4px",
+                    "container-max": "1440px",
+                    "unit-sm": "8px",
+                    "unit-md": "16px",
+                    "margin-desktop": "80px",
+                    "gutter": "32px",
+                    "unit-xl": "48px",
+                    "unit-lg": "24px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Playfair Display"],
+                    "body-sm": ["Inter"],
+                    "headline-lg": ["Playfair Display"],
+                    "body-lg": ["Inter"],
+                    "headline-sm": ["Playfair Display"],
+                    "label-md": ["Inter"],
+                    "label-lg": ["Inter"],
+                    "display-lg": ["Playfair Display"],
+                    "display-xl": ["Playfair Display"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-md": ["36px", {"lineHeight": "44px", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "22px", "fontWeight": "400"}],
+                    "headline-lg": ["48px", {"lineHeight": "56px", "fontWeight": "600"}],
+                    "body-lg": ["20px", {"lineHeight": "32px", "fontWeight": "400"}],
+                    "headline-sm": ["28px", {"lineHeight": "36px", "fontWeight": "500"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.03em", "fontWeight": "500"}],
+                    "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "display-lg": ["60px", {"lineHeight": "72px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "display-xl": ["72px", {"lineHeight": "84px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "26px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
@@ -41,8 +147,7 @@ export default function Page() {
         .custom-scrollbar::-webkit-scrollbar-thumb {
             background: #00030f;
         }
-    
-
+    </style>
       ` }} />
       <div dangerouslySetInnerHTML={{ __html: `
 
@@ -322,6 +427,6 @@ export default function Page() {
     </script>
 
       ` }} />
-    </>
+    </div>
   );
 }

@@ -7,9 +7,117 @@ export const metadata = {
 
 export default function Page() {
   return (
-    <>
-      <style dangerouslySetInnerHTML={{ __html: `
-
+    <div 
+      className="bg-background text-on-background font-body-md selection:bg-tertiary-fixed selection:text-on-tertiary-fixed" 
+      style={ {} }
+    >
+      <div dangerouslySetInnerHTML={{ __html: `
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Playfair+Display:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-fixed": "#ffdf9f",
+                    "secondary-fixed-dim": "#acd287",
+                    "on-secondary-fixed": "#0d2000",
+                    "secondary-fixed": "#c7efa1",
+                    "on-surface-variant": "#44474d",
+                    "primary": "#00030f",
+                    "error-container": "#ffdad6",
+                    "surface-dim": "#d9dadb",
+                    "surface-container-high": "#e7e8e9",
+                    "on-primary-fixed": "#091b38",
+                    "on-primary-fixed-variant": "#374766",
+                    "background": "#f8f9fa",
+                    "surface-container-lowest": "#ffffff",
+                    "tertiary": "#050300",
+                    "on-tertiary": "#ffffff",
+                    "primary-fixed-dim": "#b6c7ec",
+                    "outline": "#75777e",
+                    "surface-variant": "#e1e3e4",
+                    "surface-container": "#edeeef",
+                    "surface-container-low": "#f3f4f5",
+                    "surface-tint": "#4f5e7f",
+                    "surface": "#f8f9fa",
+                    "primary-container": "#0b1d3a",
+                    "on-tertiary-fixed": "#261a00",
+                    "on-secondary-container": "#4c6e2e",
+                    "secondary": "#476729",
+                    "inverse-primary": "#b6c7ec",
+                    "error": "#ba1a1a",
+                    "secondary-container": "#c7efa1",
+                    "on-tertiary-container": "#a87f0f",
+                    "on-primary": "#ffffff",
+                    "primary-fixed": "#d7e2ff",
+                    "outline-variant": "#c5c6ce",
+                    "on-secondary-fixed-variant": "#304f13",
+                    "tertiary-container": "#281b00",
+                    "on-surface": "#191c1d",
+                    "on-secondary": "#ffffff",
+                    "surface-bright": "#f8f9fa",
+                    "inverse-on-surface": "#f0f1f2",
+                    "tertiary-fixed-dim": "#f1bf51",
+                    "on-background": "#191c1d",
+                    "on-primary-container": "#7585a8",
+                    "on-error-container": "#93000a",
+                    "surface-container-highest": "#e1e3e4",
+                    "on-error": "#ffffff",
+                    "inverse-surface": "#2e3132",
+                    "on-tertiary-fixed-variant": "#5c4300"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "unit-sm": "8px",
+                    "unit-md": "16px",
+                    "margin-desktop": "80px",
+                    "gutter": "32px",
+                    "unit-xl": "48px",
+                    "unit-lg": "24px",
+                    "container-max": "1440px",
+                    "unit-2xl": "80px",
+                    "unit-xs": "4px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Inter"],
+                    "headline-lg": ["Playfair Display"],
+                    "body-sm": ["Inter"],
+                    "headline-md": ["Playfair Display"],
+                    "display-xl": ["Playfair Display"],
+                    "body-md": ["Inter"],
+                    "label-md": ["Inter"],
+                    "label-lg": ["Inter"],
+                    "display-lg": ["Playfair Display"],
+                    "headline-sm": ["Playfair Display"]
+            },
+            "fontSize": {
+                    "body-lg": ["20px", {"lineHeight": "32px", "fontWeight": "400"}],
+                    "headline-lg": ["48px", {"lineHeight": "56px", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "22px", "fontWeight": "400"}],
+                    "headline-md": ["36px", {"lineHeight": "44px", "fontWeight": "600"}],
+                    "display-xl": ["72px", {"lineHeight": "84px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "26px", "fontWeight": "400"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.03em", "fontWeight": "500"}],
+                    "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "display-lg": ["60px", {"lineHeight": "72px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "headline-sm": ["28px", {"lineHeight": "36px", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
             display: inline-block;
@@ -35,8 +143,7 @@ export default function Page() {
         .institutional-input:focus {
             box-shadow: 0 0 0 2px #f1bf51;
         }
-    
-
+    </style>
       ` }} />
       <div dangerouslySetInnerHTML={{ __html: `
 
@@ -289,6 +396,6 @@ export default function Page() {
     </script>
 
       ` }} />
-    </>
+    </div>
   );
 }

@@ -7,9 +7,103 @@ export const metadata = {
 
 export default function Page() {
   return (
-    <>
-      <style dangerouslySetInnerHTML={{ __html: `
-
+    <div 
+      className="font-body-md text-body-md" 
+      style={ {} }
+    >
+      <div dangerouslySetInnerHTML={{ __html: `
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary": "#ffffff",
+                        "inverse-surface": "#2e3132",
+                        "on-secondary-fixed": "#0d2000",
+                        "surface-container-high": "#e7e8e9",
+                        "on-secondary-fixed-variant": "#304f13",
+                        "surface-container": "#edeeef",
+                        "surface": "#f8f9fa",
+                        "on-secondary-container": "#4c6e2e",
+                        "on-surface-variant": "#44474d",
+                        "secondary-fixed": "#c7efa1",
+                        "background": "#f8f9fa",
+                        "on-primary-fixed-variant": "#374766",
+                        "on-primary": "#ffffff",
+                        "surface-variant": "#e1e3e4",
+                        "surface-container-highest": "#e1e3e4",
+                        "on-tertiary-container": "#a87f0f",
+                        "on-tertiary": "#ffffff",
+                        "surface-tint": "#4f5e7f",
+                        "error-container": "#ffdad6",
+                        "on-primary-container": "#7585a8",
+                        "tertiary": "#050300",
+                        "primary": "#00030f",
+                        "primary-fixed-dim": "#b6c7ec",
+                        "outline-variant": "#c5c6ce",
+                        "error": "#ba1a1a",
+                        "outline": "#75777e",
+                        "secondary-fixed-dim": "#acd287",
+                        "on-error-container": "#93000a",
+                        "on-surface": "#191c1d",
+                        "on-tertiary-fixed-variant": "#5c4300",
+                        "inverse-on-surface": "#f0f1f2",
+                        "surface-container-low": "#f3f4f5",
+                        "on-error": "#ffffff",
+                        "tertiary-container": "#281b00",
+                        "secondary-container": "#c7efa1",
+                        "tertiary-fixed-dim": "#f1bf51",
+                        "on-tertiary-fixed": "#261a00",
+                        "primary-container": "#0b1d3a",
+                        "primary-fixed": "#d7e2ff",
+                        "surface-dim": "#d9dadb",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-bright": "#f8f9fa",
+                        "inverse-primary": "#b6c7ec",
+                        "tertiary-fixed": "#ffdf9f",
+                        "on-background": "#191c1d",
+                        "secondary": "#476729",
+                        "on-primary-fixed": "#091b38"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "unit-2xl": "80px",
+                        "unit-sm": "8px",
+                        "container-max": "1440px",
+                        "unit-md": "16px",
+                        "margin-desktop": "80px",
+                        "unit-xs": "4px",
+                        "unit-xl": "48px",
+                        "gutter": "32px",
+                        "unit-lg": "24px"
+                    },
+                    "fontFamily": {
+                        "display-xl": ["Playfair Display"],
+                        "body-md": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-md": ["Playfair Display"],
+                        "headline-sm": ["Playfair Display"],
+                        "body-sm": ["Inter"],
+                        "display-lg": ["Playfair Display"],
+                        "body-lg": ["Inter"],
+                        "label-lg": ["Inter"],
+                        "headline-lg": ["Playfair Display"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
         body {
             background-color: #f8f9fa;
             color: #191c1d;
@@ -46,8 +140,7 @@ export default function Page() {
             height: 2px;
             background-color: #f1bf51;
         }
-    
-
+    </style>
       ` }} />
       <div dangerouslySetInnerHTML={{ __html: `
 
@@ -336,6 +429,6 @@ export default function Page() {
     </script>
 
       ` }} />
-    </>
+    </div>
   );
 }
