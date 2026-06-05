@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useCart } from '@/context/CartContext';
-import { Search, ShoppingBag, User, Menu, X, BookOpen, Delete } from 'lucide-react';
+import { Search, ShoppingBag, CircleUser, Menu, X, BookOpen, Delete } from 'lucide-react';
 
 interface NavLink {
   name: string;
@@ -12,7 +12,8 @@ interface NavLink {
 }
 
 const PUBLIC_LINKS: NavLink[] = [
-  { name: 'Articles', href: '/' },
+  { name: 'About', href: '/about' },
+  { name: 'Articles', href: '/articles' },
   { name: 'Videos', href: '/video-archive' },
   { name: 'Podcast', href: '/podcast' },
   { name: 'Community', href: '/community-networking-hub-desktop-refined' },
@@ -111,35 +112,33 @@ export default function Navbar() {
   return (
     <>
       <header className="w-full sticky top-0 bg-surface border-b border-neutral-200 z-50 transition-all duration-300">
-        <nav className="max-w-[1440px] mx-auto px-margin-desktop flex justify-between items-center h-20 lg:h-24">
+        <nav className="max-w-[1440px] mx-auto px-margin-desktop flex justify-between items-center h-24 lg:h-24">
           
           {/* Brand Logo */}
           <Link href="/" className="flex items-center gap-unit-sm shrink-0">
             <img
               alt="Dr. Ayuba's Corner Brand Identity"
-              className="h-12 lg:h-16 w-auto object-contain"
+              className="h-16 lg:h-20 w-auto object-contain"
               src="/images/Dr_Abuba_Logo_Full-no_bg.png"
             />
           </Link>
 
           {/* Desktop Navigation Links */}
-          <div className="hidden lg:flex items-center gap-8 whitespace-nowrap">
+          <div className="hidden lg:flex items-center gap-10 whitespace-nowrap">
             {navLinks.map((link) => {
-              const isActive = pathname === link.href;
+              const isActive = pathname === link.href || (pathname === '/' && link.href === '/about');
               return (
                 <Link
                   key={link.name}
                   href={link.href}
-                  className={`relative font-label-lg text-label-lg transition-colors duration-200 py-2 tracking-wide ${
+                  className={`relative font-medium text-[15px] tracking-wide transition-colors duration-200 py-2 group ${
                     isActive
                       ? 'text-primary font-semibold'
                       : 'text-neutral-600 hover:text-primary'
                   }`}
                 >
                   {link.name}
-                  {isActive && (
-                    <span className="absolute bottom-0 left-0 w-full h-[2px] bg-secondary rounded-full" />
-                  )}
+                  <span className={`absolute bottom-0 left-0 h-[2px] bg-secondary rounded-full transition-all duration-200 ${isActive ? 'w-full' : 'w-0 group-hover:w-full'}`} />
                 </Link>
               );
             })}
@@ -177,7 +176,7 @@ export default function Navbar() {
               className="p-2 hover:text-primary text-neutral-800 transition-colors focus:outline-none"
               aria-label="Profile Account"
             >
-              <User size={20} strokeWidth={1.75} />
+              <CircleUser size={20} strokeWidth={1.75} />
             </Link>
 
             {/* Mobile Nav Toggle */}
