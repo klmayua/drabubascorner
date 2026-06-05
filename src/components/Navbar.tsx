@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useCart } from '@/context/CartContext';
+import { Search, ShoppingBag, User, Menu, X, BookOpen, Delete } from 'lucide-react';
 
 interface NavLink {
   name: string;
@@ -150,19 +151,19 @@ export default function Navbar() {
             {/* Search Trigger */}
             <button
               onClick={() => setIsSearchOpen(true)}
-              className="p-2 hover:bg-neutral-100 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-secondary/40"
+              className="p-2 hover:text-primary text-neutral-800 transition-colors focus:outline-none"
               aria-label="Search"
             >
-              <span className="material-symbols-outlined block text-[22px]">search</span>
+              <Search size={20} strokeWidth={1.75} />
             </button>
 
             {/* Shopping Cart Trigger */}
             <button
               onClick={() => setIsCartOpen(true)}
-              className="p-2 hover:bg-neutral-100 rounded-full transition-colors relative focus:outline-none focus:ring-2 focus:ring-secondary/40"
+              className="p-2 hover:text-primary text-neutral-800 transition-colors relative focus:outline-none"
               aria-label="Shopping Cart"
             >
-              <span className="material-symbols-outlined block text-[22px]">shopping_cart</span>
+              <ShoppingBag size={20} strokeWidth={1.75} />
               {cartCount > 0 && (
                 <span className="absolute -top-1 -right-1 bg-secondary text-white text-[10px] w-5 h-5 rounded-full flex items-center justify-center font-bold">
                   {cartCount}
@@ -173,21 +174,19 @@ export default function Navbar() {
             {/* Profile User Icon */}
             <Link
               href="/profile"
-              className="p-2 hover:bg-neutral-100 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-secondary/40"
+              className="p-2 hover:text-primary text-neutral-800 transition-colors focus:outline-none"
               aria-label="Profile Account"
             >
-              <span className="material-symbols-outlined block text-[22px]">account_circle</span>
+              <User size={20} strokeWidth={1.75} />
             </Link>
 
             {/* Mobile Nav Toggle */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="p-2 lg:hidden hover:bg-neutral-100 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-secondary/40"
+              className="p-2 lg:hidden hover:text-primary text-neutral-800 transition-colors focus:outline-none"
               aria-label="Toggle Menu"
             >
-              <span className="material-symbols-outlined block text-[24px]">
-                {isMobileMenuOpen ? 'close' : 'menu'}
-              </span>
+              {isMobileMenuOpen ? <X size={22} strokeWidth={1.75} /> : <Menu size={22} strokeWidth={1.75} />}
             </button>
 
           </div>
@@ -210,7 +209,7 @@ export default function Navbar() {
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="p-1 hover:bg-surface-container rounded-full"
               >
-                <span className="material-symbols-outlined text-[24px]">close</span>
+                <X size={24} />
               </button>
             </div>
             <div className="flex flex-col gap-unit-md overflow-y-auto pr-2">
@@ -272,7 +271,7 @@ export default function Navbar() {
                 onClick={() => setIsSearchOpen(false)}
                 className="p-1 hover:bg-surface-container rounded-full"
               >
-                <span className="material-symbols-outlined text-[24px]">close</span>
+                <X size={24} />
               </button>
             </div>
             
@@ -327,14 +326,14 @@ export default function Navbar() {
           <div className="relative w-full max-w-md bg-surface p-unit-xl shadow-2xl z-50 h-full flex flex-col animate-fade-in-up">
             <div className="flex items-center justify-between mb-unit-xl border-b border-outline-variant pb-unit-sm">
               <div className="flex items-center gap-2">
-                <span className="material-symbols-outlined text-[24px]">shopping_cart</span>
+                <ShoppingBag size={24} strokeWidth={1.75} />
                 <span className="font-headline-sm text-headline-sm text-primary font-bold">Shopping Cart</span>
               </div>
               <button
                 onClick={() => setIsCartOpen(false)}
                 className="p-1 hover:bg-surface-container rounded-full"
               >
-                <span className="material-symbols-outlined text-[24px]">close</span>
+                <X size={24} />
               </button>
             </div>
 
@@ -347,7 +346,7 @@ export default function Navbar() {
                       <img src={item.image} alt={item.name} className="w-16 h-16 object-cover rounded" />
                     ) : (
                       <div className="w-16 h-16 bg-surface-container-high rounded flex items-center justify-center">
-                        <span className="material-symbols-outlined text-on-surface-variant">book</span>
+                        <BookOpen size={20} className="text-on-surface-variant" />
                       </div>
                     )}
                     <div className="flex-1">
@@ -377,13 +376,13 @@ export default function Navbar() {
                       className="text-error hover:text-opacity-80 self-start"
                       aria-label="Remove item"
                     >
-                      <span className="material-symbols-outlined text-[20px]">delete</span>
+                      <Delete size={18} />
                     </button>
                   </div>
                 ))
               ) : (
                 <div className="h-48 flex flex-col items-center justify-center text-on-surface-variant opacity-60">
-                  <span className="material-symbols-outlined text-[48px] mb-2">shopping_cart_off</span>
+                  <ShoppingBag size={48} className="mb-2 opacity-50" />
                   <p>Your shopping cart is currently empty.</p>
                 </div>
               )}
