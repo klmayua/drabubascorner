@@ -1,428 +1,556 @@
 'use client';
 
-import React, { useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
+
+interface DashboardPersona {
+  key: string;
+  name: string;
+  roleName: string;
+  subtitle: string;
+  avatarInitials: string;
+  metrics: { label: string; value: string; icon: string }[];
+  sidebarLinks: { name: string; icon: string; href: string }[];
+  actionBtnText: string;
+  widgets: React.ReactNode;
+}
 
 export default function Page() {
-  const containerRef = useRef<HTMLDivElement>(null);
+  const [selectedPersona, setSelectedPersona] = useState<string>('member');
+  const [searchQuery, setSearchQuery] = useState('');
+  const [inboxCount, setInboxCount] = useState(3);
 
-  useEffect(() => {
-    if (!containerRef.current) return;
-    
-    // Find all script tags inside the container
-    const scripts = Array.from(containerRef.current.querySelectorAll('script'));
-    
-    // Execute scripts sequentially to preserve execution order dependencies (like Tailwind -> tailwind.config)
-    const runScriptsSequentially = async (index = 0) => {
-      if (index >= scripts.length) return;
-      const oldScript = scripts[index];
-      const newScript = document.createElement('script');
-      
-      Array.from(oldScript.attributes).forEach((attr) => {
-        newScript.setAttribute(attr.name, attr.value);
-      });
-      
-      newScript.textContent = oldScript.textContent;
-      
-      if (newScript.src) {
-        newScript.onload = () => runScriptsSequentially(index + 1);
-        newScript.onerror = () => runScriptsSequentially(index + 1);
-        oldScript.parentNode?.replaceChild(newScript, oldScript);
-      } else {
-        oldScript.parentNode?.replaceChild(newScript, oldScript);
-        runScriptsSequentially(index + 1);
-      }
-    };
-    
-    runScriptsSequentially();
-  }, []);
+  // Define personas
+  const personas: Record<string, DashboardPersona> = {
+    public: {
+      key: 'public',
+      name: 'Guest Reader',
+      roleName: 'Public Visitor',
+      subtitle: 'Welcome to the public archive portal. Log in or upgrade to access exclusive research panels.',
+      avatarInitials: 'GR',
+      metrics: [
+        { label: 'Articles Read', value: '3', icon: 'auto_stories' },
+        { label: 'Free Lectures Available', value: '15', icon: 'slideshow' },
+        { label: 'Resource Downloads', value: '2', icon: 'download' }
+      ],
+      sidebarLinks: [
+        { name: 'Public Dashboard', icon: 'dashboard', href: '/dashboard' },
+        { name: 'Courses Directory', icon: 'school', href: '/catalog' },
+        { name: 'Public Articles', icon: 'menu_book', href: '/' },
+        { name: 'Podcasts', icon: 'mic', href: '/podcast' },
+        { name: 'FAQ & Help', icon: 'help', href: '/about' }
+      ],
+      actionBtnText: 'Upgrade to Member',
+      widgets: (
+        <div className="space-y-gutter">
+          <h3 className="font-headline-sm text-headline-sm text-primary">Recommended Public Research</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-unit-lg">
+            <div className="bg-surface-container-lowest border border-outline-variant p-unit-lg rounded-lg premium-shadow-hover">
+              <span className="text-[10px] text-secondary font-bold tracking-wider uppercase bg-secondary-container px-2 py-1">READING</span>
+              <h4 className="font-headline-sm text-[22px] leading-tight mt-2 mb-unit-sm">The Foundations of Epistemology</h4>
+              <p className="text-on-surface-variant text-body-sm mb-4">A simple summary introduction of philosophical frameworks for decision-making.</p>
+              <Link href="/research-detail" className="text-secondary font-bold hover:underline flex items-center gap-1 text-sm">
+                Start Reading <span className="material-symbols-outlined text-sm">arrow_forward</span>
+              </Link>
+            </div>
+            <div className="bg-surface-container-lowest border border-outline-variant p-unit-lg rounded-lg premium-shadow-hover">
+              <span className="text-[10px] text-secondary font-bold tracking-wider uppercase bg-secondary-container px-2 py-1">WELLNESS</span>
+              <h4 className="font-headline-sm text-[22px] leading-tight mt-2 mb-unit-sm">Longevity through Biomarker Analysis</h4>
+              <p className="text-on-surface-variant text-body-sm mb-4">A brief guide on tracking metabolic biomarkers to improve physical and mental health.</p>
+              <Link href="/library" className="text-secondary font-bold hover:underline flex items-center gap-1 text-sm">
+                Open Guide <span className="material-symbols-outlined text-sm">arrow_forward</span>
+              </Link>
+            </div>
+          </div>
+        </div>
+      )
+    },
+    member: {
+      key: 'member',
+      name: 'Dr. Julian',
+      roleName: 'Member',
+      subtitle: 'Your research on clinical neuroplasticity has been cited 12 times this week. Continue your curriculum below.',
+      avatarInitials: 'JA',
+      metrics: [
+        { label: 'Research Points', value: '2,450', icon: 'military_tech' },
+        { label: 'Courses In Progress', value: '2', icon: 'school' },
+        { label: 'Library Saved Items', value: '8', icon: 'bookmark' }
+      ],
+      sidebarLinks: [
+        { name: 'Member Dashboard', icon: 'dashboard', href: '/dashboard' },
+        { name: 'My Learning', icon: 'school', href: '/catalog' },
+        { name: 'Research Papers', icon: 'menu_book', href: '/research-search' },
+        { name: 'Inbox', icon: 'mail', href: '#' },
+        { name: 'Subscriptions', icon: 'loyalty', href: '#' },
+        { name: 'Settings', icon: 'settings', href: '#' }
+      ],
+      actionBtnText: 'Upgrade Plan',
+      widgets: (
+        <div className="space-y-gutter">
+          <div className="flex items-center justify-between">
+            <h3 className="font-headline-sm text-headline-sm text-primary">Curriculum Progress</h3>
+            <Link href="/catalog" className="text-secondary font-label-lg text-label-lg hover:underline">View All Courses</Link>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-unit-lg">
+            <div className="bg-surface-container-lowest border border-outline-variant p-unit-lg rounded-lg premium-shadow-hover cursor-pointer">
+              <div className="flex justify-between items-start mb-unit-lg">
+                <div className="bg-secondary-container p-unit-sm rounded text-secondary">
+                  <span className="material-symbols-outlined">neurology</span>
+                </div>
+                <span className="font-label-md text-label-md bg-surface-container px-2 py-1">Advanced Genetics</span>
+              </div>
+              <h4 className="font-headline-sm text-[22px] leading-tight mb-2">Molecular Pathology II</h4>
+              <div className="space-y-2 mt-unit-xl">
+                <div className="flex justify-between text-label-lg text-on-surface-variant">
+                  <span>Progress</span>
+                  <span className="text-secondary font-bold">84%</span>
+                </div>
+                <div className="w-full h-1.5 bg-surface-container overflow-hidden rounded-full">
+                  <div className="h-full bg-secondary w-[84%] rounded-full"></div>
+                </div>
+              </div>
+            </div>
+            <div className="bg-surface-container-lowest border border-outline-variant p-unit-lg rounded-lg premium-shadow-hover cursor-pointer">
+              <div className="flex justify-between items-start mb-unit-lg">
+                <div className="bg-tertiary-fixed p-unit-sm rounded text-tertiary-container">
+                  <span className="material-symbols-outlined">analytics</span>
+                </div>
+                <span className="font-label-md text-label-md bg-surface-container px-2 py-1">Methodology</span>
+              </div>
+              <h4 className="font-headline-sm text-[22px] leading-tight mb-2">Statistical Meta-Analysis</h4>
+              <div className="space-y-2 mt-unit-xl">
+                <div className="flex justify-between text-label-lg text-on-surface-variant">
+                  <span>Progress</span>
+                  <span className="text-secondary font-bold">32%</span>
+                </div>
+                <div className="w-full h-1.5 bg-surface-container overflow-hidden rounded-full">
+                  <div className="h-full bg-secondary w-[32%] rounded-full"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )
+    },
+    admin: {
+      key: 'admin',
+      name: 'Admin Director',
+      roleName: 'System Admin',
+      subtitle: 'All backend micro-services are operating nominally. 4 security audits completed today.',
+      avatarInitials: 'AD',
+      metrics: [
+        { label: 'System Uptime', value: '99.98%', icon: 'cloud_done' },
+        { label: 'Total Users', value: '48,290', icon: 'group' },
+        { label: 'Pending Audits', value: '2', icon: 'assignment_late' }
+      ],
+      sidebarLinks: [
+        { name: 'System Status', icon: 'dashboard', href: '/dashboard' },
+        { name: 'User Management', icon: 'group', href: '/admin' },
+        { name: 'Access Control', icon: 'lock', href: '#' },
+        { name: 'Security Audits', icon: 'shield', href: '#' },
+        { name: 'Global Config', icon: 'settings', href: '#' }
+      ],
+      actionBtnText: 'Maintenance Mode',
+      widgets: (
+        <div className="space-y-gutter animate-fade-in-up">
+          <h3 className="font-headline-sm text-headline-sm text-primary">Admin System Operations Log</h3>
+          <div className="bg-surface-container-lowest border border-outline-variant rounded-lg p-unit-xl space-y-unit-md premium-shadow">
+            <div className="flex items-center justify-between text-sm border-b pb-2">
+              <span className="font-bold text-primary">System Node</span>
+              <span className="font-bold text-primary">Status</span>
+            </div>
+            <div className="flex justify-between text-body-md py-1 border-b border-outline-variant/30">
+              <span className="text-on-surface-variant">Database Replication Node A</span>
+              <span className="text-secondary font-bold">Active / Synced</span>
+            </div>
+            <div className="flex justify-between text-body-md py-1 border-b border-outline-variant/30">
+              <span className="text-on-surface-variant">API Cache Invalidation Queue</span>
+              <span className="text-secondary font-bold">0 Pending</span>
+            </div>
+            <div className="flex justify-between text-body-md py-1">
+              <span className="text-on-surface-variant">Vercel Auto-Deployment Node</span>
+              <span className="text-on-tertiary-container font-bold">Idle / Success</span>
+            </div>
+          </div>
+        </div>
+      )
+    },
+    partner: {
+      key: 'partner',
+      name: 'Elena Vance (Vanguard Holdings)',
+      roleName: 'Brand Partner',
+      subtitle: 'Co-branded campaign metrics are up 24% following the Annual Leadership Symposium.',
+      avatarInitials: 'EV',
+      metrics: [
+        { label: 'Campaign Reach', value: '142K', icon: 'campaign' },
+        { label: 'Shared Assets', value: '12', icon: 'folder_shared' },
+        { label: 'Inbound Inquiries', value: '45', icon: 'chat' }
+      ],
+      sidebarLinks: [
+        { name: 'Partner Dashboard', icon: 'dashboard', href: '/dashboard' },
+        { name: 'Active Campaigns', icon: 'campaign', href: '#' },
+        { name: 'Media Assets', icon: 'folder_shared', href: '/media' },
+        { name: 'Lead Pipeline', icon: 'connect_without_contact', href: '/partners' },
+        { name: 'Brand Kit Settings', icon: 'settings', href: '#' }
+      ],
+      actionBtnText: 'Review Brand Kit',
+      widgets: (
+        <div className="space-y-gutter">
+          <h3 className="font-headline-sm text-headline-sm text-primary">Co-Branded Assets & Agreements</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-unit-lg">
+            <div className="bg-surface-container-lowest border border-outline-variant p-unit-lg rounded-lg premium-shadow-hover">
+              <div className="flex items-center gap-2 mb-2">
+                <span className="material-symbols-outlined text-secondary">description</span>
+                <span className="text-xs font-bold text-on-surface-variant uppercase">Agreement</span>
+              </div>
+              <h4 className="font-headline-sm text-[22px] leading-tight mb-2">Sovereign Leadership Series: Keynotes</h4>
+              <p className="text-on-surface-variant text-body-sm">Status: <span className="text-secondary font-bold">Active & Signed</span></p>
+            </div>
+            <div className="bg-surface-container-lowest border border-outline-variant p-unit-lg rounded-lg premium-shadow-hover">
+              <div className="flex items-center gap-2 mb-2">
+                <span className="material-symbols-outlined text-on-tertiary-container">edit_document</span>
+                <span className="text-xs font-bold text-on-surface-variant uppercase">Drafting</span>
+              </div>
+              <h4 className="font-headline-sm text-[22px] leading-tight mb-2">Longevity Protocols Co-Authoring</h4>
+              <p className="text-on-surface-variant text-body-sm">Status: <span className="text-on-tertiary-container font-bold">Under Faculty Review</span></p>
+            </div>
+          </div>
+        </div>
+      )
+    },
+    sponsor: {
+      key: 'sponsor',
+      name: 'Arthur Pendelton',
+      roleName: 'Institutional Sponsor',
+      subtitle: 'Thank you for your generous endowment. Your sponsorship funds 4 active research cohorts.',
+      avatarInitials: 'AP',
+      metrics: [
+        { label: 'Grants Allocated', value: '$250,000', icon: 'payments' },
+        { label: 'Active Cohorts', value: '4', icon: 'groups' },
+        { label: 'Impact Rating', value: '98%', icon: 'grade' }
+      ],
+      sidebarLinks: [
+        { name: 'Endowment Portal', icon: 'dashboard', href: '/dashboard' },
+        { name: 'Sponsored Cohorts', icon: 'groups', href: '#' },
+        { name: 'Impact Reports', icon: 'analytics', href: '/impact' },
+        { name: 'Tax Statements', icon: 'receipt_long', href: '#' }
+      ],
+      actionBtnText: 'Manage Grants',
+      widgets: (
+        <div className="space-y-gutter">
+          <h3 className="font-headline-sm text-headline-sm text-primary">Sponsored Cohort Milestones</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-unit-lg">
+            <div className="bg-surface-container-lowest border border-outline-variant p-unit-lg rounded-lg premium-shadow-hover">
+              <h4 className="font-label-lg text-label-lg text-secondary mb-1">COHORT A</h4>
+              <h5 className="font-headline-sm text-xl mb-3">Stoic Neuro-Regulation Study</h5>
+              <div className="w-full bg-surface-container h-2 rounded-full overflow-hidden mb-2">
+                <div className="bg-secondary h-full w-[85%] rounded-full"></div>
+              </div>
+              <p className="text-xs text-on-surface-variant">Fund allocation status: <span className="font-bold">85% disbursed</span></p>
+            </div>
+            <div className="bg-surface-container-lowest border border-outline-variant p-unit-lg rounded-lg premium-shadow-hover">
+              <h4 className="font-label-lg text-label-lg text-secondary mb-1">COHORT B</h4>
+              <h5 className="font-headline-sm text-xl mb-3">Metabolic Longevity Protocol</h5>
+              <div className="w-full bg-surface-container h-2 rounded-full overflow-hidden mb-2">
+                <div className="bg-secondary h-full w-[100%] rounded-full"></div>
+              </div>
+              <p className="text-xs text-on-surface-variant">Fund allocation status: <span className="font-bold">100% disbursed</span></p>
+            </div>
+          </div>
+        </div>
+      )
+    },
+    moderator: {
+      key: 'moderator',
+      name: 'Sarah Mod',
+      roleName: 'Community Moderator',
+      subtitle: '4 pending forum threads and 2 member flag warnings require moderator attention.',
+      avatarInitials: 'SM',
+      metrics: [
+        { label: 'Pending Flags', value: '2', icon: 'flag' },
+        { label: 'Active Forums', value: '14', icon: 'forum' },
+        { label: 'Daily Reports', value: '5', icon: 'report_problem' }
+      ],
+      sidebarLinks: [
+        { name: 'Mod Queue', icon: 'dashboard', href: '/dashboard' },
+        { name: 'Flagged Content', icon: 'flag', href: '#' },
+        { name: 'Member Verification', icon: 'verified_user', href: '/members' },
+        { name: 'Rules & FAQ Editor', icon: 'rule', href: '#' }
+      ],
+      actionBtnText: 'Review Guidelines',
+      widgets: (
+        <div className="space-y-gutter">
+          <h3 className="font-headline-sm text-headline-sm text-primary">Moderation Flags Queue</h3>
+          <div className="bg-surface-container-lowest border border-outline-variant rounded-lg p-unit-xl space-y-unit-md premium-shadow">
+            <div className="flex justify-between items-center py-2 border-b border-outline-variant/30">
+              <div>
+                <h5 className="font-bold text-primary">Thread: Ethical CRISPR Applications</h5>
+                <p className="text-xs text-on-surface-variant">Flag reason: formatting issues & citations missing</p>
+              </div>
+              <span className="bg-tertiary-fixed text-on-tertiary-fixed px-2 py-0.5 rounded text-xs font-bold uppercase">Resolve</span>
+            </div>
+            <div className="flex justify-between items-center py-2">
+              <div>
+                <h5 className="font-bold text-primary">Post: Asymmetric Investment Strategies</h5>
+                <p className="text-xs text-on-surface-variant">Flag reason: promotional/advertisement warning</p>
+              </div>
+              <span className="bg-tertiary-fixed text-on-tertiary-fixed px-2 py-0.5 rounded text-xs font-bold uppercase">Resolve</span>
+            </div>
+          </div>
+        </div>
+      )
+    }
+  };
+
+  const activePersona = personas[selectedPersona] || personas.member;
 
   return (
-    <div 
-      ref={containerRef}
-      className="bg-surface text-on-surface font-body-md overflow-hidden" 
-      style={ {} }
-    >
-      <div dangerouslySetInnerHTML={{ __html: `
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<script id="tailwind-config">
-        tailwind.config = {
-          darkMode: "class",
-          theme: {
-            extend: {
-              "colors": {
-                      "tertiary-fixed": "#ffdf9f",
-                      "on-error": "#ffffff",
-                      "primary": "#00030f",
-                      "surface-tint": "#4f5e7f",
-                      "tertiary": "#050300",
-                      "tertiary-container": "#281b00",
-                      "surface": "#f8f9fa",
-                      "surface-container-lowest": "#ffffff",
-                      "on-surface-variant": "#44474d",
-                      "inverse-surface": "#2e3132",
-                      "surface-dim": "#d9dadb",
-                      "on-tertiary-container": "#a87f0f",
-                      "on-primary-fixed-variant": "#374766",
-                      "surface-container": "#edeeef",
-                      "on-secondary-fixed-variant": "#304f13",
-                      "on-tertiary-fixed": "#261a00",
-                      "outline": "#75777e",
-                      "surface-bright": "#f8f9fa",
-                      "on-tertiary": "#ffffff",
-                      "on-tertiary-fixed-variant": "#5c4300",
-                      "primary-fixed-dim": "#b6c7ec",
-                      "on-secondary-fixed": "#0d2000",
-                      "on-primary-fixed": "#091b38",
-                      "secondary-container": "#c7efa1",
-                      "tertiary-fixed-dim": "#f1bf51",
-                      "secondary-fixed": "#c7efa1",
-                      "secondary-fixed-dim": "#acd287",
-                      "on-primary-container": "#7585a8",
-                      "error-container": "#ffdad6",
-                      "error": "#ba1a1a",
-                      "surface-variant": "#e1e3e4",
-                      "secondary": "#476729",
-                      "inverse-primary": "#b6c7ec",
-                      "on-secondary-container": "#4c6e2e",
-                      "primary-fixed": "#d7e2ff",
-                      "on-secondary": "#ffffff",
-                      "surface-container-highest": "#e1e3e4",
-                      "surface-container-high": "#e7e8e9",
-                      "background": "#f8f9fa",
-                      "surface-container-low": "#f3f4f5",
-                      "on-background": "#191c1d",
-                      "on-error-container": "#93000a",
-                      "on-primary": "#ffffff",
-                      "outline-variant": "#c5c6ce",
-                      "inverse-on-surface": "#f0f1f2",
-                      "primary-container": "#0b1d3a",
-                      "on-surface": "#191c1d"
-              },
-              "borderRadius": {
-                      "DEFAULT": "0.125rem",
-                      "lg": "0.25rem",
-                      "xl": "0.5rem",
-                      "full": "0.75rem"
-              },
-              "spacing": {
-                      "margin-desktop": "80px",
-                      "gutter": "32px",
-                      "unit-xs": "4px",
-                      "unit-sm": "8px",
-                      "unit-xl": "48px",
-                      "unit-2xl": "80px",
-                      "unit-md": "16px",
-                      "container-max": "1440px",
-                      "unit-lg": "24px"
-              },
-              "fontFamily": {
-                      "headline-lg": ["Playfair Display"],
-                      "headline-sm": ["Playfair Display"],
-                      "body-sm": ["Inter"],
-                      "body-md": ["Inter"],
-                      "display-xl": ["Playfair Display"],
-                      "headline-md": ["Playfair Display"],
-                      "label-md": ["Inter"],
-                      "label-lg": ["Inter"],
-                      "body-lg": ["Inter"],
-                      "display-lg": ["Playfair Display"]
-              },
-              "fontSize": {
-                      "headline-lg": ["48px", {"lineHeight": "56px", "fontWeight": "600"}],
-                      "headline-sm": ["28px", {"lineHeight": "36px", "fontWeight": "500"}],
-                      "body-sm": ["14px", {"lineHeight": "22px", "fontWeight": "400"}],
-                      "body-md": ["16px", {"lineHeight": "26px", "fontWeight": "400"}],
-                      "display-xl": ["72px", {"lineHeight": "84px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
-                      "headline-md": ["36px", {"lineHeight": "44px", "fontWeight": "600"}],
-                      "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.03em", "fontWeight": "500"}],
-                      "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
-                      "body-lg": ["20px", {"lineHeight": "32px", "fontWeight": "400"}],
-                      "display-lg": ["60px", {"lineHeight": "72px", "letterSpacing": "-0.01em", "fontWeight": "700"}]
-              }
-            },
-          },
-        }
-    </script>
-<style>
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
-        .active-nav-indicator {
-            position: absolute;
-            left: 0;
-            width: 4px;
-            height: 100%;
-            background-color: #476729; /* secondary */
-        }
-        .custom-scrollbar::-webkit-scrollbar {
-            width: 4px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-track {
-            background: #f1f1f1;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: #d1d5db;
-        }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(8px);
-        }
-    </style>
+    <div className="flex h-screen overflow-hidden bg-surface">
+      
+      {/* Sidebar Navigation */}
+      <aside className="h-screen w-64 sticky left-0 bg-surface-container-low dark:bg-surface-container-lowest border-r border-outline-variant dark:border-outline flex flex-col py-8 gap-unit z-20 shrink-0">
+        <div className="px-6 mb-10">
+          <img
+            alt="Dr. Ayuba's Corner"
+            className="w-full h-auto object-contain hover:scale-[1.02] transition-transform"
+            src="/images/Dr_Abuba_Logo_Full-no_bg.png"
+          />
+        </div>
+        
+        <nav className="flex-grow flex flex-col">
+          {activePersona.sidebarLinks.map((link, idx) => {
+            const isActive = idx === 0; // Simulate first item as active
+            return (
+              <Link
+                key={link.name}
+                href={link.href}
+                className={`flex items-center gap-3 px-6 py-3 font-label-lg text-label-lg transition-all duration-150 ease-in-out border-l-4 ${
+                  isActive
+                    ? 'text-primary dark:text-primary-fixed font-bold border-secondary bg-surface-container-high'
+                    : 'text-on-surface-variant dark:text-on-surface-variant border-transparent hover:bg-surface-container-high/40'
+                }`}
+              >
+                <span className="material-symbols-outlined">{link.icon}</span>
+                {link.name}
+              </Link>
+            );
+          })}
+        </nav>
+        
+        <div className="px-6 mt-auto">
+          <button className="w-full bg-primary text-on-primary py-3 px-4 font-label-lg text-label-lg rounded-none hover:bg-opacity-95 transition-opacity">
+            {activePersona.actionBtnText}
+          </button>
+        </div>
+      </aside>
 
-<div class="flex h-screen overflow-hidden">
-<!-- SideNavBar Component -->
-<aside class="h-screen w-64 sticky left-0 bg-surface-container-low dark:bg-surface-container-lowest border-r border-outline-variant dark:border-outline flex flex-col py-8 gap-unit z-20">
-<div class="px-6 mb-10"><img alt="Dr. Ayuba's Corner" class="w-full h-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDP_QPnoNZLZRfcoMqwpo8Vv1S-13htvCrLQUi6IciKniJVCYp3rSOE9eZDyKE_PK7FRBKM1in1ywvhyJ41kJUFfynk0pece7p8-kK6NQmQOHfh1G3ZParulOgh4y8M7SU0JAbeOx2UIBEHJRA2LeHZwn25s2QByMs_Tz8Cb1UYMO8UFH6MI5wo8IuFZ_JSHnR9NWw_wTxtIvPEsvGQtU8POfjZz0t06MWSojQnNj3Uux2X6ImQ__d6jmYIwgzX1TIfoT_zhHfYCZE">
+      {/* Main Panel Content Area */}
+      <main className="flex-grow flex flex-col h-screen overflow-y-auto custom-scrollbar bg-surface">
+        
+        {/* Top Header Panel */}
+        <header className="w-full h-20 px-margin-desktop flex justify-between items-center bg-surface dark:bg-surface-container-lowest border-b border-outline-variant sticky top-0 z-10 shrink-0">
+          <div className="flex flex-col flex-shrink-0">
+            <span className="font-headline-sm text-headline-sm text-primary font-bold">
+              {activePersona.roleName} Dashboard
+            </span>
+          </div>
+          
+          <div className="flex items-center gap-gutter flex-nowrap ml-unit-lg">
+            <div className="relative flex-shrink-0">
+              <span className="absolute left-3 top-1/2 -translate-y-1/2 material-symbols-outlined text-on-surface-variant">search</span>
+              <input
+                className="pl-10 pr-4 py-2 bg-surface-container border border-outline-variant rounded-full text-body-sm focus:outline-none focus:ring-1 focus:ring-primary w-64"
+                placeholder="Search metrics..."
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+            </div>
+            
+            <div className="flex items-center gap-unit-md flex-shrink-0">
+              <button 
+                onClick={() => setInboxCount(0)}
+                className="relative p-1 hover:bg-surface-container rounded-full"
+                aria-label="Notifications"
+              >
+                <span className="material-symbols-outlined text-primary block">notifications</span>
+                {inboxCount > 0 && (
+                  <span className="absolute -top-0.5 -right-0.5 bg-secondary w-2 h-2 rounded-full"></span>
+                )}
+              </button>
+              
+              <div className="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center text-primary font-bold shadow-sm">
+                {activePersona.avatarInitials}
+              </div>
+            </div>
+          </div>
+        </header>
 
-
-</div>
-<nav class="flex-grow flex flex-col">
-<a class="flex items-center gap-3 text-primary dark:text-primary-fixed font-bold border-l-4 border-secondary bg-surface-container-high px-4 py-3 font-label-lg text-label-lg transition-all duration-150 ease-in-out" href="#">
-<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
-                    Dashboard
-                </a>
-<a class="flex items-center gap-3 text-on-surface-variant dark:text-on-surface-variant px-4 py-3 font-label-lg text-label-lg hover:bg-surface-container transition-all duration-150 ease-in-out" href="#">
-<span class="material-symbols-outlined" data-icon="school">school</span>
-                    My Learning
-                </a>
-<a class="flex items-center gap-3 text-on-surface-variant dark:text-on-surface-variant px-4 py-3 font-label-lg text-label-lg hover:bg-surface-container transition-all duration-150 ease-in-out" href="#">
-<span class="material-symbols-outlined" data-icon="menu_book">menu_book</span>
-                    Research
-                </a>
-<a class="flex items-center gap-3 text-on-surface-variant dark:text-on-surface-variant px-4 py-3 font-label-lg text-label-lg hover:bg-surface-container transition-all duration-150 ease-in-out" href="#">
-<span class="material-symbols-outlined" data-icon="mail">mail</span>
-                    Inbox
-                </a>
-<a class="flex items-center gap-3 text-on-surface-variant dark:text-on-surface-variant px-4 py-3 font-label-lg text-label-lg hover:bg-surface-container transition-all duration-150 ease-in-out" href="#">
-<span class="material-symbols-outlined" data-icon="loyalty">loyalty</span>
-                    Subscriptions
-                </a>
-<a class="flex items-center gap-3 text-on-surface-variant dark:text-on-surface-variant px-4 py-3 font-label-lg text-label-lg hover:bg-surface-container transition-all duration-150 ease-in-out" href="#">
-<span class="material-symbols-outlined" data-icon="settings">settings</span>
-                    Settings
-                </a>
-</nav>
-<div class="px-6 mt-auto">
-<button class="w-full bg-primary text-on-primary py-3 px-4 font-label-lg text-label-lg rounded hover:opacity-90 transition-opacity">
-                    Upgrade Plan
+        {/* Dynamic Dashboard View */}
+        <div className="p-margin-desktop space-y-unit-2xl max-w-container-max mx-auto w-full flex-grow animate-fade-in-up">
+          
+          {/* Persona Switcher widget */}
+          <div className="w-full glass-panel rounded-lg p-unit-md flex flex-wrap items-center gap-unit-md border border-outline-variant/30 premium-shadow">
+            <span className="text-xs font-bold font-label-lg text-primary uppercase tracking-widest">Active Experience:</span>
+            <div className="flex flex-wrap gap-1">
+              {Object.keys(personas).map((key) => (
+                <button
+                  key={key}
+                  onClick={() => setSelectedPersona(key)}
+                  className={`px-3 py-1.5 text-xs font-label-lg transition-all rounded ${
+                    selectedPersona === key
+                      ? 'bg-secondary text-white font-bold'
+                      : 'bg-surface-container hover:bg-surface-container-high text-on-surface-variant'
+                  }`}
+                >
+                  {personas[key].roleName}
                 </button>
-</div>
-</aside>
-<!-- Main Content Area -->
-<main class="flex-grow flex flex-col h-screen overflow-y-auto custom-scrollbar bg-surface">
-<!-- Top Header Section -->
-<header class="w-full h-20 px-margin-desktop flex justify-between items-center bg-surface dark:bg-surface-container-lowest border-b border-outline-variant sticky top-0 z-10">
-<div class="flex flex-col flex-shrink-0">
-<span class="font-headline-sm text-headline-sm text-primary whitespace-nowrap">Member Dashboard</span>
-</div>
-<div class="flex items-center gap-gutter flex-nowrap ml-unit-lg">
-<div class="relative flex-shrink-0">
-<span class="absolute left-3 top-1/2 -translate-y-1/2 material-symbols-outlined text-on-surface-variant" data-icon="search">search</span>
-<input class="pl-10 pr-4 py-2 bg-surface-container border border-outline-variant rounded-full text-body-sm focus:outline-none focus:ring-1 focus:ring-primary w-64 whitespace-nowrap" placeholder="Search archive..." type="text">
-</div>
-<div class="flex items-center gap-unit-md flex-shrink-0">
-<span class="material-symbols-outlined text-primary cursor-pointer" data-icon="notifications">notifications</span>
-<div class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center text-primary font-bold">
-                            JA
-                        </div>
-</div>
-</div>
-</header>
-<!-- Dashboard Content -->
-<div class="p-margin-desktop space-y-unit-2xl max-w-container-max mx-auto w-full">
-<!-- Welcome Section -->
-<section class="flex flex-col md:flex-row justify-between items-end gap-gutter">
-<div class="space-y-unit-sm">
-<p class="font-label-lg text-label-lg text-secondary tracking-widest uppercase">Welcome back</p>
-<h2 class="font-display-lg text-display-lg text-primary">Good Morning, Dr. Julian.</h2>
-<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">Your research on clinical neuroplasticity has been cited 12 times this week. Continue your curriculum below.</p>
-</div>
-<div class="bg-primary-container p-unit-lg rounded-xl flex items-center gap-unit-lg text-on-primary-container border border-outline-variant/10">
-<div class="text-right">
-<p class="font-label-md text-label-md opacity-80">Research Points</p>
-<p class="font-headline-sm text-headline-sm">2,450</p>
-</div>
-<div class="w-[1px] h-12 bg-on-primary-container/20"></div>
-<span class="material-symbols-outlined text-4xl" data-icon="military_tech">military_tech</span>
-</div>
-</section>
-<!-- Learning Progress & Saved List Grid -->
-<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
-<!-- Learning Progress Tracker -->
-<div class="lg:col-span-8 space-y-gutter">
-<div class="flex items-center justify-between">
-<h3 class="font-headline-sm text-headline-sm text-primary">Curriculum Progress</h3>
-<button class="text-secondary font-label-lg text-label-lg hover:underline">View All Courses</button>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-unit-lg">
-<!-- Course Card 1 -->
-<div class="bg-surface-container-lowest border border-outline-variant p-unit-lg hover:border-secondary transition-colors cursor-pointer group">
-<div class="flex justify-between items-start mb-unit-lg">
-<div class="bg-secondary-container p-unit-sm rounded">
-<span class="material-symbols-outlined text-secondary" data-icon="neurology">neurology</span>
-</div>
-<span class="font-label-md text-label-md bg-surface-container px-2 py-1">Advanced Genetics</span>
-</div>
-<h4 class="font-headline-sm text-[22px] leading-tight mb-2">Molecular Pathology II</h4>
-<div class="space-y-2 mt-unit-xl">
-<div class="flex justify-between text-label-lg">
-<span class="">Progress</span>
-<span class="text-secondary font-bold">84%</span>
-</div>
-<div class="w-full h-1.5 bg-surface-container overflow-hidden">
-<div class="h-full bg-secondary w-[84%]"></div>
-</div>
-</div>
-</div>
-<!-- Course Card 2 -->
-<div class="bg-surface-container-lowest border border-outline-variant p-unit-lg hover:border-secondary transition-colors cursor-pointer">
-<div class="flex justify-between items-start mb-unit-lg">
-<div class="bg-tertiary-fixed p-unit-sm rounded">
-<span class="material-symbols-outlined text-tertiary-container" data-icon="analytics">analytics</span>
-</div>
-<span class="font-label-md text-label-md bg-surface-container px-2 py-1">Methodology</span>
-</div>
-<h4 class="font-headline-sm text-[22px] leading-tight mb-2">Statistical Meta-Analysis</h4>
-<div class="space-y-2 mt-unit-xl">
-<div class="flex justify-between text-label-lg">
-<span class="">Progress</span>
-<span class="text-secondary font-bold">32%</span>
-</div>
-<div class="w-full h-1.5 bg-surface-container overflow-hidden">
-<div class="h-full bg-secondary w-[32%]"></div>
-</div>
-</div>
-</div>
-</div>
-<!-- Saved Reading List (High Contrast Bento) -->
-<div class="space-y-unit-lg pt-unit-xl">
-<h3 class="font-headline-sm text-headline-sm text-primary">Saved Reading List</h3>
-<div class="grid grid-cols-1 sm:grid-cols-3 gap-unit-md">
-<div class="group relative overflow-hidden h-64 bg-primary flex items-end p-unit-md">
-<div class="absolute inset-0 opacity-40 group-hover:scale-105 transition-transform duration-700 bg-cover bg-center" data-alt="A macro photograph of laboratory equipment with deep shadows and cool blue lighting, creating a high-contrast and intellectual atmosphere. The focus is on glass vials and sterile scientific tools, representing advanced medical research and pharmaceutical studies." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDhGBEUnzW4i2oCnG_EveRrz5wyOwC7_r_L3b6s4mmQ-MFosnKWnZpEpZx4gSx-8LW2tEJjP08Ks8_hnpCRa2_iao0Ut22y__gMJcQo_ZzayrXz2XDaAzMpZeG74UMIyaAAfuWYdO2u-pUTZLjEOdS4hBbqE37NwbGb1yxCz89GF6uTgZigp7wo2xZBWanvbQ_Ot_-_O40Oc3ybOWGGibrI2rCQPEAs2KbVZduvhJtwuWBK5J2HddEEHo6IDnVppI7wRCb0kmIggho')"></div>
-<div class="relative z-10 space-y-1">
-<span class="text-[10px] uppercase tracking-widest text-secondary-fixed bg-secondary/80 px-2 py-0.5">Article</span>
-<h5 class="text-on-primary font-headline-sm text-lg leading-snug">The Ethics of CRISPR in Neonatal Care</h5>
-</div>
-</div>
-<div class="group relative overflow-hidden h-64 bg-primary flex items-end p-unit-md">
-<div class="absolute inset-0 opacity-40 group-hover:scale-105 transition-transform duration-700 bg-cover bg-center" data-alt="An expansive, modern library interior with tall wooden shelves filled with antique leather-bound books. The lighting is warm and atmospheric, coming from hanging classic lamps, highlighting the rich textures of the books and the scholarly environment of a high-end academic institution." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBrg3TImOU2X5siC_lzv96kI5Em6NbkcUki80Xi0SG8q1dJzDLy_h5exAdcTTL7Zs1p-BdwJI9sVVYfoxv-xi3sk_Yqf6Z-Cb1fIhaAkBEBg23OUIZnjkBzG2W-mh596laNf03RxhQWDAAii9hs7P6ngQ0KyO3a5j__CNdx1rKiPVTtWQCJbhtKaGmXrh3SaecLML7bEwJlS02rv6LwqZy310JgnZDYCxy13QLA0aU2_PsiabNDXL4Ib5Lz40gcBmqrfw5lmPjMCqI')"></div>
-<div class="relative z-10 space-y-1">
-<span class="text-[10px] uppercase tracking-widest text-tertiary-fixed bg-tertiary/80 px-2 py-0.5">Podcast</span>
-<h5 class="text-on-primary font-headline-sm text-lg leading-snug">Dr. Ayuba on Neural Mapping</h5>
-</div>
-</div>
-<div class="group relative overflow-hidden h-64 bg-primary flex items-end p-unit-md">
-<div class="absolute inset-0 opacity-40 group-hover:scale-105 transition-transform duration-700 bg-cover bg-center" data-alt="A clean, minimalist desk setup featuring a digital tablet showing complex data visualizations and medical diagrams. The room is brightly lit with natural light, emphasizing a high-tech, modern light-mode aesthetic focused on data-driven medicine and digital learning." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCy9x9V5lkCi-pvIvtqJVZo9-zi2lPLcqwGNvlB8iODYV5mPBcgeapHSBzAIPlKDnH9o14J7_ia-_3mPPCIv9KZ7M1bJi5mNi_5qKMjcv5QnmWw0AHHkTJfFiTMo-p6s8RB5S8XuyYM1qsZ92VD5lP1aottaBZSq9kIlMoajj70CUINM0nA7d6LRjBHBXKRwdQvIu7IFOwVS2Mxyl9ZhcQZisevE5gHx2EhjbwnlFe-6RlNe0Waqfe4A4H_th6nqJd-nrWXo05cQ-8')"></div>
-<div class="relative z-10 space-y-1">
-<span class="text-[10px] uppercase tracking-widest text-primary-fixed bg-primary/80 px-2 py-0.5">Thesis</span>
-<h5 class="text-on-primary font-headline-sm text-lg leading-snug">Global Health Trends: 2025 Report</h5>
-</div>
-</div>
-</div>
-</div>
-</div>
-<!-- Right Sidebar: Premium Events -->
-<div class="lg:col-span-4 space-y-gutter">
-<div class="bg-primary-container text-on-primary-container p-unit-xl rounded border border-primary flex flex-col gap-unit-lg h-full">
-<div class="space-y-unit-sm">
-<h3 class="font-headline-sm text-headline-sm text-on-primary">Upcoming Premium Events</h3>
-<p class="font-body-sm text-body-sm opacity-70">Exclusively for Institutional Members</p>
-</div>
-<div class="space-y-gutter mt-unit-lg">
-<!-- Event 1 -->
-<div class="group cursor-pointer">
-<p class="font-label-lg text-secondary-fixed mb-1">JUNE 14 • 10:00 AM</p>
-<h4 class="font-headline-sm text-xl text-on-primary group-hover:text-secondary-fixed transition-colors">Global Oncology Symposium</h4>
-<p class="font-body-sm text-body-sm opacity-60 mt-2">Featuring keynote speakers from Johns Hopkins and the WHO.</p>
-<div class="mt-4 flex gap-unit-sm items-center text-label-md uppercase tracking-widest text-on-primary">
-<span class="">Register</span>
-<span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
-</div>
-<div class="w-full h-[1px] bg-on-primary/10 mt-6"></div>
-</div>
-<!-- Event 2 -->
-<div class="group cursor-pointer">
-<p class="font-label-lg text-secondary-fixed mb-1">JUNE 22 • 02:00 PM</p>
-<h4 class="font-headline-sm text-xl text-on-primary group-hover:text-secondary-fixed transition-colors">Digital Health Ethics Workshop</h4>
-<p class="font-body-sm text-body-sm opacity-60 mt-2">Interactive session on AI-driven diagnostics and patient privacy.</p>
-<div class="mt-4 flex gap-unit-sm items-center text-label-md uppercase tracking-widest text-on-primary">
-<span class="">Join Waitlist</span>
-<span class="material-symbols-outlined text-sm" data-icon="hourglass_empty">hourglass_empty</span>
-</div>
-<div class="w-full h-[1px] bg-on-primary/10 mt-6"></div>
-</div>
-<!-- Event 3 -->
-<div class="group cursor-pointer">
-<p class="font-label-lg text-secondary-fixed mb-1">JULY 05 • ALL DAY</p>
-<h4 class="font-headline-sm text-xl text-on-primary group-hover:text-secondary-fixed transition-colors">Institutional Annual Gala</h4>
-<p class="font-body-sm text-body-sm opacity-60 mt-2">Join us for the 15th annual celebration of intellectual achievement.</p>
-<div class="mt-4 flex gap-unit-sm items-center text-label-md uppercase tracking-widest text-on-primary">
-<span class="">Download Invite</span>
-<span class="material-symbols-outlined text-sm" data-icon="download">download</span>
-</div>
-</div>
-</div>
-<div class="mt-auto pt-unit-xl">
-<div class="bg-on-primary/5 p-unit-md border-l-2 border-secondary-fixed">
-<p class="italic font-body-sm text-on-primary/80">"Education is the most powerful weapon which you can use to change the world."</p>
-<p class="text-secondary-fixed font-label-md mt-2 text-right">— Nelson Mandela</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<!-- Footer Component -->
-<footer class="w-full mt-auto bg-primary-container dark:bg-tertiary-container">
-<div class="max-w-container-max mx-auto px-margin-desktop py-12 grid grid-cols-1 md:grid-cols-4 gap-gutter text-on-primary-container dark:text-tertiary-fixed">
-<div class="md:col-span-1 space-y-unit-md">
-<h2 class="font-headline-md text-headline-md text-on-primary-container">Institutional Excellence</h2>
-<p class="font-body-sm text-body-sm opacity-80">A sanctuary for intellectual growth and institutional research excellence.</p>
-</div>
-<div class="md:col-span-1 space-y-4">
-<h4 class="font-label-lg text-label-lg text-secondary-fixed uppercase tracking-widest">Resources</h4>
-<ul class="space-y-2 font-body-sm text-body-sm">
-<li class=""><a class="opacity-80 hover:opacity-100 transition-opacity" href="#">Faculty Directory</a></li>
-<li class=""><a class="opacity-80 hover:opacity-100 transition-opacity" href="#">Institutional Research</a></li>
-<li class=""><a class="opacity-80 hover:opacity-100 transition-opacity" href="#">Sitemap</a></li>
-</ul>
-</div>
-<div class="md:col-span-1 space-y-4">
-<h4 class="font-label-lg text-label-lg text-secondary-fixed uppercase tracking-widest">Legal</h4>
-<ul class="space-y-2 font-body-sm text-body-sm">
-<li class=""><a class="opacity-80 hover:opacity-100 transition-opacity" href="#">Privacy Policy</a></li>
-<li class=""><a class="opacity-80 hover:opacity-100 transition-opacity" href="#">Terms of Service</a></li>
-</ul>
-</div>
-<div class="md:col-span-1 space-y-4">
-<h4 class="font-label-lg text-label-lg text-secondary-fixed uppercase tracking-widest">Support</h4>
-<ul class="space-y-2 font-body-sm text-body-sm">
-<li class=""><a class="opacity-80 hover:opacity-100 transition-opacity" href="#">Contact Us</a></li>
-<li class=""><a class="opacity-80 hover:opacity-100 transition-opacity" href="#">Help Center</a></li>
-</ul>
-</div>
-</div>
-<div class="max-w-container-max mx-auto px-margin-desktop py-6 border-t border-outline-variant/10">
-<p class="font-body-sm text-body-sm text-on-primary-container opacity-60">© 2024 Institutional Portal. All rights reserved. Intellectual Property of the Institution.</p>
-</div>
-</footer>
-</main>
-</div>
-<!-- Small Micro-interaction Script -->
-<script>
-        document.querySelectorAll('.group').forEach(item => {
-            item.addEventListener('mouseenter', () => {
-                // Potential for adding subtle sound or haptic feedback calls
-            });
-        });
-    </script>
+              ))}
+            </div>
+          </div>
 
+          {/* Welcome & Citations Section */}
+          <section className="flex flex-col md:flex-row justify-between items-end gap-gutter">
+            <div className="space-y-unit-sm">
+              <p className="font-label-lg text-label-lg text-secondary tracking-widest uppercase">Overview</p>
+              <h2 className="font-display-lg text-display-lg text-primary leading-tight">
+                Good Morning, {activePersona.name}.
+              </h2>
+              <p className="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">
+                {activePersona.subtitle}
+              </p>
+            </div>
+            
+            <div className="bg-primary-container p-unit-lg rounded-xl flex items-center gap-unit-lg text-on-primary-container border border-outline-variant/10 shadow-sm">
+              {activePersona.metrics.map((metric, idx) => (
+                <React.Fragment key={metric.label}>
+                  {idx > 0 && <div className="w-[1px] h-12 bg-on-primary-container/20 hidden sm:block"></div>}
+                  <div className="text-right">
+                    <p className="font-label-md text-label-md opacity-80">{metric.label}</p>
+                    <p className="font-headline-sm text-headline-sm font-bold">{metric.value}</p>
+                  </div>
+                </React.Fragment>
+              ))}
+              <span className="material-symbols-outlined text-4xl text-on-tertiary-container">military_tech</span>
+            </div>
+          </section>
 
+          {/* Bento Grids of Widgets & Event sidebars */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+            
+            {/* Dynamic Widgets Column */}
+            <div className="lg:col-span-8 space-y-gutter">
+              {activePersona.widgets}
+              
+              {/* Saved Reading List (High Contrast Bento) */}
+              <div className="space-y-unit-lg pt-unit-xl">
+                <h3 className="font-headline-sm text-headline-sm text-primary">Saved Library Folders</h3>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-unit-md">
+                  
+                  <div className="group relative overflow-hidden h-64 bg-primary flex items-end p-unit-md premium-shadow rounded-lg cursor-pointer">
+                    <div 
+                      className="absolute inset-0 opacity-40 group-hover:scale-105 transition-transform duration-700 bg-cover bg-center" 
+                      style={{ backgroundImage: "url('https://lh3.googleusercontent.com/aida-public/AB6AXuDhGBEUnzW4i2oCnG_EveRrz5wyOwC7_r_L3b6s4mmQ-MFosnKWnZpEpZx4gSx-8LW2tEJjP08Ks8_hnpCRa2_iao0Ut22y__gMJcQo_ZzayrXz2XDaAzMpZeG74UMIyaAAfuWYdO2u-pUTZLjEOdS4hBbqE37NwbGb1yxCz89GF6uTgZigp7wo2xZBWanvbQ_Ot_-_O40Oc3ybOWGGibrI2rCQPEAs2KbVZduvhJtwuWBK5J2HddEEHo6IDnVppI7wRCb0kmIggho')" }}
+                    />
+                    <div className="relative z-10 space-y-1">
+                      <span className="text-[10px] uppercase tracking-widest text-secondary-fixed bg-secondary/80 px-2 py-0.5 font-bold">Article</span>
+                      <h5 className="text-on-primary font-headline-sm text-lg leading-snug">CRISPR Neonatal Ethics</h5>
+                    </div>
+                  </div>
 
-      ` }} />
+                  <div className="group relative overflow-hidden h-64 bg-primary flex items-end p-unit-md premium-shadow rounded-lg cursor-pointer">
+                    <div 
+                      className="absolute inset-0 opacity-40 group-hover:scale-105 transition-transform duration-700 bg-cover bg-center" 
+                      style={{ backgroundImage: "url('https://lh3.googleusercontent.com/aida-public/AB6AXuBrg3TImOU2X5siC_lzv96kI5Em6NbkcUki80Xi0SG8q1dJzDLy_h5exAdcTTL7Zs1p-BdwJI9sVVYfoxv-xi3sk_Yqf6Z-Cb1fIhaAkBEBg23OUIZnjkBzG2W-mh596laNf03RxhQWDAAii9hs7P6ngQ0KyO3a5j__CNdx1rKiPVTtWQCJbhtKaGmXrh3SaecLML7bEwJlS02rv6LwqZy310JgnZDYCxy13QLA0aU2_PsiabNDXL4Ib5Lz40gcBmqrfw5lmPjMCqI')" }}
+                    />
+                    <div className="relative z-10 space-y-1">
+                      <span className="text-[10px] uppercase tracking-widest text-tertiary-fixed bg-tertiary/80 px-2 py-0.5 font-bold font-label-md">Podcast</span>
+                      <h5 className="text-on-primary font-headline-sm text-lg leading-snug">Neural Mapping</h5>
+                    </div>
+                  </div>
+
+                  <div className="group relative overflow-hidden h-64 bg-primary flex items-end p-unit-md premium-shadow rounded-lg cursor-pointer">
+                    <div 
+                      className="absolute inset-0 opacity-40 group-hover:scale-105 transition-transform duration-700 bg-cover bg-center" 
+                      style={{ backgroundImage: "url('https://lh3.googleusercontent.com/aida-public/AB6AXuCy9x9V5lkCi-pvIvtqJVZo9-zi2lPLcqwGNvlB8iODYV5mPBcgeapHSBzAIPlKDnH9o14J7_ia-_3mPPCIv9KZ7M1bJi5mNi_5qKMjcv5QnmWw0AHHkTJfFiTMo-p6s8RB5S8XuyYM1qsZ92VD5lP1aottaBZSq9kIlMoajj70CUINM0nA7d6LRjBHBXKRwdQvIu7IFOwVS2Mxyl9ZhcQZisevE5gHx2EhjbwnlFe-6RlNe0Waqfe4A4H_th6nqJd-nrWXo05cQ-8')" }}
+                    />
+                    <div className="relative z-10 space-y-1">
+                      <span className="text-[10px] uppercase tracking-widest text-primary-fixed bg-primary/80 px-2 py-0.5 font-bold font-label-md">Report</span>
+                      <h5 className="text-on-primary font-headline-sm text-lg leading-snug">Global Health Trends</h5>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+            {/* Right Sidebar: Premium Events */}
+            <div className="lg:col-span-4 space-y-gutter">
+              <div className="bg-primary-container text-on-primary-container p-unit-xl rounded-lg border border-primary flex flex-col gap-unit-lg h-full shadow-md">
+                <div className="space-y-unit-sm">
+                  <h3 className="font-headline-sm text-headline-sm text-white font-bold">Upcoming Premium Events</h3>
+                  <p className="font-body-sm text-body-sm opacity-75">Exclusively for Institutional Members</p>
+                </div>
+                
+                <div className="space-y-gutter mt-unit-lg">
+                  <div className="group cursor-pointer">
+                    <p className="font-label-lg text-secondary-container font-bold mb-1">JUNE 14 • 10:00 AM</p>
+                    <h4 className="font-headline-sm text-xl text-white group-hover:text-secondary-container transition-colors">Global Oncology Symposium</h4>
+                    <p className="font-body-sm text-body-sm opacity-70 mt-2">Featuring keynote speakers from Johns Hopkins and the WHO.</p>
+                    <div className="mt-4 flex gap-unit-sm items-center text-label-md uppercase tracking-widest text-white">
+                      <span>Register</span>
+                      <span className="material-symbols-outlined text-sm">arrow_forward</span>
+                    </div>
+                    <div className="w-full h-[1px] bg-white/10 mt-6"></div>
+                  </div>
+
+                  <div className="group cursor-pointer">
+                    <p className="font-label-lg text-secondary-container font-bold mb-1">JUNE 22 • 02:00 PM</p>
+                    <h4 className="font-headline-sm text-xl text-white group-hover:text-secondary-container transition-colors">Digital Health Ethics</h4>
+                    <p className="font-body-sm text-body-sm opacity-70 mt-2">Interactive session on AI-driven diagnostics and patient privacy.</p>
+                    <div className="mt-4 flex gap-unit-sm items-center text-label-md uppercase tracking-widest text-white">
+                      <span>Join Waitlist</span>
+                      <span className="material-symbols-outlined text-sm">hourglass_empty</span>
+                    </div>
+                    <div className="w-full h-[1px] bg-white/10 mt-6"></div>
+                  </div>
+
+                  <div className="group cursor-pointer">
+                    <p className="font-label-lg text-secondary-container font-bold mb-1">JULY 05 • ALL DAY</p>
+                    <h4 className="font-headline-sm text-xl text-white group-hover:text-secondary-container transition-colors">Annual Gala Dinner</h4>
+                    <p className="font-body-sm text-body-sm opacity-70 mt-2">Join us for the 15th annual celebration of intellectual achievements.</p>
+                    <div className="mt-4 flex gap-unit-sm items-center text-label-md uppercase tracking-widest text-white">
+                      <span>Download Invite</span>
+                      <span className="material-symbols-outlined text-sm">download</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-auto pt-unit-xl">
+                  <div className="bg-white/5 p-unit-md border-l-2 border-secondary-container rounded">
+                    <p className="italic font-body-sm text-white/95">&quot;Education is the most powerful weapon which you can use to change the world.&quot;</p>
+                    <p className="text-secondary-container font-label-md mt-2 text-right">— Nelson Mandela</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        {/* Integrated Institutional Footer */}
+        <footer className="w-full bg-primary-container text-on-primary-container border-t border-outline-variant py-8 px-margin-desktop mt-unit-2xl">
+          <div className="max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-unit-md text-xs">
+            <p className="opacity-70">© {new Date().getFullYear()} Dr. Ayuba&apos;s Corner. Institutional Integrity assured.</p>
+            <div className="flex gap-4 opacity-70">
+              <Link href="/about" className="hover:underline">Privacy Policy</Link>
+              <Link href="/about" className="hover:underline">Terms of Service</Link>
+              <Link href="/about" className="hover:underline">System Logs</Link>
+            </div>
+          </div>
+        </footer>
+
+      </main>
     </div>
   );
 }
