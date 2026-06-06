@@ -79,6 +79,24 @@ export default function Navbar() {
       ? ACADEMIC_LINKS
       : PUBLIC_LINKS;
 
+  const getIsActive = (link: NavLink) => {
+    const normalizedPath = pathname.toLowerCase();
+    const normalizedHref = link.href.toLowerCase();
+    
+    if (normalizedPath === normalizedHref) return true;
+    
+    const name = link.name.toLowerCase();
+    if (name === 'about' && normalizedPath === '/about') return true;
+    if (name === 'articles' && (normalizedPath === '/articles' || normalizedPath.startsWith('/editorial'))) return true;
+    if (name === 'videos' && (normalizedPath === '/videos' || normalizedPath.startsWith('/video-archive'))) return true;
+    if (name === 'podcast' && (normalizedPath === '/podcast' || normalizedPath.startsWith('/podcast-archive'))) return true;
+    if (name === 'community' && (normalizedPath === '/community' || normalizedPath.startsWith('/community-networking-hub-desktop-refined'))) return true;
+    if (name === 'courses' && (normalizedPath === '/courses' || normalizedPath.startsWith('/catalog'))) return true;
+    if (name === 'marketplace' && normalizedPath === '/marketplace') return true;
+    
+    return false;
+  };
+
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (!searchQuery.trim()) {
@@ -158,7 +176,7 @@ export default function Navbar() {
           {/* Desktop Navigation Links */}
           <div className="hidden lg:flex items-center gap-10 whitespace-nowrap">
             {navLinks.map((link) => {
-              const isActive = pathname === link.href || (pathname === '/' && link.href === '/about');
+              const isActive = getIsActive(link);
               return (
                 <a
                   key={link.name}
@@ -267,7 +285,7 @@ export default function Navbar() {
 
               <span className="text-[10px] font-bold tracking-widest text-on-surface-variant opacity-60 uppercase mb-2">Navigation Links</span>
               {navLinks.map((link) => {
-                const isActive = pathname === link.href;
+                const isActive = getIsActive(link);
                 return (
                   <Link
                     key={link.name}
