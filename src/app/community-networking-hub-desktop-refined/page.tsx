@@ -1,21 +1,208 @@
 'use client';
 
-import React, { useEffect, useRef } from 'react';
+import React, { useRef } from 'react';
+import UnifiedPageHero from '@/components/UnifiedPageHero';
+import CommunityCard from '@/components/CommunityCard';
+import ContinueExploring, { ContinueExploringItem } from '@/components/ContinueExploring';
 
+const relatedItems: ContinueExploringItem[] = [
+  {
+    title: 'Strategic Leadership in Complex Ecosystems',
+    description: 'Navigating high-stakes institutional environments with ethical clarity and decisive strategic action.',
+    href: '/catalog',
+    type: 'course',
+    categoryOrDiscipline: 'EXECUTIVE PROGRAM',
+    duration: '6 Months',
+    imageUrl: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBJRoVLUR5g9fNqenbPDGtO8BXasLzaoCD966cbnzrv1e-Jxt_41fNHy646U2MbOhaJU7RwP25oNSAzhKXQMrlRQqQRkUo_Bo5H7ZygSlluytjzgDDV1BB5tTccz1jgyuK-nnPNEPrGj79U6ZI2vsraaWTHb62cOCIS6Y8Bm0ogZoA0wyt1Iz3ncWUXzwxFKX_Ugo2Iee7OEBrNg_cNG5_xD3_e5bJ-twsIwLqDqSVGW78F5SegCu0TDCoV9TDgCvCpKAMyy1gssVc',
+  },
+  {
+    title: 'The Architect of Legacy: Governing Family Interests Across Generations',
+    description: 'Dr. Ayuba explores the intersection of corporate governance and familial bonds within institutional structures.',
+    href: '/editorial',
+    type: 'article',
+    categoryOrDiscipline: 'LEADERSHIP',
+    duration: '12 MIN READ',
+    imageUrl: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBkdeztzdSpdvgqJQ-SCj_OW_jTDVJeSn-U634ES1rjty4dN8wbn5fKQYSDC_BVZrkSTTggDLPbMvXuzNCwmZ342mb84kOr1Cs-eg0dSqNCPpGMIQXUBp_4IeT8KPVvWyJRW6AAu3clrd_u6dgkr6gTNzOP099utAJNbSX94isCMRdLHaj1wAysAxO7JEXX_iWi83qxKA65fNoTrE2Y40cz3V3wEjOUsLgxEUPtp9z4ktTa-gqu--6AtHq2DXZreZDDy-FLcl4bwDY',
+  },
+  {
+    title: 'Transgenerational Capital Strategies',
+    description: 'Understanding the foundational principles of wealth preservation through institutional frameworks and strategic assets.',
+    href: '/video-archive',
+    type: 'video',
+    categoryOrDiscipline: 'Wealth',
+    duration: '32 mins',
+    imageUrl: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDuMTT9OGinnh_qwJG6Kl4fBTS-RKvAQg9aI0k49XXzvFKsrROWQb_8cdUQoZPuieRj9l0CT1agt4GPCphwPo5Wbe81VOIqcl959BSxotKreVYSBLoaIQejy9hR_LgANVFur_LRhrUXoc3LKoxOG7n0Ji1xsrgDEE4aXFH7O6jlEOuvd83EmPSZlCUJ_-Bq_q4PdFwJveV-VtvxxhANbkzEN0xla3ZQWi_FLnIGQPL2346ONbMX4KE4EnWlJ_VeMOZstTIPXPtzy_0',
+  },
+];
 
-
+const boards = [
+  {
+    title: 'The Future of Institutional Philanthropy',
+    description: 'Analyzing 2024 trends in high-net-worth impact investing and community-first wealth distribution models.',
+    status: 'Active',
+    contributorsCount: 14,
+    contributorAvatars: [
+      'https://lh3.googleusercontent.com/aida-public/AB6AXuBKj8J0jcVTPsswC4H_S4mE8-0j5cNUzi9KXKsPVYCyFX7dRkqVRPHX0gxLtr_T4Msm-ZUb_0usmadAF4rrEa7XrNsK3pPjIQqSo22XlPF7ysgN-JEHtuv1d315WZ6UjBGkImH4TCdz9_lQ1bDst8QhLiUWEAUYUkBXQZNUym8LwHOq1kO9Faqg7nTxQ32IxsS5qM-s44rY_GxskdSYR5NLHaBP9_fHXlIrWkchTmDhbMFKQRYHd-gfvPuzldQbihzkHK2LSHAZUJg',
+      'https://lh3.googleusercontent.com/aida-public/AB6AXuCvUm3H6rnPosqyw8CX3C0AHPNtLgdoBhK_9wmCpESY7kwU82EgN85QesFsotmGIscxjl9GVCoboswRP_gxeuqNtxIGS8qNERehA2Qr5LCl4BilSgmWZldZEWCbm-xbPcWkzucDo-HKUfLF2KO8YG_n-a28GxdtjtaSsK6dq3KUkt47wvyLe32li7euwT0R7xa_mfHxYUKgnv9fEJbkR37M-NgYQatMNnxSw5skxIXQ9lsWkhSQX_77BoBa361EMpJbvNBpZUZSeVY',
+      'https://lh3.googleusercontent.com/aida-public/AB6AXuCi0ZGUt_krq2PntKEoKx2yuu6my52eNsgN8fLaPqoqPk7_yQIqKYCtZnpf6rgdWlYD4i4E-CtGFC5UwhGUUYUdP8F9HFuQAg4pmniH_AXrCqdn0Os5T-G7-09W6obVU_gKA_38M9qUFG68_g7fe0-K4SsvKLWCbAHPOfPWBPzLQlXQMB2a2VylK57XvRwzv3K_8iGX3kyZZDfoFzY6SSdF-sN7K2Z-SQrmwKpsYJxBosDgD4hmdM4u9iF8jUuUD6Isgw--2xvg0iM',
+    ],
+  },
+  {
+    title: 'Neuro-Linguistic Patterns in Leadership',
+    description: 'Peer-reviewed findings on how specific speech patterns influence organizational stability and trust.',
+    status: 'Archived',
+    contributorsCount: 28,
+    contributorAvatars: [
+      'https://lh3.googleusercontent.com/aida-public/AB6AXuCuRssjGX7CJ4DgJs1-bSjlyFnPr2pPwEGBkto6cfxrq6vg3_kuoCZwfSlqm8fkPXrd7_1-Z6XoXNQmVXhIadyxEPnOffPSlFSh4TwRWt1qTsYPuOwlhZovtw8Wxp8b8bg_nF3I-8hDroQdXa7omoBk26kvvljSbn5oP7B6iuRu__LiQBTcG0Y76UypnwSl2nJvbP5JelbKXu8GJK2g0PCo6rJ8P-H3xQYHG6kLupC6s3_m0XYzIxyA3q4NpghRRzsAJae6hh2ncmM',
+      'https://lh3.googleusercontent.com/aida-public/AB6AXuBfvOUt0aD8HKMpEK7MPVTHz53rirv2RPzX-lPzTFl6aExZeoItAhGGlJeiGezA4FBw-BXTULM7QeDEIwxFjH4mV15ai4Ee3gW7biJdW7b6wVdxqRSCQnUuAyY_i0lgaGwKkooezva2phFLatjP5iSsdZjwem77WbG613k-DmAR4Rh549tMCwJpK7zmeOVEcgAE7sSjp4zcLXygtmDJIeubnXX9jgEHRdtTmcnU7Q0nmMFIx9f7Giui82hWAtQrFfZCa9OjhPEEgxs',
+    ],
+  },
+];
 
 export default function Page() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   return (
-    <>
-      
-      
-      <main ref={containerRef} className="animate-fade-in-up flex-grow">
-        <div dangerouslySetInnerHTML={{ __html: "<!-- TopAppBar -->\n\n<!-- Sidebar Navigation -->\n<aside class=\"fixed inset-y-0 left-0 pt-24 z-[40] flex flex-col w-72 bg-surface-container-low archival-border hidden lg:flex\">\n<div class=\"px-6 py-8 border-b border-outline-variant\">\n<div class=\"flex items-center gap-4 mb-4\">\n<div class=\"w-12 h-12 rounded-full overflow-hidden bg-primary-fixed\">\n<img alt=\"Member Avatar\" class=\"w-full h-full object-cover\" data-alt=\"A professional headshot of a distinguished male scholar in a dark suit, captured with high-end portrait lighting in a soft-focus office setting. The aesthetic is clean, intellectual, and refined, aligning with a premium light-mode UI featuring soft neutral tones and gold accents.\" src=\"https://lh3.googleusercontent.com/aida-public/AB6AXuBKj8J0jcVTPsswC4H_S4mE8-0j5cNUzi9KXKsPVYCyFX7dRkqVRPHX0gxLtr_T4Msm-ZUb_0usmadAF4rrEa7XrNsK3pPjIQqSo22XlPF7ysgN-JEHtuv1d315WZ6UjBGkImH4TCdz9_lQ1bDst8QhLiUWEAUYUkBXQZNUym8LwHOq1kO9Faqg7nTxQ32IxsS5qM-s44rY_GxskdSYR5NLHaBP9_fHXlIrWkchTmDhbMFKQRYHd-gfvPuzldQbihzkHK2LSHAZUJg\"/>\n</div>\n<div>\n<h3 class=\"font-headline-sm text-headline-sm text-primary text-sm\">Dr. Ayuba</h3>\n<p class=\"font-label-md text-label-md text-on-surface-variant\">Premium Access</p>\n</div>\n</div>\n<p class=\"font-body-sm text-body-sm text-on-surface-variant italic\">Better Wisdom, Health, Wealth</p>\n</div>\n<nav class=\"flex-1 py-4 overflow-y-auto custom-scrollbar\">\n<div class=\"px-4 mb-2\">\n<span class=\"font-label-md text-label-md text-outline uppercase tracking-widest px-4\">Navigation</span>\n</div>\n<ul class=\"space-y-1\">\n<li>\n<a class=\"flex items-center gap-4 bg-secondary-container text-on-secondary-container rounded-full mx-2 px-4 py-3 font-label-md text-label-md transition-all scale-95\" href=\"/\">\n<span class=\"material-symbols-outlined text-[20px]\">group</span>\n                        Community\n                    </a>\n</li>\n<li>\n<a class=\"flex items-center gap-4 text-on-surface-variant mx-2 px-4 py-3 font-label-md text-label-md hover:bg-surface-container-high transition-all\" href=\"/\">\n<span class=\"material-symbols-outlined text-[20px]\">library_books</span>\n                        Directory\n                    </a>\n</li>\n<li>\n<a class=\"flex items-center gap-4 text-on-surface-variant mx-2 px-4 py-3 font-label-md text-label-md hover:bg-surface-container-high transition-all\" href=\"/\">\n<span class=\"material-symbols-outlined text-[20px]\">article</span>\n                        Research Boards\n                    </a>\n</li>\n<li>\n<a class=\"flex items-center gap-4 text-on-surface-variant mx-2 px-4 py-3 font-label-md text-label-md hover:bg-surface-container-high transition-all\" href=\"/\">\n<span class=\"material-symbols-outlined text-[20px]\">event</span>\n                        Conferences\n                    </a>\n</li>\n</ul>\n<div class=\"px-4 mt-8 mb-2\">\n<span class=\"font-label-md text-label-md text-outline uppercase tracking-widest px-4\">Private Lounges</span>\n</div>\n<ul class=\"space-y-1\">\n<li><a class=\"flex items-center gap-4 text-on-surface-variant mx-2 px-4 py-3 font-label-md text-label-md hover:bg-surface-container-high\" href=\"/\">Institutional Strategy</a></li>\n<li><a class=\"flex items-center gap-4 text-on-surface-variant mx-2 px-4 py-3 font-label-md text-label-md hover:bg-surface-container-high\" href=\"/\">Wealth Preservation</a></li>\n<li><a class=\"flex items-center gap-4 text-on-surface-variant mx-2 px-4 py-3 font-label-md text-label-md hover:bg-surface-container-high\" href=\"/\">Holistic Longevity</a></li>\n</ul>\n</nav>\n</aside>\n<!-- Main Content Canvas -->\n<main class=\"lg:ml-72 pt-28 px-margin-desktop pb-unit-2xl max-w-container-max mx-auto\">\n<!-- Header Section -->\n\n<!-- Bento Grid Activity Feed & Collaboration -->\n<div class=\"grid grid-cols-12 gap-gutter\">\n<!-- Research Board Highlights -->\n<div class=\"col-span-12 lg:col-span-8 space-y-gutter\">\n<!-- Main Board Card -->\n<section class=\"bg-surface-container-lowest archival-border gold-accent-top p-unit-lg rounded-lg\">\n<div class=\"flex justify-between items-center mb-unit-lg\">\n<div class=\"flex items-center gap-unit-md\">\n<span class=\"material-symbols-outlined text-secondary text-[24px]\">science</span>\n<h2 class=\"font-headline-sm text-headline-sm text-primary\">Collaborative Research Boards</h2>\n</div>\n<button class=\"text-tertiary-fixed-dim font-label-lg text-label-lg hover:underline transition-all\">View All Boards</button>\n</div>\n<div class=\"grid grid-cols-1 md:grid-cols-2 gap-unit-lg\">\n<div class=\"group p-unit-md bg-surface-container-low rounded-lg hover:bg-surface-container-high transition-colors cursor-pointer archival-border\">\n<div class=\"flex justify-between items-start mb-2\">\n<span class=\"px-2 py-1 bg-secondary text-on-secondary text-[10px] uppercase font-bold tracking-widest rounded-sm\">Active</span>\n<span class=\"text-[12px] text-on-surface-variant font-label-md\">14 Contributors</span>\n</div>\n<h3 class=\"font-headline-sm text-[20px] text-primary mb-2\">The Future of Institutional Philanthropy</h3>\n<p class=\"font-body-sm text-body-sm text-on-surface-variant mb-4\">Analyzing 2024 trends in high-net-worth impact investing and community-first wealth distribution models.</p>\n<div class=\"flex -space-x-2\">\n<div class=\"w-8 h-8 rounded-full border-2 border-surface archival-border bg-gray-200\"></div>\n<div class=\"w-8 h-8 rounded-full border-2 border-surface archival-border bg-gray-300\"></div>\n<div class=\"w-8 h-8 rounded-full border-2 border-surface archival-border bg-gray-400\"></div>\n</div>\n</div>\n<div class=\"group p-unit-md bg-surface-container-low rounded-lg hover:bg-surface-container-high transition-colors cursor-pointer archival-border\">\n<div class=\"flex justify-between items-start mb-2\">\n<span class=\"px-2 py-1 bg-outline text-white text-[10px] uppercase font-bold tracking-widest rounded-sm\">Archived</span>\n<span class=\"text-[12px] text-on-surface-variant font-label-md\">28 Contributors</span>\n</div>\n<h3 class=\"font-headline-sm text-[20px] text-primary mb-2\">Neuro-Linguistic Patterns in Leadership</h3>\n<p class=\"font-body-sm text-body-sm text-on-surface-variant mb-4\">Peer-reviewed findings on how specific speech patterns influence organizational stability and trust.</p>\n<div class=\"flex -space-x-2\">\n<div class=\"w-8 h-8 rounded-full border-2 border-surface archival-border bg-gray-500\"></div>\n<div class=\"w-8 h-8 rounded-full border-2 border-surface archival-border bg-gray-600\"></div>\n<div class=\"w-8 h-8 rounded-full border-2 border-surface archival-border bg-gray-700\"></div>\n</div>\n</div>\n</div>\n</section>\n<!-- Activity Feed -->\n<section class=\"bg-surface-container-lowest archival-border p-unit-lg rounded-lg\">\n<h2 class=\"font-headline-sm text-headline-sm text-primary mb-unit-lg\">Global Member Activity</h2>\n<div class=\"space-y-unit-lg\">\n<div class=\"flex gap-unit-md border-b border-outline-variant pb-unit-md\">\n<div class=\"w-10 h-10 rounded-full bg-primary flex-shrink-0\"></div>\n<div class=\"flex-1\">\n<p class=\"font-body-md text-body-md\"><span class=\"font-bold text-primary\">Dr. Julian Vance</span> shared a new perspective in <span class=\"text-secondary underline cursor-pointer\">Private Wealth Strategies</span>.</p>\n<p class=\"font-label-md text-label-md text-on-surface-variant mt-1\">2 hours ago • 14 Comments</p>\n</div>\n</div>\n<div class=\"flex gap-unit-md border-b border-outline-variant pb-unit-md\">\n<div class=\"w-10 h-10 rounded-full bg-secondary flex-shrink-0\"></div>\n<div class=\"flex-1\">\n<p class=\"font-body-md text-body-md\"><span class=\"font-bold text-primary\">Institutional Council</span> announced the <span class=\"text-secondary underline cursor-pointer\">Winter 2024 Research Grant</span> recipients.</p>\n<p class=\"font-label-md text-label-md text-on-surface-variant mt-1\">5 hours ago • Official Update</p>\n</div>\n</div>\n<div class=\"flex gap-unit-md\">\n<div class=\"w-10 h-10 rounded-full bg-tertiary flex-shrink-0\"></div>\n<div class=\"flex-1\">\n<p class=\"font-body-md text-body-md\"><span class=\"font-bold text-primary\">Sarah Kensington</span> published an archival brief: <span class=\"text-secondary underline cursor-pointer\">\"The Ethics of Legacy\"</span>.</p>\n<p class=\"font-label-md text-label-md text-on-surface-variant mt-1\">1 day ago • 52 Likes</p>\n</div>\n</div>\n</div>\n<button class=\"mt-unit-lg w-full py-3 border border-primary text-primary font-label-lg text-label-lg hover:bg-primary-container hover:text-on-primary transition-all\">Load Earlier Discussions</button>\n</section>\n</div>\n<!-- Member Directory Sidebar -->\n<div class=\"col-span-12 lg:col-span-4 space-y-gutter\">\n<!-- Search & Filter Card -->\n<section class=\"bg-surface-container p-unit-lg rounded-lg border border-outline-variant\">\n<h3 class=\"font-headline-sm text-[20px] text-primary mb-unit-md\">Find a Member</h3>\n<div class=\"space-y-unit-md\">\n<div>\n<label class=\"font-label-lg text-label-lg text-primary block mb-2\">Search by Name or Field</label>\n<div class=\"relative\">\n<input class=\"w-full bg-white archival-border px-4 py-2 focus:border-primary-container outline-none transition-all font-body-sm text-body-sm\" placeholder=\"e.g. Health Research\" type=\"text\"/>\n<span class=\"material-symbols-outlined absolute right-3 top-2 text-on-surface-variant\">search</span>\n</div>\n</div>\n<div class=\"flex flex-wrap gap-2\">\n<span class=\"px-3 py-1 bg-white archival-border text-[12px] font-label-md text-on-surface-variant hover:border-secondary cursor-pointer transition-all\">Philanthropy</span>\n<span class=\"px-3 py-1 bg-white archival-border text-[12px] font-label-md text-on-surface-variant hover:border-secondary cursor-pointer transition-all\">Medicine</span>\n<span class=\"px-3 py-1 bg-white archival-border text-[12px] font-label-md text-on-surface-variant hover:border-secondary cursor-pointer transition-all\">Wealth Management</span>\n</div>\n</div>\n</section>\n<!-- Online Members -->\n<section class=\"bg-surface-container-lowest archival-border p-unit-lg rounded-lg\">\n<div class=\"flex justify-between items-center mb-unit-md\">\n<h3 class=\"font-headline-sm text-[20px] text-primary\">Member Directory</h3>\n<span class=\"w-3 h-3 bg-secondary rounded-full animate-pulse\"></span>\n</div>\n<div class=\"space-y-unit-md\">\n<div class=\"flex items-center gap-4 group cursor-pointer\">\n<div class=\"w-12 h-12 rounded-full overflow-hidden archival-border\">\n<img alt=\"Member 1\" class=\"w-full h-full object-cover\" data-alt=\"A portrait of a sophisticated woman with graying hair and glasses, wearing an elegant silk blouse. The lighting is soft and academic, set against a background of leather-bound books in a prestigious private library. The visual style is crisp and modern with a focus on intellectual professionalism.\" src=\"https://lh3.googleusercontent.com/aida-public/AB6AXuCvUm3H6rnPosqyw8CX3C0AHPNtLgdoBhK_9wmCpESY7kwU82EgN85QesFsotmGIscxjl9GVCoboswRP_gxeuqNtxIGS8qNERehA2Qr5LCl4BilSgmWZldZEWCbm-xbPcWkzucDo-HKUfLF2KO8YG_n-a28GxdtjtaSsK6dq3KUkt47wvyLe32li7euwT0R7xa_mfHxYUKgnv9fEJbkR37M-NgYQatMNnxSw5skxIXQ9lsWkhSQX_77BoBa361EMpJbvNBpZUZSeVY\"/>\n</div>\n<div class=\"flex-1\">\n<p class=\"font-label-lg text-label-lg text-primary group-hover:text-secondary transition-colors\">Prof. Elena Rossi</p>\n<p class=\"font-label-md text-label-md text-on-surface-variant\">Cognitive Neuroscience</p>\n</div>\n</div>\n<div class=\"flex items-center gap-4 group cursor-pointer\">\n<div class=\"w-12 h-12 rounded-full overflow-hidden archival-border\">\n<img alt=\"Member 2\" class=\"w-full h-full object-cover\" data-alt=\"A close-up professional headshot of a middle-aged man with a kind expression and sharp business attire, set against a dark gray background. The lighting is cinematic yet professional, emphasizing skin texture and clear eyes. The aesthetic is elite and institutional, suitable for a high-end corporate member directory.\" src=\"https://lh3.googleusercontent.com/aida-public/AB6AXuCi0ZGUt_krq2PntKEoKx2yuu6my52eNsgN8fLaPqoqPk7_yQIqKYCtZnpf6rgdWlYD4i4E-CtGFC5UwhGUUYUdP8F9HFuQAg4pmniH_AXrCqdn0Os5T-G7-09W6obVU_gKA_38M9qUFG68_g7fe0-K4SsvKLWCbAHPOfPWBPzLQlXQMB2a2VylK57XvRwzv3K_8iGX3kyZZDfoFzY6SSdF-sN7K2Z-SQrmwKpsYJxBosDgD4hmdM4u9iF8jUuUD6Isgw--2xvg0iM\"/>\n</div>\n<div class=\"flex-1\">\n<p class=\"font-label-lg text-label-lg text-primary group-hover:text-secondary transition-colors\">Marcus Thorne</p>\n<p class=\"font-label-md text-label-md text-on-surface-variant\">Asset Diversification</p>\n</div>\n</div>\n<div class=\"flex items-center gap-4 group cursor-pointer\">\n<div class=\"w-12 h-12 rounded-full overflow-hidden archival-border\">\n<img alt=\"Member 3\" class=\"w-full h-full object-cover\" data-alt=\"A profile photograph of a young professional woman in her thirties, dressed in a minimalist cream-colored blazer. She is smiling confidently in a bright, modern architectural space with large windows and subtle green foliage in the distance. The lighting is natural and high-key, creating a clean, elite, and approachable academic look.\" src=\"https://lh3.googleusercontent.com/aida-public/AB6AXuCuRssjGX7CJ4DgJs1-bSjlyFnPr2pPwEGBkto6cfxrq6vg3_kuoCZwfSlqm8fkPXrd7_1-Z6XoXNQmVXhIadyxEPnOffPSlFSh4TwRWt1qTsYPuOwlhZovtw8Wxp8b8bg_nF3I-8hDroQdXa7omoBk26kvvljSbn5oP7B6iuRu__LiQBTcG0Y76UypnwSl2nJvbP5JelbKXu8GJK2g0PCo6rJ8P-H3xQYHG6kLupC6s3_m0XYzIxyA3q4NpghRRzsAJae6hh2ncmM\"/>\n</div>\n<div class=\"flex-1\">\n<p class=\"font-label-lg text-label-lg text-primary group-hover:text-secondary transition-colors\">Dr. Sarah Kensington</p>\n<p class=\"font-label-md text-label-md text-on-surface-variant\">Bio-Ethics Council</p>\n</div>\n</div>\n</div>\n<button class=\"mt-unit-lg w-full py-2 bg-surface-container-high text-primary font-label-lg text-label-lg rounded-DEFAULT hover:bg-surface-variant transition-colors\">View Institutional Registry</button>\n</section>\n<!-- Community Rules -->\n<section class=\"bg-primary-container p-unit-lg rounded-lg text-on-primary\">\n<h3 class=\"font-headline-sm text-[20px] text-on-primary mb-unit-md\">Hub Protocol</h3>\n<ul class=\"diamond-list space-y-unit-sm font-body-sm text-body-sm text-on-primary-container\">\n<li>Confidentiality of all research data.</li>\n<li>Respectful academic discourse.</li>\n<li>Verified institutional credentials only.</li>\n<li>No unsolicited commercial outreach.</li>\n</ul>\n</section>\n</div>\n</div>\n</main>\n<!-- Footer -->" }} />
-      </main>
-      
-    </>
+    <div ref={containerRef} className="animate-fade-in-up flex-grow">
+      {/* Unified Page Header */}
+      <UnifiedPageHero
+        sectionLabel="Community Hub"
+        pageTitle="Member Networking Hub"
+        supportingDescription="Connect with fellow scholars, share research developments, and collaborate on private councils."
+      />
+
+      {/* Main Content Grid */}
+      <div className="grid grid-cols-12 gap-gutter mt-unit-lg items-start">
+        {/* Research Board Highlights (Left Column - 8 cols) */}
+        <div className="col-span-12 lg:col-span-8 space-y-gutter">
+          {/* Main Board Card */}
+          <section className="bg-white border border-outline-variant/30 p-unit-lg rounded-xl premium-shadow">
+            <div className="flex justify-between items-center mb-unit-lg pb-3 border-b border-outline-variant/10">
+              <div className="flex items-center gap-unit-md">
+                <span className="material-symbols-outlined text-secondary text-[24px]">science</span>
+                <h2 className="font-headline-sm text-headline-sm text-primary">Collaborative Research Boards</h2>
+              </div>
+              <button className="text-accent-gold font-label-lg text-label-lg hover:underline transition-all">View All Boards</button>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-unit-lg">
+              {boards.map((board, idx) => (
+                <CommunityCard
+                  key={idx}
+                  title={board.title}
+                  description={board.description}
+                  status={board.status}
+                  contributorsCount={board.contributorsCount}
+                  contributorAvatars={board.contributorAvatars}
+                  href="#"
+                />
+              ))}
+            </div>
+          </section>
+
+          {/* Activity Feed */}
+          <section className="bg-white border border-outline-variant/30 p-unit-lg rounded-xl premium-shadow">
+            <h2 className="font-headline-sm text-headline-sm text-primary mb-unit-lg pb-3 border-b border-outline-variant/10">Global Member Activity</h2>
+            <div className="space-y-unit-lg">
+              <div className="flex gap-unit-md border-b border-outline-variant/10 pb-unit-md">
+                <div className="w-10 h-10 rounded-full bg-primary flex-shrink-0"></div>
+                <div className="flex-grow">
+                  <p className="font-body-md text-body-md"><span className="font-bold text-primary">Dr. Julian Vance</span> shared a new perspective in <span className="text-secondary underline cursor-pointer">Private Wealth Strategies</span>.</p>
+                  <p className="font-label-md text-label-md text-on-surface-variant mt-1">2 hours ago • 14 Comments</p>
+                </div>
+              </div>
+              <div className="flex gap-unit-md border-b border-outline-variant/10 pb-unit-md">
+                <div className="w-10 h-10 rounded-full bg-secondary flex-shrink-0"></div>
+                <div className="flex-grow">
+                  <p className="font-body-md text-body-md"><span className="font-bold text-primary">Institutional Council</span> announced the <span className="text-secondary underline cursor-pointer">Winter 2024 Research Grant</span> recipients.</p>
+                  <p className="font-label-md text-label-md text-on-surface-variant mt-1">5 hours ago • Official Update</p>
+                </div>
+              </div>
+              <div className="flex gap-unit-md">
+                <div className="w-10 h-10 rounded-full bg-tertiary flex-shrink-0"></div>
+                <div className="flex-grow">
+                  <p className="font-body-md text-body-md"><span className="font-bold text-primary">Sarah Kensington</span> published an archival brief: <span className="text-secondary underline cursor-pointer">\"The Ethics of Legacy\"</span>.</p>
+                  <p className="font-label-md text-label-md text-on-surface-variant mt-1">1 day ago • 52 Likes</p>
+                </div>
+              </div>
+            </div>
+            <button className="mt-unit-lg w-full py-3 border border-primary text-primary font-label-lg text-label-lg hover:bg-primary hover:text-on-primary transition-all rounded-lg">Load Earlier Discussions</button>
+          </section>
+        </div>
+
+        {/* Member Directory Sidebar (Right Column - 4 cols) */}
+        <div className="col-span-12 lg:col-span-4 space-y-gutter">
+          {/* Find Member Section */}
+          <section className="bg-surface-container p-unit-lg rounded-xl border border-outline-variant/30">
+            <h3 className="font-headline-sm text-[20px] text-primary mb-unit-md">Find a Member</h3>
+            <div className="space-y-unit-md">
+              <div>
+                <label className="font-label-lg text-label-lg text-primary block mb-2">Search by Name or Field</label>
+                <div className="relative">
+                  <input className="w-full bg-white border border-outline-variant px-4 py-2 focus:border-primary outline-none transition-all font-body-sm text-body-sm rounded-lg" placeholder="e.g. Health Research" type="text" />
+                  <span className="material-symbols-outlined absolute right-3 top-2.5 text-on-surface-variant">search</span>
+                </div>
+              </div>
+              <div className="flex flex-wrap gap-2 pt-2">
+                <span className="px-3 py-1 bg-white border border-outline-variant/30 rounded-full text-[12px] font-label-md text-on-surface-variant hover:border-secondary cursor-pointer transition-all">Philanthropy</span>
+                <span className="px-3 py-1 bg-white border border-outline-variant/30 rounded-full text-[12px] font-label-md text-on-surface-variant hover:border-secondary cursor-pointer transition-all">Medicine</span>
+                <span className="px-3 py-1 bg-white border border-outline-variant/30 rounded-full text-[12px] font-label-md text-on-surface-variant hover:border-secondary cursor-pointer transition-all">Wealth Management</span>
+              </div>
+            </div>
+          </section>
+
+          {/* Directory List */}
+          <section className="bg-white border border-outline-variant/30 p-unit-lg rounded-xl premium-shadow">
+            <div className="flex justify-between items-center mb-unit-md border-b border-outline-variant/10 pb-2">
+              <h3 className="font-headline-sm text-[20px] text-primary">Directory</h3>
+              <span className="w-3 h-3 bg-secondary rounded-full animate-pulse"></span>
+            </div>
+            <div className="space-y-unit-md">
+              <div className="flex items-center gap-4 group cursor-pointer py-1">
+                <div className="w-12 h-12 rounded-full overflow-hidden border border-outline-variant/30">
+                  <img alt="Member 1" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCvUm3H6rnPosqyw8CX3C0AHPNtLgdoBhK_9wmCpESY7kwU82EgN85QesFsotmGIscxjl9GVCoboswRP_gxeuqNtxIGS8qNERehA2Qr5LCl4BilSgmWZldZEWCbm-xbPcWkzucDo-HKUfLF2KO8YG_n-a28GxdtjtaSsK6dq3KUkt47wvyLe32li7euwT0R7xa_mfHxYUKgnv9fEJbkR37M-NgYQatMNnxSw5skxIXQ9lsWkhSQX_77BoBa361EMpJbvNBpZUZSeVY" />
+                </div>
+                <div className="flex-grow">
+                  <p className="font-label-lg text-label-lg text-primary group-hover:text-secondary transition-colors">Prof. Elena Rossi</p>
+                  <p className="font-label-md text-label-md text-on-surface-variant">Cognitive Neuroscience</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-4 group cursor-pointer py-1">
+                <div className="w-12 h-12 rounded-full overflow-hidden border border-outline-variant/30">
+                  <img alt="Member 2" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCi0ZGUt_krq2PntKEoKx2yuu6my52eNsgN8fLaPqoqPk7_yQIqKYCtZnpf6rgdWlYD4i4E-CtGFC5UwhGUUYUdP8F9HFuQAg4pmniH_AXrCqdn0Os5T-G7-09W6obVU_gKA_38M9qUFG68_g7fe0-K4SsvKLWCbAHPOfPWBPzLQlXQMB2a2VylK57XvRwzv3K_8iGX3kyZZDfoFzY6SSdF-sN7K2Z-SQrmwKpsYJxBosDgD4hmdM4u9iF8jUuUD6Isgw--2xvg0iM" />
+                </div>
+                <div className="flex-grow">
+                  <p className="font-label-lg text-label-lg text-primary group-hover:text-secondary transition-colors">Marcus Thorne</p>
+                  <p className="font-label-md text-label-md text-on-surface-variant">Asset Diversification</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-4 group cursor-pointer py-1">
+                <div className="w-12 h-12 rounded-full overflow-hidden border border-outline-variant/30">
+                  <img alt="Member 3" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCuRssjGX7CJ4DgJs1-bSjlyFnPr2pPwEGBkto6cfxrq6vg3_kuoCZwfSlqm8fkPXrd7_1-Z6XoXNQmVXhIadyxEPnOffPSlFSh4TwRWt1qTsYPuOwlhZovtw8Wxp8b8bg_nF3I-8hDroQdXa7omoBk26kvvljSbn5oP7B6iuRu__LiQBTcG0Y76UypnwSl2nJvbP5JelbKXu8GJK2g0PCo6rJ8P-H3xQYHG6kLupC6s3_m0XYzIxyA3q4NpghRRzsAJae6hh2ncmM" />
+                </div>
+                <div className="flex-grow">
+                  <p className="font-label-lg text-label-lg text-primary group-hover:text-secondary transition-colors">Dr. Sarah Kensington</p>
+                  <p className="font-label-md text-label-md text-on-surface-variant">Bio-Ethics Council</p>
+                </div>
+              </div>
+            </div>
+            <button className="mt-unit-lg w-full py-2 bg-surface-container-high text-primary font-label-lg text-label-lg hover:bg-surface-variant transition-colors rounded-lg">View Institutional Registry</button>
+          </section>
+
+          {/* Hub Protocol Card */}
+          <section className="bg-primary text-on-primary p-unit-lg rounded-xl">
+            <h3 className="font-headline-sm text-[20px] text-white mb-unit-md border-b border-white/10 pb-2">Hub Protocol</h3>
+            <ul className="diamond-list space-y-unit-sm font-body-sm text-body-sm text-primary-fixed-dim">
+              <li className="diamond-bullet">Confidentiality of all research data.</li>
+              <li className="diamond-bullet">Respectful academic discourse.</li>
+              <li className="diamond-bullet">Verified institutional credentials only.</li>
+              <li className="diamond-bullet">No unsolicited commercial outreach.</li>
+            </ul>
+          </section>
+        </div>
+      </div>
+
+      {/* Discovery Module */}
+      <ContinueExploring items={relatedItems} />
+    </div>
   );
 }

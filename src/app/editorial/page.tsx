@@ -1,21 +1,174 @@
 'use client';
 
-import React, { useEffect, useRef } from 'react';
+import React, { useRef } from 'react';
+import UnifiedPageHero from '@/components/UnifiedPageHero';
+import ArticleCard from '@/components/ArticleCard';
+import ContinueExploring, { ContinueExploringItem } from '@/components/ContinueExploring';
 
-
-
+const relatedItems: ContinueExploringItem[] = [
+  {
+    title: 'The Ontology of Generative Wisdom',
+    description: 'An in-depth exploration of archival wisdom and its application in modern health systems with Dr. Ayuba.',
+    href: '/video-archive',
+    type: 'video',
+    categoryOrDiscipline: 'Wisdom',
+    duration: '42:15',
+    imageUrl: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAk56jy9HjwLtDwdS7kEiwHZ7CLuhbVjyj0kyRSiaTHgg86FwkyNZrPE57kLokRTcw5uMzIgnn4xvJoBTPVL9PJ9uo7LboVee5ab6WHfW42HjTxj63SRL_g3DID6hwL8hy8esAhCoKerkrdYYF8Onl5t9WMU9BhvimsmOGl7v0gb3jArJTfgd2tAnYi4Bj_-fk3b4y8dFPnxlDxb_ARNfdpcxGfjqa1v_jHZyn-UHQc7tABP422M2Ts26xs0wOg_heinnce_KD-psc',
+  },
+  {
+    title: 'The Sovereign Wealth Retreat',
+    description: 'Special discussion on legacy capital preservation and elite wellness environments.',
+    href: '/podcast',
+    type: 'podcast',
+    categoryOrDiscipline: 'Wealth',
+    duration: '28:14',
+    imageUrl: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDuMTT9OGinnh_qwJG6Kl4fBTS-RKvAQg9aI0k49XXzvFKsrROWQb_8cdUQoZPuieRj9l0CT1agt4GPCphwPo5Wbe81VOIqcl959BSxotKreVYSBLoaIQejy9hR_LgANVFur_LRhrUXoc3LKoxOG7n0Ji1xsrgDEE4aXFH7O6jlEOuvd83EmPSZlCUJ_-Bq_q4PdFwJveV-VtvxxhANbkzEN0xla3ZQWi_FLnIGQPL2346ONbMX4KE4EnWlJ_VeMOZstTIPXPtzy_0',
+  },
+  {
+    title: 'The Architecture of Generational Wealth',
+    description: 'A comprehensive study of capital preservation, asset diversification, and the psychology of lasting legacy.',
+    href: '/catalog',
+    type: 'course',
+    categoryOrDiscipline: 'Certification',
+    duration: '12 Weeks',
+    imageUrl: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCC-YqLehH_UwELWHn4Vc8_kQihVsjQicNfmofe98xjNXSaS1ALIEdCDPxdp9dkPk2tzlsTxcyP4W3cIbTaQR0P0_q_Ken9E_qI1q2tr1Nft0O9s7HGKuxqIUiRP8Mof9CkY8AooidSa3okPfDGJLIvQIF3qj8sy_p4KWjWajlGTqZiXiF1M9qY4oulO5s3r0m1buOBcR7s0kD2ypgXLeb8XbCFZiHFPbtxTk_O4SzkAViL9F-Vuv2-lFzK0ylskMLCGcRQdtOSSVk',
+  },
+];
 
 export default function Page() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   return (
-    <>
-      
-      
-      <main ref={containerRef} className="animate-fade-in-up flex-grow">
-        <div dangerouslySetInnerHTML={{ __html: "<!-- Top Navigation Bar -->\n<nav class=\"w-full top-0 sticky z-50 bg-surface border-b border-outline-variant\">\n<div class=\"max-w-container-max mx-auto px-margin-desktop flex justify-between items-center h-24\">\n<div class=\"flex items-center\">\n<img alt=\"Dr. Ayuba's Corner Logo\" class=\"h-20 w-auto object-contain\" src=\"https://lh3.googleusercontent.com/aida-public/AB6AXuD8e1cibaihdMY63gnegTD36-nETfmQfv2nkBTtjStfiy9ATFHlGpwqF0N2p9vEUgkBh8ogSjlKM9NkMLAahu6GpSyEc13ysixcp4TBOrcbBaKlJLyDrhufa53eMkHYn0jco-UFR3h8E_FWSxnlXHTOX8T1K0X23tUGSEBxhvnIzOnKiXzzw3UM0-7OebWhA_ZBTwp42rNFrTp4A9fDBIRRk6uMUWg5W9azy_90Vx2MGgV5izSf4WJBbhDaWAcnq8nklStO7KLlxZo\">\n</div>\n<div class=\"hidden md:flex items-center gap-unit-lg shrink-0\">\n<a class=\"font-label-lg text-label-lg text-primary border-b-2 border-secondary font-bold pb-1 whitespace-nowrap\" href=\"/\">Articles</a>\n<a class=\"font-label-lg text-label-lg text-on-surface-variant hover:text-primary transition-colors whitespace-nowrap\" href=\"/video-archive\">Videos</a>\n<a class=\"font-label-lg text-label-lg text-on-surface-variant hover:text-primary transition-colors whitespace-nowrap\" href=\"/podcast\">Podcast</a>\n<a class=\"font-label-lg text-label-lg text-on-surface-variant hover:text-primary transition-colors whitespace-nowrap\" href=\"/community-networking-hub-desktop-refined\">Community</a>\n<a class=\"font-label-lg text-label-lg text-on-surface-variant hover:text-primary transition-colors whitespace-nowrap\" href=\"/catalog\">Courses</a>\n<a class=\"font-label-lg text-label-lg text-on-surface-variant hover:text-primary transition-colors whitespace-nowrap\" href=\"/marketplace\">Marketplace</a>\n</div>\n<div class=\"flex items-center gap-unit-md shrink-0 ml-unit-lg\">\n<div class=\"relative hidden xl:block\">\n<input class=\"bg-surface-container-low border-outline-variant focus:border-primary focus:ring-0 text-sm px-4 py-2 w-48 rounded-none\" placeholder=\"Search archives...\" type=\"text\">\n<span class=\"material-symbols-outlined absolute right-3 top-2 text-on-surface-variant\">search</span>\n</div>\n<button class=\"material-symbols-outlined text-primary text-2xl transition-all active:translate-y-0 cursor-pointer\">account_circle</button>\n<button class=\"bg-primary text-on-primary font-label-lg text-label-lg px-unit-lg py-unit-sm hover:bg-opacity-90 transition-all active:translate-y-0 whitespace-nowrap\">Sign In</button>\n</div>\n</div>\n</nav>\n<main class=\"max-w-container-max mx-auto px-margin-desktop py-unit-2xl flex gap-gutter\">\n<!-- Main Content Area (9 Columns) -->\n<div class=\"flex-1 space-y-unit-2xl\">\n<!-- Category Filtering -->\n\n<!-- Featured Editorial Grid -->\n<section class=\"grid grid-cols-12 gap-gutter\">\n<!-- Large Featured Card -->\n<article class=\"col-span-12 lg:col-span-8 group cursor-pointer\">\n<div class=\"relative overflow-hidden aspect-[16/9] mb-unit-md bg-surface-container\">\n<img class=\"w-full h-full object-cover grayscale transition-all duration-150 group-hover:grayscale-0 group-hover:translate-y-[-1px]\" data-alt=\"A sophisticated home library or academic office setting with floor-to-ceiling wooden bookshelves filled with leather-bound books.\" src=\"https://lh3.googleusercontent.com/aida-public/AB6AXuBkdeztzdSpdvgqJQ-SCj_OW_jTDVJeSn-U634ES1rjty4dN8wbn5fKQYSDC_BVZrkSTTggDLPbMvXuzNCwmZ342mb84kOr1Cs-eg0dSqNCPpGMIQXUBp_4IeT8KPVvWyJRW6AAu3clrd_u6dgkr6gTNzOP099utAJNbSX94isCMRdLHaj1wAysAxO7JEXX_iWi83qxKA65fNoTrE2Y40cz3V3wEjOUsLgxEUPtp9z4ktTa-gqu--6AtHq2DXZreZDDy-FLcl4bwDY\">\n<div class=\"absolute top-4 left-4 bg-primary text-on-primary font-label-lg text-label-lg px-unit-md py-1\">LEADERSHIP</div>\n</div>\n<div class=\"space-y-unit-sm\">\n<div class=\"flex items-center gap-unit-sm text-on-surface-variant font-label-md text-label-md\">\n<span class=\"\">JUNE 12, 2024</span>\n<span class=\"w-1 h-1 bg-outline-variant rounded-full\"></span>\n<span class=\"\">12 MIN READ</span>\n</div>\n<h2 class=\"font-headline-lg text-headline-lg text-primary group-hover:text-secondary transition-colors duration-200\">The Architect of Legacy: Governing Family Interests Across Generations</h2>\n<p class=\"font-body-md text-body-md text-on-surface-variant line-clamp-3\">In this definitive research piece, Dr. Ayuba explores the intersection of corporate governance and familial bonds, outlining a new framework for multi-generational stability within institutional family structures.</p>\n</div>\n</article>\n<!-- Sidebar Featured Articles -->\n<div class=\"col-span-12 lg:col-span-4 space-y-unit-xl\">\n<article class=\"group cursor-pointer border-t border-outline-variant pt-unit-md\">\n<div class=\"flex items-center gap-unit-sm text-secondary font-label-md text-label-md mb-1\">\n<span class=\"material-symbols-outlined text-sm\">health_and_safety</span>\n<span class=\"\">FAMILY HEALTH</span>\n</div>\n<h3 class=\"font-headline-sm text-headline-sm text-primary mb-unit-xs group-hover:text-secondary transition-colors\">Cognitive Longevity in High-Performance Aging</h3>\n<p class=\"font-body-sm text-body-sm text-on-surface-variant mb-unit-sm\">New biological insights into maintaining neurological sharpess during the transition to elder statesmanship.</p>\n<div class=\"font-label-md text-label-md text-on-surface-variant\">4 MIN READ</div>\n</article>\n<article class=\"group cursor-pointer border-t border-outline-variant pt-unit-md\">\n<div class=\"flex items-center gap-unit-sm text-secondary font-label-md text-label-md mb-1\">\n<span class=\"material-symbols-outlined text-sm\">payments</span>\n<span class=\"\">WEALTH</span>\n</div>\n<h3 class=\"font-headline-sm text-headline-sm text-primary mb-unit-xs group-hover:text-secondary transition-colors\">The Philanthropic Engine: Capital with Intent</h3>\n<p class=\"font-body-sm text-body-sm text-on-surface-variant mb-unit-sm\">Transitioning from accumulation to distribution through institutional foundations and global impact frameworks.</p>\n<div class=\"font-label-md text-label-md text-on-surface-variant\">8 MIN READ</div>\n</article>\n</div>\n</section>\n<!-- Secondary Grid - Editorial Bento -->\n<section class=\"grid grid-cols-1 md:grid-cols-3 gap-gutter\">\n<div class=\"bg-white border border-primary/10 p-unit-lg flex flex-col justify-between hover:shadow-lg transition-all duration-150\">\n<div>\n<span class=\"font-label-md text-label-md text-on-surface-variant uppercase tracking-widest\">Case Study</span>\n<h4 class=\"font-headline-sm text-headline-sm mt-unit-sm text-primary\">The Heritage Protocol</h4>\n<p class=\"font-body-sm text-body-sm mt-unit-sm text-on-surface-variant\">How a 200-year-old estate reorganized for the digital era without losing its core identity.</p>\n</div>\n<a class=\"mt-unit-xl text-secondary font-label-lg text-label-lg border-b border-secondary w-fit pb-1\" href=\"/\">Read Research</a>\n</div>\n<div class=\"bg-primary text-on-primary p-unit-lg flex flex-col justify-between hover:bg-opacity-95 transition-all\">\n<div>\n<span class=\"font-label-md text-label-md text-tertiary-fixed-dim uppercase tracking-widest\">Exclusive Podcast</span>\n<h4 class=\"font-headline-sm text-headline-sm mt-unit-sm\">The Elder Discourse: Episode 42</h4>\n<p class=\"font-body-sm text-body-sm mt-unit-sm opacity-80\">Reflections on silent leadership with special guest Emeritus Professor Julian Vance.</p>\n</div>\n<div class=\"mt-unit-xl flex items-center gap-unit-md\">\n<button class=\"bg-tertiary-fixed text-on-tertiary-fixed w-10 h-10 flex items-center justify-center rounded-none\"><span class=\"material-symbols-outlined\">play_arrow</span></button>\n<span class=\"font-label-lg text-label-lg\">Listen Now (28:14)</span>\n</div>\n</div>\n<div class=\"bg-white border border-primary/10 p-unit-lg flex flex-col justify-between hover:shadow-lg transition-all duration-150\">\n<div>\n<span class=\"font-label-md text-label-md text-on-surface-variant uppercase tracking-widest\">Global Policy</span>\n<h4 class=\"font-headline-sm text-headline-sm mt-unit-sm text-primary\">Education for the 1%</h4>\n<p class=\"font-body-sm text-body-sm mt-unit-sm text-on-surface-variant\">Redefining elite schooling for the coming challenges of automation and climate shifts.</p>\n</div>\n<a class=\"mt-unit-xl text-secondary font-label-lg text-label-lg border-b border-secondary w-fit pb-1\" href=\"/\">Open Article</a>\n</div>\n</section>\n</div>\n<!-- Sticky Sidebar (Newsletter & Weekend Brief) -->\n<aside class=\"w-80 hidden lg:block\">\n<div class=\"sticky top-28 space-y-unit-xl\">\n<!-- Weekend Brief Signup Card -->\n<div class=\"bg-surface-container-high p-unit-lg border-l-4 border-secondary\">\n<h5 class=\"font-headline-sm text-headline-sm text-primary leading-tight\">The Weekend Brief</h5>\n<p class=\"font-body-sm text-body-sm text-on-surface-variant mt-unit-sm\">Every Sunday morning, Dr. Ayuba curates 3 essential reads for the modern decision maker.</p>\n<form class=\"mt-unit-lg space-y-unit-md\">\n<div>\n<label class=\"font-label-lg text-label-lg text-primary block mb-unit-xs\">Professional Email</label>\n<input class=\"w-full bg-white border border-outline-variant px-4 py-3 focus:ring-0 focus:border-primary text-sm rounded-none\" placeholder=\"name@institution.com\" type=\"email\">\n</div>\n<button class=\"w-full bg-primary text-on-primary font-label-lg text-label-lg py-3 uppercase tracking-widest hover:bg-opacity-90 transition-all active:translate-y-0\">Request Access</button>\n<p class=\"font-label-md text-label-md text-on-surface-variant opacity-70 text-center italic\">Strictly non-commercial research.</p>\n</form>\n</div>\n<!-- Faculty Directory Quick Links -->\n<div class=\"space-y-unit-md\">\n<h6 class=\"font-label-lg text-label-lg text-primary border-b border-outline-variant pb-2 flex items-center justify-between\">\n                        POPULAR TOPICS\n                        <span class=\"material-symbols-outlined text-sm\">trending_up</span>\n</h6>\n<ul class=\"space-y-unit-sm\">\n<li class=\"\"><a class=\"flex justify-between text-body-sm text-on-surface-variant hover:text-secondary\" href=\"/\"><span class=\"\">Endowment Management</span> <span class=\"text-xs opacity-50\">12</span></a></li>\n<li class=\"\"><a class=\"flex justify-between text-body-sm text-on-surface-variant hover:text-secondary\" href=\"/\"><span class=\"\">Bio-Hacking for Executives</span> <span class=\"text-xs opacity-50\">8</span></a></li>\n<li class=\"\"><a class=\"flex justify-between text-body-sm text-on-surface-variant hover:text-secondary\" href=\"/\"><span class=\"\">Ethical Leadership</span> <span class=\"text-xs opacity-50\">15</span></a></li>\n<li class=\"\"><a class=\"flex justify-between text-body-sm text-on-surface-variant hover:text-secondary\" href=\"/\"><span class=\"\">Legacy Trusts</span> <span class=\"text-xs opacity-50\">21</span></a></li>\n</ul>\n</div>\n<!-- Institutional Notice -->\n<div class=\"bg-primary-container p-unit-md text-on-primary-container\">\n<div class=\"flex items-center gap-unit-sm mb-unit-sm\">\n<span class=\"material-symbols-outlined text-tertiary-fixed\">info</span>\n<span class=\"font-label-lg text-label-lg uppercase tracking-wider text-tertiary-fixed\">Note</span>\n</div>\n<p class=\"font-body-sm text-body-sm opacity-90 leading-relaxed\">The Q3 Research Journal is now available for print. Institutional members can request their copy through the Faculty Portal.</p>\n</div>\n</div>\n</aside>\n</main>\n<!-- Detailed Footer -->\n\n<!-- Micro-interaction Script -->" }} />
-      </main>
-      
-    </>
+    <div ref={containerRef} className="animate-fade-in-up flex-grow">
+      {/* Unified Page Header */}
+      <UnifiedPageHero
+        sectionLabel="Research Journal"
+        pageTitle="The Research Archive"
+        supportingDescription="Deep dives into corporate governance, legacy preservation, bio-hacking, and systemic philosophy."
+      />
+
+      <div className="flex flex-col lg:flex-row gap-gutter mt-unit-lg">
+        {/* Main Content Area (Left) */}
+        <div className="flex-1 space-y-unit-2xl">
+          {/* Featured Editorial Grid */}
+          <section className="grid grid-cols-12 gap-gutter">
+            {/* Large Featured Card */}
+            <div className="col-span-12 lg:col-span-8">
+              <ArticleCard
+                title="The Architect of Legacy: Governing Family Interests Across Generations"
+                description="In this definitive research piece, Dr. Ayuba explores the intersection of corporate governance and familial bonds, outlining a new framework for multi-generational stability within institutional family structures."
+                imageUrl="https://lh3.googleusercontent.com/aida-public/AB6AXuBkdeztzdSpdvgqJQ-SCj_OW_jTDVJeSn-U634ES1rjty4dN8wbn5fKQYSDC_BVZrkSTTggDLPbMvXuzNCwmZ342mb84kOr1Cs-eg0dSqNCPpGMIQXUBp_4IeT8KPVvWyJRW6AAu3clrd_u6dgkr6gTNzOP099utAJNbSX94isCMRdLHaj1wAysAxO7JEXX_iWi83qxKA65fNoTrE2Y40cz3V3wEjOUsLgxEUPtp9z4ktTa-gqu--6AtHq2DXZreZDDy-FLcl4bwDY"
+                imageAlt="Scholarly library with wooden bookshelves"
+                category="LEADERSHIP"
+                publishDate="JUNE 12, 2024"
+                readTime="12 MIN READ"
+                href="#"
+              />
+            </div>
+
+            {/* Sidebar Featured Articles (without images, stack) */}
+            <div className="col-span-12 lg:col-span-4 flex flex-col gap-unit-md justify-between">
+              <ArticleCard
+                title="Cognitive Longevity in High-Performance Aging"
+                description="New biological insights into maintaining neurological sharpness during the transition to elder statesmanship."
+                category="FAMILY HEALTH"
+                readTime="4 MIN READ"
+                href="#"
+                className="bg-transparent border-t border-b-0 border-l-0 border-r-0 border-outline-variant/30 pt-unit-md rounded-none shadow-none hover:shadow-none hover:translate-y-0"
+              />
+              <ArticleCard
+                title="The Philanthropic Engine: Capital with Intent"
+                description="Transitioning from accumulation to distribution through institutional foundations and global impact frameworks."
+                category="WEALTH"
+                readTime="8 MIN READ"
+                href="#"
+                className="bg-transparent border-t border-b-0 border-l-0 border-r-0 border-outline-variant/30 pt-unit-md rounded-none shadow-none hover:shadow-none hover:translate-y-0"
+              />
+            </div>
+          </section>
+
+          {/* Secondary Grid - Editorial Bento */}
+          <section className="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+            {/* Bento Item 1 */}
+            <ArticleCard
+              title="The Heritage Protocol"
+              description="How a 200-year-old estate reorganized for the digital era without losing its core identity."
+              category="CASE STUDY"
+              href="#"
+              className="bg-white border border-primary/10 rounded-xl"
+            />
+
+            {/* Bento Item 2: Custom dark card for Podcast */}
+            <div className="bg-primary text-on-primary p-unit-lg flex flex-col justify-between hover:bg-opacity-95 transition-all rounded-xl premium-shadow premium-shadow-hover h-full text-inherit no-underline">
+              <div>
+                <span className="font-label-md text-label-md text-tertiary-fixed-dim uppercase tracking-widest">Exclusive Podcast</span>
+                <h4 className="font-headline-sm text-headline-sm mt-unit-sm text-white">The Elder Discourse: Episode 42</h4>
+                <p className="font-body-sm text-body-sm mt-unit-sm text-white/80 leading-relaxed">Reflections on silent leadership with special guest Emeritus Professor Julian Vance.</p>
+              </div>
+              <div className="mt-unit-xl flex items-center gap-unit-md pt-4 border-t border-white/10">
+                <button className="bg-tertiary-fixed text-on-tertiary-fixed w-10 h-10 flex items-center justify-center rounded-full">
+                  <span className="material-symbols-outlined text-black font-bold">play_arrow</span>
+                </button>
+                <span className="font-label-lg text-label-lg text-white">Listen Now (28:14)</span>
+              </div>
+            </div>
+
+            {/* Bento Item 3 */}
+            <ArticleCard
+              title="Education for the 1%"
+              description="Redefining elite schooling for the coming challenges of automation and climate shifts."
+              category="GLOBAL POLICY"
+              href="#"
+              className="bg-white border border-primary/10 rounded-xl"
+            />
+          </section>
+        </div>
+
+        {/* Sticky Utility Sidebar (Newsletter & Topics) */}
+        <aside className="w-full lg:w-80 shrink-0">
+          <div className="sticky top-28 space-y-unit-xl">
+            {/* Weekend Brief Signup Card */}
+            <div className="bg-surface-container-high p-unit-lg border-l-4 border-secondary rounded-r-xl border border-outline-variant/30">
+              <h5 className="font-headline-sm text-headline-sm text-primary leading-tight">The Weekend Brief</h5>
+              <p className="font-body-sm text-body-sm text-on-surface-variant mt-unit-sm">Every Sunday morning, Dr. Ayuba curates 3 essential reads for the modern decision maker.</p>
+              <form className="mt-unit-lg space-y-unit-md" onSubmit={(e) => e.preventDefault()}>
+                <div>
+                  <label className="font-label-lg text-label-lg text-primary block mb-unit-xs">Professional Email</label>
+                  <input className="w-full bg-white border border-outline-variant px-4 py-3 focus:ring-0 focus:border-primary text-sm rounded-lg" placeholder="name@institution.com" type="email" />
+                </div>
+                <button className="w-full bg-primary text-on-primary font-label-lg text-label-lg py-3 uppercase tracking-widest hover:bg-opacity-90 transition-all rounded-lg">Request Access</button>
+                <p className="font-label-md text-label-md text-on-surface-variant opacity-70 text-center italic mt-2">Strictly non-commercial research.</p>
+              </form>
+            </div>
+
+            {/* Popular Topics list */}
+            <div className="space-y-unit-md bg-white border border-outline-variant/30 p-unit-lg rounded-xl">
+              <h6 className="font-label-lg text-label-lg text-primary border-b border-outline-variant pb-2 flex items-center justify-between">
+                POPULAR TOPICS
+                <span className="material-symbols-outlined text-sm">trending_up</span>
+              </h6>
+              <ul className="space-y-unit-sm">
+                <li><a className="flex justify-between text-body-sm text-on-surface-variant hover:text-secondary py-1" href="#"><span className="">Endowment Management</span> <span className="text-xs opacity-50">12</span></a></li>
+                <li><a className="flex justify-between text-body-sm text-on-surface-variant hover:text-secondary py-1" href="#"><span className="">Bio-Hacking for Executives</span> <span className="text-xs opacity-50">8</span></a></li>
+                <li><a className="flex justify-between text-body-sm text-on-surface-variant hover:text-secondary py-1" href="#"><span className="">Ethical Leadership</span> <span className="text-xs opacity-50">15</span></a></li>
+                <li><a className="flex justify-between text-body-sm text-on-surface-variant hover:text-secondary py-1" href="#"><span className="">Legacy Trusts</span> <span className="text-xs opacity-50">21</span></a></li>
+              </ul>
+            </div>
+
+            {/* Institutional Notice */}
+            <div className="bg-primary-container p-unit-md text-on-primary-container rounded-xl">
+              <div className="flex items-center gap-unit-sm mb-unit-sm">
+                <span className="material-symbols-outlined text-tertiary-fixed">info</span>
+                <span className="font-label-lg text-label-lg uppercase tracking-wider text-tertiary-fixed">Note</span>
+              </div>
+              <p className="font-body-sm text-body-sm opacity-90 leading-relaxed">The Q3 Research Journal is now available for print. Institutional members can request their copy through the Faculty Portal.</p>
+            </div>
+          </div>
+        </aside>
+      </div>
+
+      {/* Discovery Module */}
+      <ContinueExploring items={relatedItems} />
+    </div>
   );
 }

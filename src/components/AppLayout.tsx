@@ -9,10 +9,12 @@ import Footer from './Footer';
 // Dedicated Public Layout
 function PublicLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex-grow flex flex-col">
+    <div className="flex-grow flex flex-col min-h-screen bg-background">
       <Navbar variant="public" />
-      <Breadcrumbs />
-      <main className="flex-grow flex flex-col">
+      <div className="w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+        <Breadcrumbs />
+      </div>
+      <main className="flex-grow w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop pb-unit-2xl">
         {children}
       </main>
       <Footer />

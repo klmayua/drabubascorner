@@ -1,21 +1,183 @@
 'use client';
 
-import React, { useEffect, useRef } from 'react';
+import React, { useRef } from 'react';
+import UnifiedPageHero from '@/components/UnifiedPageHero';
+import ContinueExploring, { ContinueExploringItem } from '@/components/ContinueExploring';
 
-
-
+const relatedItems: ContinueExploringItem[] = [
+  {
+    title: 'Speaking & Consulting',
+    description: 'Dr. Ayuba provides high-stakes advisory and keynote perspectives for global institutions.',
+    href: '/speaking-consulting',
+    type: 'course',
+    categoryOrDiscipline: 'Advisory',
+    duration: 'Keynote & Consulting',
+    imageUrl: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDmT7Zk5gjXba1wIAnpi561kzCbLKH7ccp8Dh1RMTKBjIPeV0PJDQti1VhuU3PxhoX12kGkbxzI8s3yScI7oJbsN1FXxn3pKpdlKEAy2Je2Y5GWfSFr4Gx9gbXK6bobP_DJUGShrXWqnmxY4u4UVRy7zRmtJsrzbp93NsNgOX2f-Ggfw82TJnc1HXfIrNBPzgDpy5jow_kUOUlxlaWj8--mdyRb-Vs6OghtIAdStjm2Ra6bKJfE-P4kPcP85h_nKTmzLrokk1cbRRk',
+  },
+  {
+    title: 'The Research Archive',
+    description: 'Deep dives into corporate governance, stoic logic, and executive stress response protocols.',
+    href: '/editorial',
+    type: 'article',
+    categoryOrDiscipline: 'Research',
+    duration: '12 Min Read',
+    imageUrl: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBkdeztzdSpdvgqJQ-SCj_OW_jTDVJeSn-U634ES1rjty4dN8wbn5fKQYSDC_BVZrkSTTggDLPbMvXuzNCwmZ342mb84kOr1Cs-eg0dSqNCPpGMIQXUBp_4IeT8KPVvWyJRW6AAu3clrd_u6dgkr6gTNzOP099utAJNbSX94isCMRdLHaj1wAysAxO7JEXX_iWi83qxKA65fNoTrE2Y40cz3V3wEjOUsLgxEUPtp9z4ktTa-gqu--6AtHq2DXZreZDDy-FLcl4bwDY',
+  },
+  {
+    title: 'Academic Catalog',
+    description: 'Rigorous certification programs and masterclasses in wealth architecture and holistic wellness.',
+    href: '/catalog',
+    type: 'course',
+    categoryOrDiscipline: 'Certification',
+    duration: '12 Weeks',
+    imageUrl: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCC-YqLehH_UwELWHn4Vc8_kQihVsjQicNfmofe98xjNXSaS1ALIEdCDPxdp9dkPk2tzlsTxcyP4W3cIbTaQR0P0_q_Ken9E_qI1q2tr1Nft0O9s7HGKuxqIUiRP8Mof9CkY8AooidSa3okPfDGJLIvQIF3qj8sy_p4KWjWajlGTqZiXiF1M9qY4oulO5s3r0m1buOBcR7s0kD2ypgXLeb8XbCFZiHFPbtxTk_O4SzkAViL9F-Vuv2-lFzK0ylskMLCGcRQdtOSSVk',
+  },
+];
 
 export default function Page() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   return (
-    <>
-      
-      
-      <main ref={containerRef} className="animate-fade-in-up flex-grow">
-        <div dangerouslySetInnerHTML={{ __html: "<!-- TopNavBar (Shared Component Template) -->\n<nav class=\"w-full top-0 bg-surface dark:bg-surface-dim border-b border-primary/10 z-50\">\n<div class=\"max-w-[1440px] mx-auto px-margin-desktop flex justify-between items-center py-unit-md\">\n<!-- Institutional Crest (Logo Only as requested) -->\n<div class=\"flex items-center\">\n<img alt=\"Institutional Crest\" class=\"h-20 w-auto object-contain\" src=\"https://lh3.googleusercontent.com/aida-public/AB6AXuASH9WMhmjE4FnW9vCGweml54Hex76Z0eGCYqtzcsvwYA1T5Ti6lOde_uu7wkBad8p4-13lsrZnJ5aLGG3T46Rf-n-G5XHslZGlE5ggDz-Zm3xrjbX24lMdeR-0_QfC6Mu_uMV7s2CsS-YwH6LQY8MJ-EhbgLH5Hx68x7GgVUW5SYqilEzotSjPsFvKlE89awiu1K6xprpdL_19O3vjq2FLTr8A-0OWaDqwscuRKP56ic_3xGkKpnzdhr2RIqgACN7Tfomkmyx8Obs\"/>\n</div>\n<!-- Desktop Navigation Clusters -->\n<div class=\"hidden md:flex items-center gap-unit-xl\">\n<div class=\"flex items-center gap-unit-lg\">\n<a class=\"font-label-lg text-label-lg uppercase tracking-widest text-on-surface-variant dark:text-outline hover:text-tertiary-fixed transition-colors duration-150 cursor-pointer active:opacity-70\" href=\"/research-search\">Research</a>\n<a class=\"font-label-lg text-label-lg uppercase tracking-widest text-on-surface-variant dark:text-outline hover:text-tertiary-fixed transition-colors duration-150 cursor-pointer active:opacity-70\" href=\"/library\">Publications</a>\n<a class=\"font-label-lg text-label-lg uppercase tracking-widest text-on-surface-variant dark:text-outline hover:text-tertiary-fixed transition-colors duration-150 cursor-pointer active:opacity-70\" href=\"/video-archive\">Lectures</a>\n<a class=\"font-label-lg text-label-lg uppercase tracking-widest text-primary dark:text-primary-fixed border-b-2 border-tertiary-fixed pb-1 cursor-pointer active:opacity-70\" href=\"/speaking-consulting\">Consultancy</a>\n<a class=\"font-label-lg text-label-lg uppercase tracking-widest text-on-surface-variant dark:text-outline hover:text-tertiary-fixed transition-colors duration-150 cursor-pointer active:opacity-70\" href=\"/newsletter-archive\">Archives</a>\n<a class=\"font-label-lg text-label-lg uppercase tracking-widest text-on-surface-variant dark:text-outline hover:text-tertiary-fixed transition-colors duration-150 cursor-pointer active:opacity-70\" href=\"/partners\">Contact</a>\n</div>\n<!-- Search Bar -->\n<div class=\"relative flex items-center bg-surface-container rounded-full px-unit-md py-unit-xs group border border-transparent focus-within:border-primary/20 transition-all\">\n<span class=\"material-symbols-outlined text-outline group-focus-within:text-primary\" style=\"font-size: 20px;\">search</span>\n<input class=\"bg-transparent border-none focus:ring-0 font-label-md text-on-surface placeholder:text-outline ml-unit-sm w-40\" placeholder=\"Search Archives...\" type=\"text\"/>\n</div>\n</div>\n</div>\n</nav>\n<main class=\"max-w-[1440px] mx-auto px-margin-desktop\">\n<!-- Hero Section -->\n\n<!-- Services Grid (Bento Style) -->\n<section class=\"py-unit-2xl border-t border-primary/5\">\n<div class=\"grid grid-cols-12 gap-gutter\">\n<!-- Keynote Speaking (Large Card) -->\n<article class=\"col-span-8 bg-white border border-primary/10 p-unit-xl card-hover transition-all duration-150 flex flex-col justify-between group\">\n<div>\n<div class=\"flex justify-between items-start mb-unit-xl\">\n<span class=\"material-symbols-outlined text-primary text-[48px]\" style=\"font-variation-settings: 'FILL' 0;\">record_voice_over</span>\n<span class=\"font-label-md text-label-md text-outline uppercase tracking-widest\">01 / GLOBAL ENGAGEMENT</span>\n</div>\n<h3 class=\"font-headline-lg text-headline-lg text-primary mb-unit-md\">Keynote Speaking</h3>\n<p class=\"font-body-md text-body-md text-on-surface-variant mb-unit-lg max-w-xl\">\n              Delivering transformative addresses at the intersection of leadership, innovation, and social equity. Each keynote is meticulously researched to align with the specific challenges and aspirations of the host institution.\n            </p>\n<div class=\"flex flex-wrap gap-unit-md mb-unit-xl\">\n<span class=\"px-unit-md py-unit-xs bg-surface-container border border-primary/5 font-label-md text-label-md\">Global Policy</span>\n<span class=\"px-unit-md py-unit-xs bg-surface-container border border-primary/5 font-label-md text-label-md\">Educational Leadership</span>\n<span class=\"px-unit-md py-unit-xs bg-surface-container border border-primary/5 font-label-md text-label-md\">Cultural Dynamics</span>\n</div>\n</div>\n<a class=\"inline-flex items-center gap-unit-sm text-[#c79a2e] font-label-lg text-label-lg uppercase tracking-widest group-hover:gap-unit-md transition-all\" href=\"/\">\n            Inquire for Availability <span class=\"material-symbols-outlined\">arrow_forward</span>\n</a>\n</article>\n<!-- Institutional Audit -->\n<article class=\"col-span-4 bg-primary text-white p-unit-xl card-hover transition-all duration-150 relative overflow-hidden group\">\n<div class=\"relative z-10\">\n<span class=\"material-symbols-outlined text-[#c79a2e] text-[40px] mb-unit-xl\">fact_check</span>\n<h3 class=\"font-headline-md text-headline-md mb-unit-md\">Institutional Audit</h3>\n<p class=\"font-body-sm text-body-sm text-white/70 mb-unit-xl\">\n              Rigorous evaluative frameworks designed to optimize institutional performance and compliance within international standards.\n            </p>\n<ul class=\"space-y-unit-sm mb-unit-xl\">\n<li class=\"flex items-center gap-unit-sm text-body-sm\">\n<span class=\"w-1.5 h-1.5 bg-[#c79a2e] rotate-45\"></span> Process Optimization\n              </li>\n<li class=\"flex items-center gap-unit-sm text-body-sm\">\n<span class=\"w-1.5 h-1.5 bg-[#c79a2e] rotate-45\"></span> Compliance Mapping\n              </li>\n<li class=\"flex items-center gap-unit-sm text-body-sm\">\n<span class=\"w-1.5 h-1.5 bg-[#c79a2e] rotate-45\"></span> Cultural Assessment\n              </li>\n</ul>\n</div>\n<div class=\"absolute bottom-0 right-0 p-unit-lg opacity-10 group-hover:opacity-20 transition-opacity\">\n<span class=\"material-symbols-outlined text-[120px]\">account_balance</span>\n</div>\n</article>\n<!-- Strategic Advisory -->\n<article class=\"col-span-4 bg-white border border-primary/10 p-unit-xl card-hover transition-all duration-150 flex flex-col group\">\n<span class=\"material-symbols-outlined text-primary text-[40px] mb-unit-xl\">strategy</span>\n<h3 class=\"font-headline-md text-headline-md text-primary mb-unit-md\">Strategic Advisory</h3>\n<p class=\"font-body-sm text-body-sm text-on-surface-variant flex-grow mb-unit-lg\">\n            Confidential consultation for C-suite executives and board members focused on long-term institutional sustainability and heritage preservation in a volatile digital landscape.\n          </p>\n<div class=\"h-px w-full bg-primary/10 mb-unit-lg\"></div>\n<span class=\"font-label-lg text-label-lg text-primary uppercase tracking-widest\">Heritage Consulting</span>\n</article>\n<!-- Curriculum Development -->\n<article class=\"col-span-8 bg-surface-container-low border border-primary/10 p-unit-xl card-hover transition-all duration-150 flex flex-row gap-gutter group\">\n<div class=\"w-1/3 overflow-hidden rounded\">\n<img alt=\"Academic Resources\" class=\"w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-150\" data-alt=\"An artistic, macro photograph of high-quality vellum paper and a classic fountain pen resting on a dark walnut desk. The lighting is focused and warm, highlighting the texture of the materials and creating a scholarly, archival aesthetic. The color palette is composed of rich browns, deep navys, and hints of gold, reflecting elite academic standards and intellectual depth.\" src=\"https://www.gstatic.com/labs-code/stitch/stitch-placeholder-300x300.svg\"/>\n</div>\n<div class=\"w-2/3 flex flex-col justify-between\">\n<div>\n<div class=\"flex justify-between items-start mb-unit-lg\">\n<h3 class=\"font-headline-md text-headline-md text-primary\">Curriculum Development</h3>\n<span class=\"font-label-md text-label-md text-[#c79a2e] uppercase tracking-widest\">Pedagogical Design</span>\n</div>\n<p class=\"font-body-md text-body-md text-on-surface-variant mb-unit-lg\">\n                Engineering world-class educational pathways that bridge traditional scholarship with modern technological integration. We specialize in bespoke module creation for elite vocational and higher-ed institutions.\n              </p>\n</div>\n<div class=\"flex items-center gap-unit-xl\">\n<div class=\"text-center\">\n<p class=\"font-headline-sm text-headline-sm text-primary\">150+</p>\n<p class=\"font-label-md text-label-md text-outline\">Modules Built</p>\n</div>\n<div class=\"text-center\">\n<p class=\"font-headline-sm text-headline-sm text-primary\">24</p>\n<p class=\"font-label-md text-label-md text-outline\">Partner Org</p>\n</div>\n</div>\n</div>\n</article>\n</div>\n</section>\n<!-- Consultation CTA -->\n<section class=\"py-unit-2xl\">\n<div class=\"institutional-gradient rounded-xl p-unit-2xl relative overflow-hidden flex items-center justify-between\">\n<div class=\"relative z-10 max-w-2xl\">\n<h2 class=\"font-display-lg text-display-lg text-white mb-unit-lg\">Elevate Your Institutional Standard</h2>\n<p class=\"font-body-lg text-body-lg text-white/80 mb-unit-xl\">\n            Book a preliminary strategy session to discuss how Dr. Ayuba's Corner can facilitate your organization's transition to global excellence.\n          </p>\n<div class=\"flex items-center gap-unit-lg\">\n<button class=\"bg-[#c79a2e] text-primary px-unit-xl py-unit-md font-label-lg text-label-lg uppercase tracking-widest hover:bg-[#d4a945] transition-colors shadow-lg active:translate-y-0\">\n              Request Prospectus\n            </button>\n<button class=\"border border-white/30 text-white px-unit-xl py-unit-md font-label-lg text-label-lg uppercase tracking-widest hover:bg-white/10 transition-all\">\n              Direct Contact\n            </button>\n</div>\n</div>\n<div class=\"hidden lg:block relative z-10 w-1/4\">\n<img alt=\"Seal of Excellence\" class=\"w-full\" data-alt=\"A macro, elegant 3D render of a gold institutional seal or medallion, deeply embossed with scholarly symbols like an open book and a laurel wreath. The surface is polished but textured with age, catching highlights from a sophisticated soft-box lighting setup. The background is a velvety deep navy blue, creating a high-contrast, premium, and archival aesthetic.\" src=\"https://www.gstatic.com/labs-code/stitch/stitch-placeholder-300x300.svg\"/>\n</div>\n<!-- Decorative Background Element -->\n<div class=\"absolute right-[-10%] top-[-20%] w-[600px] h-[600px] bg-white opacity-5 rounded-full blur-[100px]\"></div>\n</div>\n</section>\n</main>\n<!-- Footer (Shared Component Template) -->" }} />
-      </main>
-      
-    </>
+    <div ref={containerRef} className="animate-fade-in-up flex-grow">
+      {/* Unified Page Header */}
+      <UnifiedPageHero
+        sectionLabel="Consultancy &amp; Advisory"
+        pageTitle="Services Portfolio"
+        supportingDescription="Rigorous frameworks, custom curriculum design, keynotes, and strategic audits for elite institutions."
+      />
+
+      {/* Services Grid (Bento Style) */}
+      <section className="py-unit-2xl border-t border-primary/5 mt-unit-lg">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+          {/* Keynote Speaking (Large Card) */}
+          <article className="col-span-12 md:col-span-8 bg-white border border-primary/10 p-unit-xl hover:border-secondary transition-colors duration-150 flex flex-col justify-between group rounded-xl shadow-sm">
+            <div>
+              <div className="flex justify-between items-start mb-unit-xl">
+                <span className="material-symbols-outlined text-primary text-[48px]">record_voice_over</span>
+                <span className="font-label-md text-label-md text-outline uppercase tracking-widest">01 / GLOBAL ENGAGEMENT</span>
+              </div>
+              <h3 className="font-headline-lg text-headline-lg text-primary mb-unit-md">Keynote Speaking</h3>
+              <p className="font-body-md text-body-md text-on-surface-variant mb-unit-lg max-w-xl">
+                Delivering transformative addresses at the intersection of leadership, innovation, and social equity. Each keynote is meticulously researched to align with the specific challenges and aspirations of the host institution.
+              </p>
+              <div className="flex flex-wrap gap-unit-md mb-unit-xl">
+                <span className="px-unit-md py-unit-xs bg-surface-container border border-primary/5 font-label-md text-label-md rounded">Global Policy</span>
+                <span className="px-unit-md py-unit-xs bg-surface-container border border-primary/5 font-label-md text-label-md rounded">Educational Leadership</span>
+                <span className="px-unit-md py-unit-xs bg-surface-container border border-primary/5 font-label-md text-label-md rounded">Cultural Dynamics</span>
+              </div>
+            </div>
+            <a className="inline-flex items-center gap-unit-sm text-[#c79a2e] font-label-lg text-label-lg uppercase tracking-widest hover:gap-unit-md transition-all font-bold" href="#">
+              Inquire for Availability <span className="material-symbols-outlined ml-1">arrow_forward</span>
+            </a>
+          </article>
+
+          {/* Institutional Audit */}
+          <article className="col-span-12 md:col-span-4 bg-primary text-white p-unit-xl hover:bg-opacity-95 transition-colors duration-150 relative overflow-hidden group rounded-xl shadow-sm">
+            <div className="relative z-10">
+              <span className="material-symbols-outlined text-[#c79a2e] text-[40px] mb-unit-xl">fact_check</span>
+              <h3 className="font-headline-md text-headline-md text-white mb-unit-md">Institutional Audit</h3>
+              <p className="font-body-sm text-body-sm text-white/70 mb-unit-xl">
+                Rigorous evaluative frameworks designed to optimize institutional performance and compliance within international standards.
+              </p>
+              <ul className="space-y-unit-sm mb-unit-xl">
+                <li className="flex items-center gap-unit-sm text-body-sm text-white">
+                  <span className="w-1.5 h-1.5 bg-[#c79a2e] rotate-45"></span> Process Optimization
+                </li>
+                <li className="flex items-center gap-unit-sm text-body-sm text-white">
+                  <span className="w-1.5 h-1.5 bg-[#c79a2e] rotate-45"></span> Compliance Mapping
+                </li>
+                <li className="flex items-center gap-unit-sm text-body-sm text-white">
+                  <span className="w-1.5 h-1.5 bg-[#c79a2e] rotate-45"></span> Cultural Assessment
+                </li>
+              </ul>
+            </div>
+            <div className="absolute bottom-0 right-0 p-unit-lg opacity-10 group-hover:opacity-20 transition-opacity">
+              <span className="material-symbols-outlined text-[120px] text-white">account_balance</span>
+            </div>
+          </article>
+
+          {/* Strategic Advisory */}
+          <article className="col-span-12 md:col-span-4 bg-white border border-primary/10 p-unit-xl hover:border-secondary transition-colors duration-150 flex flex-col justify-between group rounded-xl shadow-sm">
+            <div>
+              <span className="material-symbols-outlined text-primary text-[40px] mb-unit-xl">strategy</span>
+              <h3 className="font-headline-md text-headline-md text-primary mb-unit-md">Strategic Advisory</h3>
+              <p className="font-body-sm text-body-sm text-on-surface-variant mb-unit-lg leading-relaxed">
+                Confidential consultation for C-suite executives and board members focused on long-term institutional sustainability and heritage preservation in a volatile digital landscape.
+              </p>
+            </div>
+            <div>
+              <div className="h-px w-full bg-primary/10 mb-unit-lg"></div>
+              <span className="font-label-lg text-label-lg text-primary uppercase tracking-widest font-bold">Heritage Consulting</span>
+            </div>
+          </article>
+
+          {/* Curriculum Development */}
+          <article className="col-span-12 md:col-span-8 bg-surface-container-low border border-primary/10 p-unit-xl hover:border-secondary transition-colors duration-150 flex flex-col sm:flex-row gap-gutter group rounded-xl shadow-sm">
+            <div className="sm:w-1/3 overflow-hidden rounded-lg border border-outline-variant/30">
+              <img
+                alt="Academic Resources"
+                className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-150"
+                data-alt="An artistic, macro photograph of high-quality vellum paper and a classic fountain pen resting on a dark walnut desk. The lighting is focused and warm, highlighting the texture of the materials and creating a scholarly, archival aesthetic. The color palette is composed of rich browns, deep navys, and hints of gold, reflecting elite academic standards and intellectual depth."
+                src="https://www.gstatic.com/labs-code/stitch/stitch-placeholder-300x300.svg"
+              />
+            </div>
+            <div className="sm:w-2/3 flex flex-col justify-between mt-4 sm:mt-0">
+              <div>
+                <div className="flex justify-between items-start mb-unit-lg">
+                  <h3 className="font-headline-md text-headline-md text-primary">Curriculum Development</h3>
+                  <span className="font-label-md text-label-md text-[#c79a2e] uppercase tracking-widest font-bold">Pedagogical Design</span>
+                </div>
+                <p className="font-body-md text-body-md text-on-surface-variant mb-unit-lg leading-relaxed">
+                  Engineering world-class educational pathways that bridge traditional scholarship with modern technological integration. We specialize in bespoke module creation for elite vocational and higher-ed institutions.
+                </p>
+              </div>
+              <div className="flex items-center gap-unit-xl">
+                <div className="text-center">
+                  <p className="font-headline-sm text-headline-sm text-primary font-bold">150+</p>
+                  <p className="font-label-md text-label-md text-outline">Modules Built</p>
+                </div>
+                <div className="text-center">
+                  <p className="font-headline-sm text-headline-sm text-primary font-bold">24</p>
+                  <p className="font-label-md text-label-md text-outline">Partner Org</p>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      {/* Consultation CTA */}
+      <section className="py-unit-2xl mb-unit-2xl">
+        <div className="bg-gradient-to-r from-primary to-primary-container rounded-xl p-unit-2xl relative overflow-hidden flex flex-col lg:flex-row items-center justify-between gap-gutter shadow-lg">
+          <div className="relative z-10 max-w-2xl text-white">
+            <h2 className="font-display-lg text-display-lg text-white mb-unit-lg">Elevate Your Institutional Standard</h2>
+            <p className="font-body-lg text-body-lg text-white/80 mb-unit-xl">
+              Book a preliminary strategy session to discuss how Dr. Ayuba's Corner can facilitate your organization's transition to global excellence.
+            </p>
+            <div className="flex flex-wrap items-center gap-unit-lg">
+              <button className="bg-[#c79a2e] text-primary px-unit-xl py-unit-md font-label-lg text-label-lg uppercase tracking-widest hover:bg-[#d4a945] transition-colors shadow-lg font-bold rounded">
+                Request Prospectus
+              </button>
+              <button className="border border-white/30 text-white px-unit-xl py-unit-md font-label-lg text-label-lg uppercase tracking-widest hover:bg-white/10 transition-all rounded">
+                Direct Contact
+              </button>
+            </div>
+          </div>
+          <div className="hidden lg:block relative z-10 w-1/4">
+            <img
+              alt="Seal of Excellence"
+              className="w-full"
+              data-alt="A macro, elegant 3D render of a gold institutional seal or medallion, deeply embossed with scholarly symbols like an open book and a laurel wreath. The surface is polished but textured with age, catching highlights from a sophisticated soft-box lighting setup. The background is a velvety deep navy blue, creating a high-contrast, premium, and archival aesthetic."
+              src="https://www.gstatic.com/labs-code/stitch/stitch-placeholder-300x300.svg"
+            />
+          </div>
+          {/* Decorative Background Element */}
+          <div className="absolute right-[-10%] top-[-20%] w-[600px] h-[600px] bg-white opacity-5 rounded-full blur-[100px]"></div>
+        </div>
+      </section>
+
+      {/* Discovery Module */}
+      <ContinueExploring items={relatedItems} />
+    </div>
   );
 }
