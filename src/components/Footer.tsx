@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { Mail, Globe, Radio } from 'lucide-react';
+import { PUBLIC_LINKS } from '@/config/navigation.config';
 
 // Custom brand icons in Lucide-matching SVG format
 const LinkedinIcon = (props: React.SVGProps<SVGSVGElement>) => (
@@ -66,27 +67,15 @@ export default function Footer() {
         {/* Column 2: Navigation Links (20% width ratio) */}
         <div className="col-span-12 md:col-span-6 lg:col-span-2 flex flex-col gap-unit-sm">
           <h6 className="font-label-lg text-label-lg text-white font-semibold uppercase tracking-wider mb-2">Navigation</h6>
-          <Link href="/about" className="font-body-sm text-body-sm text-white/80 hover:text-white transition-all">
-            About
-          </Link>
-          <Link href="/editorial" className="font-body-sm text-body-sm text-white/80 hover:text-white transition-all">
-            Articles
-          </Link>
-          <Link href="/video-archive" className="font-body-sm text-body-sm text-white/80 hover:text-white transition-all">
-            Videos
-          </Link>
-          <Link href="/podcast" className="font-body-sm text-body-sm text-white/80 hover:text-white transition-all">
-            Podcast
-          </Link>
-          <Link href="/members" className="font-body-sm text-body-sm text-white/80 hover:text-white transition-all">
-            Community
-          </Link>
-          <Link href="/catalog" className="font-body-sm text-body-sm text-white/80 hover:text-white transition-all">
-            Courses
-          </Link>
-          <Link href="/marketplace" className="font-body-sm text-body-sm text-white/80 hover:text-white transition-all">
-            Marketplace
-          </Link>
+          {PUBLIC_LINKS.map((link) => (
+            <Link
+              key={link.name}
+              href={link.href}
+              className="font-body-sm text-body-sm text-white/80 hover:text-white transition-all"
+            >
+              {link.name}
+            </Link>
+          ))}
         </div>
 
         {/* Column 3: Institution Links (20% width ratio) */}

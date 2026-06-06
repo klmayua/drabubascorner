@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import { CartProvider } from "@/context/CartContext";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import Breadcrumbs from "@/components/Breadcrumbs";
+import AppLayout from "@/components/AppLayout";
 import "./globals.css";
 
 const inter = Inter({
@@ -35,12 +33,7 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col bg-background text-on-background">
         <CartProvider>
-          <Navbar />
-          <Breadcrumbs />
-          <div className="flex-grow flex flex-col">
-            {children}
-          </div>
-          <Footer />
+          <AppLayout>{children}</AppLayout>
         </CartProvider>
       </body>
     </html>

@@ -6,39 +6,9 @@ import { usePathname } from 'next/navigation';
 import { useCart } from '@/context/CartContext';
 import { Search, ShoppingBag, CircleUser, Menu, X, BookOpen, Delete } from 'lucide-react';
 
-interface NavLink {
-  name: string;
-  href: string;
-}
+import { PUBLIC_LINKS, DASHBOARD_LINKS, ACTIVE_STATE_MAPPING } from '@/config/navigation.config';
 
-const PUBLIC_LINKS: NavLink[] = [
-  { name: 'About', href: '/about' },
-  { name: 'Articles', href: '/articles' },
-  { name: 'Videos', href: '/video-archive' },
-  { name: 'Podcast', href: '/podcast' },
-  { name: 'Community', href: '/community-networking-hub-desktop-refined' },
-  { name: 'Courses', href: '/catalog' },
-  { name: 'Marketplace', href: '/marketplace' },
-];
-
-const ACADEMIC_LINKS: NavLink[] = [
-  { name: 'Biography', href: '/about' },
-  { name: 'Research', href: '/research-search' },
-  { name: 'Library', href: '/library' },
-  { name: 'Speaking', href: '/speaking-consulting' },
-  { name: 'Partnerships', href: '/partners' },
-  { name: 'Calculators', href: '/calculator' },
-];
-
-const DASHBOARD_LINKS: NavLink[] = [
-  { name: 'Dashboard', href: '/dashboard' },
-  { name: 'Members Only', href: '/members' },
-  { name: 'Admin Console', href: '/admin' },
-  { name: 'My Profile', href: '/profile' },
-  { name: 'Public Portal', href: '/' },
-];
-
-export default function Navbar() {
+export default function Navbar({ variant: propVariant }: { variant?: 'public' | 'dashboard' }) {
   const pathname = usePathname();
   const { cartCount, toggleWishlist } = useCart();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -48,53 +18,25 @@ export default function Navbar() {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const { cart, removeFromCart, updateQuantity, cartTotal } = useCart();
 
-  // Determine nav variant based on pathname
-  const getNavVariant = (): 'public' | 'academic' | 'dashboard' => {
-    if (
-      pathname.startsWith('/dashboard') ||
-      pathname.startsWith('/admin') ||
-      pathname.startsWith('/members') ||
-      pathname.startsWith('/profile')
-    ) {
-      return 'dashboard';
-    }
-    if (
-      pathname.startsWith('/about') ||
-      pathname.startsWith('/research') ||
-      pathname.startsWith('/library') ||
-      pathname.startsWith('/partners') ||
-      pathname.startsWith('/speaking') ||
-      pathname.startsWith('/calculator')
-    ) {
-      return 'academic';
-    }
-    return 'public';
-  };
+  const variant = propVariant || (
+    pathname.startsWith('/dashboard') ||
+    pathname.startsWith('/admin') ||
+    pathname.startsWith('/members') ||
+    pathname.startsWith('/profile') ? 'dashboard' : 'public'
+  );
+  const navLinks = variant === 'dashboard' ? DASHBOARD_LINKS : PUBLIC_LINKS;
 
-  const variant = getNavVariant();
-  const navLinks =
-    variant === 'dashboard'
-      ? DASHBOARD_LINKS
-      : variant === 'academic'
-      ? ACADEMIC_LINKS
-      : PUBLIC_LINKS;
-
-  const getIsActive = (link: NavLink) => {
+  const getIsActive = (link: { name: string; href: string }) => {
     const normalizedPath = pathname.toLowerCase();
-    const normalizedHref = link.href.toLowerCase();
     
-    if (normalizedPath === normalizedHref) return true;
+    // 1. Direct path check matching active state mapping rules
+    const activeName = ACTIVE_STATE_MAPPING[normalizedPath];
+    if (activeName) {
+      return link.name.toLowerCase() === activeName.toLowerCase();
+    }
     
-    const name = link.name.toLowerCase();
-    if (name === 'about' && normalizedPath === '/about') return true;
-    if (name === 'articles' && (normalizedPath === '/articles' || normalizedPath.startsWith('/editorial'))) return true;
-    if (name === 'videos' && (normalizedPath === '/videos' || normalizedPath.startsWith('/video-archive'))) return true;
-    if (name === 'podcast' && (normalizedPath === '/podcast' || normalizedPath.startsWith('/podcast-archive'))) return true;
-    if (name === 'community' && (normalizedPath === '/community' || normalizedPath.startsWith('/community-networking-hub-desktop-refined'))) return true;
-    if (name === 'courses' && (normalizedPath === '/courses' || normalizedPath.startsWith('/catalog'))) return true;
-    if (name === 'marketplace' && normalizedPath === '/marketplace') return true;
-    
-    return false;
+    // 2. Fallback direct match
+    return normalizedPath === link.href.toLowerCase();
   };
 
   const handleSearch = (e: React.FormEvent) => {
@@ -261,28 +203,6 @@ export default function Navbar() {
               </button>
             </div>
             <div className="flex flex-col gap-unit-md overflow-y-auto pr-2">
-              <span className="text-[10px] font-bold tracking-widest text-on-surface-variant opacity-60 uppercase mb-2">Portal Switcher</span>
-              <div className="grid grid-cols-3 gap-1 mb-6 text-center text-xs">
-                <Link
-                  href="/"
-                  className={`p-2 border rounded ${variant === 'public' ? 'bg-primary-container text-white border-primary-container' : 'border-outline-variant hover:bg-surface-container'}`}
-                >
-                  Public
-                </Link>
-                <Link
-                  href="/about"
-                  className={`p-2 border rounded ${variant === 'academic' ? 'bg-primary-container text-white border-primary-container' : 'border-outline-variant hover:bg-surface-container'}`}
-                >
-                  Academic
-                </Link>
-                <Link
-                  href="/dashboard"
-                  className={`p-2 border rounded ${variant === 'dashboard' ? 'bg-primary-container text-white border-primary-container' : 'border-outline-variant hover:bg-surface-container'}`}
-                >
-                  Dashboard
-                </Link>
-              </div>
-
               <span className="text-[10px] font-bold tracking-widest text-on-surface-variant opacity-60 uppercase mb-2">Navigation Links</span>
               {navLinks.map((link) => {
                 const isActive = getIsActive(link);
