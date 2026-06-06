@@ -128,16 +128,20 @@ export default function Navbar() {
             {navLinks.map((link) => {
               const isActive = pathname === link.href || (pathname === '/' && link.href === '/about');
               return (
-                <Link
+                <a
                   key={link.name}
                   href={link.href}
-                  className={`relative transition-all duration-200 py-2 group font-medium ${isActive ? 'text-[#1F2937] font-semibold' : 'text-neutral-800 hover:text-[#1F2937] hover:font-semibold'}`}
+                  className="relative block py-2 text-[15px] font-medium text-[#1F1F1F] hover:text-[#1F2937] hover:font-semibold transition-all duration-200"
                 >
                   {link.name}
                   <span 
-                    className={`absolute bottom-0 left-0 h-[2px] bg-[#C5A059] rounded-full transition-all duration-200 ease-out ${isActive ? 'w-full' : 'w-0 group-hover:w-full'}`}
+                    className={`absolute bottom-0 left-0 h-[2px] bg-[#C5A059] rounded-full transition-all duration-200 ease-out ${isActive ? 'w-full' : 'w-0'}`}
+                    onMouseEnter={(e) => e.currentTarget.style.width = '100%'}
+                    onMouseLeave={(e) => {
+                      if (!isActive) e.currentTarget.style.width = '0%';
+                    }}
                   />
-                </Link>
+                </a>
               );
             })}
           </div>
