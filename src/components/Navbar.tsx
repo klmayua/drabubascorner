@@ -131,15 +131,17 @@ export default function Navbar() {
                 <a
                   key={link.name}
                   href={link.href}
-                  className="relative block py-2 text-[15px] font-medium text-[#1F1F1F] hover:text-[#1F2937] hover:font-semibold transition-all duration-200"
+                  className={`group relative block py-2 text-[15px] transition-all duration-[180ms] ease-out ${
+                    isActive
+                      ? 'text-[#00030f] font-semibold'
+                      : 'text-[#222222] font-medium hover:text-[#00030f] hover:font-semibold'
+                  }`}
                 >
                   {link.name}
                   <span 
-                    className={`absolute bottom-0 left-0 h-[2px] bg-[#C5A059] rounded-full transition-all duration-200 ease-out ${isActive ? 'w-full' : 'w-0'}`}
-                    onMouseEnter={(e) => e.currentTarget.style.width = '100%'}
-                    onMouseLeave={(e) => {
-                      if (!isActive) e.currentTarget.style.width = '0%';
-                    }}
+                    className={`absolute bottom-0 left-0 h-[2px] bg-[#C5A059] rounded-full transition-all duration-[180ms] ease-out ${
+                      isActive ? 'w-full' : 'w-0 group-hover:w-full'
+                    }`}
                   />
                 </a>
               );
