@@ -2,6 +2,39 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { Mail, Globe, Radio } from 'lucide-react';
+
+// Custom brand icons in Lucide-matching SVG format
+const LinkedinIcon = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    {...props}
+  >
+    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+    <rect x="2" y="9" width="4" height="12" />
+    <circle cx="4" cy="4" r="2" />
+  </svg>
+);
+
+const YoutubeIcon = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    {...props}
+  >
+    <path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z" />
+    <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" />
+  </svg>
+);
 
 export default function Footer() {
   const [email, setEmail] = useState('');
@@ -15,65 +48,74 @@ export default function Footer() {
   };
 
   return (
-    <footer className="w-full mt-auto bg-primary-container dark:bg-tertiary-container border-t border-outline-variant text-on-primary-container dark:text-tertiary-fixed py-12 md:py-16 transition-colors duration-300">
+    <footer className="w-full mt-auto bg-[#0B2341] border-t border-[rgba(255,255,255,0.08)] text-white/80 pt-20 pb-[60px] transition-all duration-300">
       <div className="max-w-[1440px] mx-auto px-margin-desktop grid grid-cols-1 md:grid-cols-12 gap-gutter">
         
-        {/* Brand Column */}
-        <div className="col-span-12 md:col-span-4 flex flex-col gap-unit-md">
+        {/* Column 1: Brand & Logo (30% width ratio) */}
+        <div className="col-span-12 md:col-span-6 lg:col-span-4 flex flex-col gap-unit-md">
           <img
             alt="Institutional Logo Footer"
-            className="h-10 w-auto object-contain brightness-0 invert opacity-60 self-start hover:scale-[1.02] transition-transform"
+            className="h-10 w-auto object-contain brightness-0 invert opacity-80 self-start hover:scale-[1.02] transition-transform"
             src="/images/Dr_Abuba_Logo_Full-no_bg.png"
           />
-          <p className="font-body-sm text-body-sm opacity-70 max-w-sm leading-relaxed">
+          <p className="font-body-sm text-body-sm text-white/80 leading-relaxed max-w-sm">
             Advancing human excellence through a multi-disciplinary synthesis of classical wisdom, empirical health longevity research, and sovereign wealth architecture.
           </p>
         </div>
 
-        {/* Directory Links Grid */}
-        <div className="col-span-12 md:col-span-4 grid grid-cols-2 gap-gutter">
-          <div className="flex flex-col gap-unit-sm">
-            <h6 className="font-label-lg text-label-lg text-white uppercase tracking-wider mb-2">Navigation</h6>
-            <Link href="/" className="font-body-sm text-body-sm opacity-70 hover:opacity-100 hover:text-white transition-all">
-              Articles & Editorial
-            </Link>
-            <Link href="/about" className="font-body-sm text-body-sm opacity-70 hover:opacity-100 hover:text-white transition-all">
-              Biography & Vision
-            </Link>
-            <Link href="/research-search" className="font-body-sm text-body-sm opacity-70 hover:opacity-100 hover:text-white transition-all">
-              Research Library
-            </Link>
-            <Link href="/catalog" className="font-body-sm text-body-sm opacity-70 hover:opacity-100 hover:text-white transition-all">
-              Courses Directory
-            </Link>
-            <Link href="/marketplace" className="font-body-sm text-body-sm opacity-70 hover:opacity-100 hover:text-white transition-all">
-              Merchandise Store
-            </Link>
-          </div>
-          <div className="flex flex-col gap-unit-sm">
-            <h6 className="font-label-lg text-label-lg text-white uppercase tracking-wider mb-2">Institution</h6>
-            <Link href="/dashboard" className="font-body-sm text-body-sm opacity-70 hover:opacity-100 hover:text-white transition-all">
-              Member Dashboard
-            </Link>
-            <Link href="/partners" className="font-body-sm text-body-sm opacity-70 hover:opacity-100 hover:text-white transition-all">
-              Academic Cohort
-            </Link>
-            <Link href="/speaking-consulting" className="font-body-sm text-body-sm opacity-70 hover:opacity-100 hover:text-white transition-all">
-              Keynotes & Speaking
-            </Link>
-            <Link href="/calculator" className="font-body-sm text-body-sm opacity-70 hover:opacity-100 hover:text-white transition-all">
-              Archival Calculators
-            </Link>
-            <Link href="/admin" className="font-body-sm text-body-sm opacity-70 hover:opacity-100 hover:text-white transition-all">
-              Admin Console
-            </Link>
-          </div>
+        {/* Column 2: Navigation Links (20% width ratio) */}
+        <div className="col-span-12 md:col-span-6 lg:col-span-2 flex flex-col gap-unit-sm">
+          <h6 className="font-label-lg text-label-lg text-white font-semibold uppercase tracking-wider mb-2">Navigation</h6>
+          <Link href="/about" className="font-body-sm text-body-sm text-white/80 hover:text-white transition-all">
+            About
+          </Link>
+          <Link href="/editorial" className="font-body-sm text-body-sm text-white/80 hover:text-white transition-all">
+            Articles
+          </Link>
+          <Link href="/video-archive" className="font-body-sm text-body-sm text-white/80 hover:text-white transition-all">
+            Videos
+          </Link>
+          <Link href="/podcast" className="font-body-sm text-body-sm text-white/80 hover:text-white transition-all">
+            Podcast
+          </Link>
+          <Link href="/members" className="font-body-sm text-body-sm text-white/80 hover:text-white transition-all">
+            Community
+          </Link>
+          <Link href="/catalog" className="font-body-sm text-body-sm text-white/80 hover:text-white transition-all">
+            Courses
+          </Link>
+          <Link href="/marketplace" className="font-body-sm text-body-sm text-white/80 hover:text-white transition-all">
+            Marketplace
+          </Link>
         </div>
 
-        {/* Subscription Column */}
-        <div className="col-span-12 md:col-span-4 flex flex-col gap-unit-md">
-          <h6 className="font-label-lg text-label-lg text-white uppercase tracking-wider mb-2">The Weekly Dispatch</h6>
-          <p className="font-body-sm text-body-sm opacity-70 leading-relaxed">
+        {/* Column 3: Institution Links (20% width ratio) */}
+        <div className="col-span-12 md:col-span-6 lg:col-span-2 flex flex-col gap-unit-sm">
+          <h6 className="font-label-lg text-label-lg text-white font-semibold uppercase tracking-wider mb-2">Institution</h6>
+          <Link href="/dashboard" className="font-body-sm text-body-sm text-white/80 hover:text-white transition-all">
+            Member Dashboard
+          </Link>
+          <Link href="/research-search" className="font-body-sm text-body-sm text-white/80 hover:text-white transition-all">
+            Research Library
+          </Link>
+          <Link href="/partners" className="font-body-sm text-body-sm text-white/80 hover:text-white transition-all">
+            Academic Cohort
+          </Link>
+          <Link href="/speaking-consulting" className="font-body-sm text-body-sm text-white/80 hover:text-white transition-all">
+            Speaking
+          </Link>
+          <Link href="/library" className="font-body-sm text-body-sm text-white/80 hover:text-white transition-all">
+            Resources
+          </Link>
+          <Link href="mailto:info@drabubascorner.edu" className="font-body-sm text-body-sm text-white/80 hover:text-white transition-all">
+            Contact
+          </Link>
+        </div>
+
+        {/* Column 4: Newsletter Signup (30% width ratio) */}
+        <div className="col-span-12 md:col-span-6 lg:col-span-4 flex flex-col gap-unit-md">
+          <h6 className="font-label-lg text-label-lg text-white font-semibold uppercase tracking-wider mb-2">The Weekly Dispatch</h6>
+          <p className="font-body-sm text-body-sm text-white/80 leading-relaxed">
             Subscribe to receive periodic updates on research papers, wellness protocols, and exclusive lecture invitations.
           </p>
           
@@ -99,32 +141,51 @@ export default function Footer() {
               </button>
             </form>
           )}
+          <p className="text-[10px] text-white/60 uppercase tracking-tighter">Your privacy is an institutional priority. Unsubscribe at any time.</p>
         </div>
 
-        {/* Legal & Footer Bottom */}
-        <div className="col-span-12 border-t border-white/10 pt-8 mt-8 flex flex-col md:flex-row justify-between items-center gap-unit-md">
-          <div className="flex flex-col gap-1 text-center md:text-left">
-            <p className="font-body-sm text-body-sm opacity-60">
+        {/* Centered Social Row (Centered, below main content, above copyright) */}
+        <div className="col-span-12 flex justify-center items-center gap-6 my-8 border-t border-[rgba(255,255,255,0.08)] pt-8">
+          <a href="mailto:info@drabubascorner.edu" className="p-2 hover:bg-white/10 rounded-full transition-all hover:scale-105 opacity-75 hover:opacity-100" aria-label="Email Address">
+            <Mail className="w-5 h-5 text-white" />
+          </a>
+          <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="p-2 hover:bg-white/10 rounded-full transition-all hover:scale-105 opacity-75 hover:opacity-100" aria-label="LinkedIn Profile">
+            <LinkedinIcon className="w-5 h-5 text-white" />
+          </a>
+          <a href="https://youtube.com" target="_blank" rel="noreferrer" className="p-2 hover:bg-white/10 rounded-full transition-all hover:scale-105 opacity-75 hover:opacity-100" aria-label="YouTube Channel">
+            <YoutubeIcon className="w-5 h-5 text-white" />
+          </a>
+          <a href="/podcast" className="p-2 hover:bg-white/10 rounded-full transition-all hover:scale-105 opacity-75 hover:opacity-100" aria-label="Podcast Archive">
+            <Radio className="w-5 h-5 text-white" />
+          </a>
+          <a href="https://drabubascorner.edu" target="_blank" rel="noreferrer" className="p-2 hover:bg-white/10 rounded-full transition-all hover:scale-105 opacity-75 hover:opacity-100" aria-label="Institutional Network">
+            <Globe className="w-5 h-5 text-white" />
+          </a>
+        </div>
+
+        {/* Copyright & Legal Bar */}
+        <div className="col-span-12 border-t border-[rgba(255,255,255,0.08)] pt-8 flex flex-col md:flex-row justify-between items-center gap-unit-md text-white/60">
+          <div className="text-center md:text-left">
+            <p className="font-body-sm text-body-sm">
               © {new Date().getFullYear()} Dr. Ayuba&apos;s Corner. All rights reserved. Intellectual Property of the Institution.
             </p>
-            <div className="flex justify-center md:justify-start gap-4 text-xs opacity-60 mt-1">
-              <Link href="/about" className="hover:underline">Privacy Policy</Link>
-              <span>•</span>
-              <Link href="/about" className="hover:underline">Terms of Service</Link>
-              <span>•</span>
-              <Link href="/about" className="hover:underline">Accessibility Standards</Link>
-            </div>
           </div>
           
-          <div className="flex gap-unit-md text-white">
-            <a href="mailto:info@drabubascorner.edu" className="p-2 hover:bg-white/10 rounded-full transition-all" aria-label="Email Address">
-              <span className="material-symbols-outlined block text-[20px]">mail</span>
+          <div className="flex flex-wrap justify-center gap-6 text-xs text-white/60">
+            <Link href="/about" className="hover:underline hover:text-white transition-colors">Privacy Policy</Link>
+            <Link href="/about" className="hover:underline hover:text-white transition-colors">Terms of Service</Link>
+            <Link href="/about" className="hover:underline hover:text-white transition-colors">Accessibility Standards</Link>
+          </div>
+          
+          <div className="flex gap-4">
+            <a href="mailto:info@drabubascorner.edu" className="p-1 hover:bg-white/10 rounded-full transition-all hover:scale-105 opacity-75 hover:opacity-100" aria-label="Email Address">
+              <Mail className="w-4 h-4 text-white" />
             </a>
-            <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="p-2 hover:bg-white/10 rounded-full transition-all" aria-label="LinkedIn Profile">
-              <span className="material-symbols-outlined block text-[20px]">group</span>
+            <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="p-1 hover:bg-white/10 rounded-full transition-all hover:scale-105 opacity-75 hover:opacity-100" aria-label="LinkedIn Profile">
+              <LinkedinIcon className="w-4 h-4 text-white" />
             </a>
-            <a href="https://drabubascorner.edu" target="_blank" rel="noreferrer" className="p-2 hover:bg-white/10 rounded-full transition-all" aria-label="Institutional Network">
-              <span className="material-symbols-outlined block text-[20px]">public</span>
+            <a href="https://drabubascorner.edu" target="_blank" rel="noreferrer" className="p-1 hover:bg-white/10 rounded-full transition-all hover:scale-105 opacity-75 hover:opacity-100" aria-label="Institutional Network">
+              <Globe className="w-4 h-4 text-white" />
             </a>
           </div>
         </div>
