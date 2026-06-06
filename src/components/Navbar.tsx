@@ -138,7 +138,7 @@ export default function Navbar({ variant: propVariant }: { variant?: 'public' | 
             {/* Search Trigger */}
             <button
               onClick={() => setIsSearchOpen(true)}
-              className="p-2 transition-colors duration-200 focus:outline-none"
+              className="hidden md:inline-block p-2 transition-colors duration-200 focus:outline-none"
               aria-label="Search"
               style={{ color: '#1F1F1F' }}
             >
@@ -148,7 +148,7 @@ export default function Navbar({ variant: propVariant }: { variant?: 'public' | 
             {/* Shopping Cart Trigger */}
             <button
               onClick={() => setIsCartOpen(true)}
-              className="p-2 transition-colors duration-200 relative focus:outline-none"
+              className="hidden md:inline-block p-2 transition-colors duration-200 relative focus:outline-none"
               aria-label="Shopping Cart"
               style={{ color: '#1F1F1F' }}
             >
@@ -163,7 +163,7 @@ export default function Navbar({ variant: propVariant }: { variant?: 'public' | 
             {/* Profile User Icon */}
             <Link
               href="/profile"
-              className="p-2 transition-colors duration-200 focus:outline-none"
+              className="hidden md:inline-block p-2 transition-colors duration-200 focus:outline-none"
               aria-label="Profile Account"
               style={{ color: '#1F1F1F' }}
             >
@@ -172,7 +172,13 @@ export default function Navbar({ variant: propVariant }: { variant?: 'public' | 
 
             {/* Mobile Nav Toggle */}
             <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              onClick={() => {
+                if (window.innerWidth < 768) {
+                  window.dispatchEvent(new Event('toggle-more-menu'));
+                } else {
+                  setIsMobileMenuOpen(!isMobileMenuOpen);
+                }
+              }}
               className="p-2 lg:hidden hover:text-primary text-neutral-800 transition-colors focus:outline-none"
               aria-label="Toggle Menu"
             >

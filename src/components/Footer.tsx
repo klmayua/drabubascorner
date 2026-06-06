@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { Mail, Globe, Radio } from 'lucide-react';
+import { Mail, Globe, Radio, ChevronDown, ChevronUp } from 'lucide-react';
 import { PUBLIC_LINKS } from '@/config/navigation.config';
 
 // Custom brand icons in Lucide-matching SVG format
@@ -40,6 +40,8 @@ const YoutubeIcon = (props: React.SVGProps<SVGSVGElement>) => (
 export default function Footer() {
   const [email, setEmail] = useState('');
   const [isSubscribed, setIsSubscribed] = useState(false);
+  const [isNavOpen, setIsNavOpen] = useState(false);
+  const [isInstOpen, setIsInstOpen] = useState(false);
 
   const handleSubscribe = (e: React.FormEvent) => {
     e.preventDefault();
@@ -65,40 +67,60 @@ export default function Footer() {
         </div>
 
         {/* Column 2: Navigation Links (20% width ratio) */}
-        <div className="col-span-12 md:col-span-6 lg:col-span-2 flex flex-col gap-unit-sm">
-          <h6 className="font-label-lg text-label-lg text-white font-semibold uppercase tracking-wider mb-2">Navigation</h6>
-          {PUBLIC_LINKS.map((link) => (
-            <Link
-              key={link.name}
-              href={link.href}
-              className="font-body-sm text-body-sm text-white/80 hover:text-white transition-all"
-            >
-              {link.name}
-            </Link>
-          ))}
+        <div className="col-span-12 md:col-span-6 lg:col-span-2 flex flex-col border-b border-white/5 md:border-b-0 pb-4 md:pb-0">
+          <button
+            onClick={() => setIsNavOpen(!isNavOpen)}
+            className="flex justify-between items-center w-full text-left md:pointer-events-none focus:outline-none focus:ring-0 select-none bg-transparent border-none p-0 cursor-pointer"
+          >
+            <h6 className="font-label-lg text-label-lg text-white font-semibold uppercase tracking-wider mb-2">Navigation</h6>
+            <span className="md:hidden text-white/60">
+              {isNavOpen ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+            </span>
+          </button>
+          <div className={`flex-col gap-unit-xs mt-2 md:mt-0 ${isNavOpen ? 'flex animate-fade-in-up' : 'hidden md:flex'}`}>
+            {PUBLIC_LINKS.map((link) => (
+              <Link
+                key={link.name}
+                href={link.href}
+                className="font-body-sm text-body-sm text-white/80 hover:text-white transition-all py-1 md:py-0"
+              >
+                {link.name}
+              </Link>
+            ))}
+          </div>
         </div>
 
         {/* Column 3: Institution Links (20% width ratio) */}
-        <div className="col-span-12 md:col-span-6 lg:col-span-2 flex flex-col gap-unit-sm">
-          <h6 className="font-label-lg text-label-lg text-white font-semibold uppercase tracking-wider mb-2">Institution</h6>
-          <Link href="/dashboard" className="font-body-sm text-body-sm text-white/80 hover:text-white transition-all">
-            Member Dashboard
-          </Link>
-          <Link href="/research-search" className="font-body-sm text-body-sm text-white/80 hover:text-white transition-all">
-            Research Library
-          </Link>
-          <Link href="/partners" className="font-body-sm text-body-sm text-white/80 hover:text-white transition-all">
-            Academic Cohort
-          </Link>
-          <Link href="/speaking-consulting" className="font-body-sm text-body-sm text-white/80 hover:text-white transition-all">
-            Speaking
-          </Link>
-          <Link href="/library" className="font-body-sm text-body-sm text-white/80 hover:text-white transition-all">
-            Resources
-          </Link>
-          <Link href="mailto:info@drabubascorner.edu" className="font-body-sm text-body-sm text-white/80 hover:text-white transition-all">
-            Contact
-          </Link>
+        <div className="col-span-12 md:col-span-6 lg:col-span-2 flex flex-col border-b border-white/5 md:border-b-0 pb-4 md:pb-0">
+          <button
+            onClick={() => setIsInstOpen(!isInstOpen)}
+            className="flex justify-between items-center w-full text-left md:pointer-events-none focus:outline-none focus:ring-0 select-none bg-transparent border-none p-0 cursor-pointer"
+          >
+            <h6 className="font-label-lg text-label-lg text-white font-semibold uppercase tracking-wider mb-2">Institution</h6>
+            <span className="md:hidden text-white/60">
+              {isInstOpen ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+            </span>
+          </button>
+          <div className={`flex-col gap-unit-xs mt-2 md:mt-0 ${isInstOpen ? 'flex animate-fade-in-up' : 'hidden md:flex'}`}>
+            <Link href="/dashboard" className="font-body-sm text-body-sm text-white/80 hover:text-white transition-all py-1 md:py-0">
+              Member Dashboard
+            </Link>
+            <Link href="/research-search" className="font-body-sm text-body-sm text-white/80 hover:text-white transition-all py-1 md:py-0">
+              Research Library
+            </Link>
+            <Link href="/partners" className="font-body-sm text-body-sm text-white/80 hover:text-white transition-all py-1 md:py-0">
+              Academic Cohort
+            </Link>
+            <Link href="/speaking-consulting" className="font-body-sm text-body-sm text-white/80 hover:text-white transition-all py-1 md:py-0">
+              Speaking
+            </Link>
+            <Link href="/library" className="font-body-sm text-body-sm text-white/80 hover:text-white transition-all py-1 md:py-0">
+              Resources
+            </Link>
+            <Link href="mailto:info@drabubascorner.edu" className="font-body-sm text-body-sm text-white/80 hover:text-white transition-all py-1 md:py-0">
+              Contact
+            </Link>
+          </div>
         </div>
 
         {/* Column 4: Newsletter Signup (30% width ratio) */}

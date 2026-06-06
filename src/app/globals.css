@@ -334,3 +334,116 @@ header {
   height: 96px; /* 24 Tailwind height is 96px - forces stability */
 }
 
+/* Mobile Demo Optimization Overrides */
+@media (max-width: 768px) {
+  :root {
+    --spacing-margin-desktop: 16px;
+    --spacing-gutter: 16px;
+    --spacing-unit-xl: 24px;
+    --spacing-unit-2xl: 36px;
+  }
+
+  /* Core Layout single-column grid forces */
+  .grid-cols-12, .grid-cols-3, .grid-cols-2, .bento-grid, .editorial-grid {
+    grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+  }
+  
+  .col-span-12, .col-span-8, .col-span-7, .col-span-6, .col-span-5, .col-span-4, .col-span-3, .col-span-2 {
+    grid-column: span 1 / span 1 !important;
+  }
+  
+  .row-span-2, .row-span-1 {
+    grid-row: span 1 / span 1 !important;
+  }
+
+  /* Reset pixel heights on mobile for text & image content flow */
+  .h-\[800px\], .h-\[600px\], .h-\[500px\] {
+    height: auto !important;
+  }
+
+  img.h-\[500px\] {
+    height: 280px !important;
+    object-fit: cover !important;
+  }
+
+  /* Prevent oversized images from dominating layouts */
+  .aspect-square, .aspect-\[3\/4\], .aspect-\[0\.78\] {
+    aspect-ratio: 16/10 !important;
+    max-height: 240px !important;
+    width: 100% !important;
+    object-fit: cover !important;
+  }
+
+  /* Scale down vertical paddings */
+  section.pt-\[16px\].pb-\[40px\], .py-unit-2xl, .py-unit-xl {
+    padding-top: var(--spacing-unit-lg) !important;
+    padding-bottom: var(--spacing-unit-lg) !important;
+  }
+
+  /* Typography scale-downs to prevent horizontal scrolling or wrapping issues */
+  .text-display-xl {
+    font-size: 38px !important;
+    line-height: 44px !important;
+  }
+  
+  .text-display-lg {
+    font-size: 30px !important;
+    line-height: 36px !important;
+  }
+  
+  .text-headline-lg {
+    font-size: 26px !important;
+    line-height: 32px !important;
+  }
+  
+  .text-headline-md {
+    font-size: 20px !important;
+    line-height: 26px !important;
+  }
+  
+  .text-headline-sm {
+    font-size: 18px !important;
+    line-height: 24px !important;
+  }
+
+  /* Transform aside element into a mobile side drawer */
+  aside {
+    position: fixed !important;
+    top: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 290px !important;
+    height: 100vh !important;
+    z-index: 100 !important;
+    background: #ffffff !important;
+    border-left: 1px solid var(--color-outline-variant) !important;
+    box-shadow: -4px 0 16px rgba(0, 0, 0, 0.15) !important;
+    padding: var(--spacing-unit-lg) !important;
+    margin: 0 !important;
+    transform: translateX(100%) !important;
+    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+    overflow-y: auto !important;
+    display: none !important;
+  }
+
+  aside.drawer-open {
+    display: block !important;
+    transform: translateX(0) !important;
+  }
+
+  /* Handle hidden utility states for asides */
+  aside.hidden.md\:block, aside.hidden {
+    display: none !important;
+  }
+  
+  aside.hidden.md\:block.drawer-open {
+    display: block !important;
+  }
+
+  /* General stability */
+  body, html {
+    overflow-x: hidden !important;
+  }
+}
+
+
