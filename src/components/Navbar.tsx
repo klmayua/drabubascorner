@@ -131,15 +131,13 @@ export default function Navbar() {
                 <Link
                   key={link.name}
                   href={link.href}
-                  className={`relative font-medium text-[15px] tracking-wide transition-colors duration-200 py-2 group ${
-                    isActive ? 'font-semibold' : ''
+                  className={`relative transition-all duration-200 py-2 group ${
+                    isActive ? 'font-semibold text-[#1F2937]' : 'font-medium text-[#1F1F1F] group-hover:text-[#1F2937] group-hover:font-semibold'
                   }`}
-                  style={{ color: isActive ? '#1F2937' : '#1F1F1F' }}
                 >
                   {link.name}
                   <span 
                     className={`absolute bottom-0 left-0 h-[2px] bg-[#C5A059] rounded-full transition-all duration-200 ease-out ${isActive ? 'w-full' : 'w-0 group-hover:w-full'}`}
-                    style={{ backgroundColor: '#C5A059' }} 
                   />
                 </Link>
               );
