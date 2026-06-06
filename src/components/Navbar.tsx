@@ -131,19 +131,10 @@ export default function Navbar() {
                 <a
                   key={link.name}
                   href={link.href}
-                  className={`group relative block py-2 text-[15px] transition-all duration-[180ms] ease-out ${
-                    isActive
-                      ? '!text-[#00030f] !font-semibold'
-                      : '!text-[#222222] !font-medium hover:!text-[#00030f] hover:!font-semibold'
-                  }`}
-                  style={{ backgroundColor: 'transparent' }}
+                  className={`relative block py-2 text-[15px] nav-link ${isActive ? 'active' : ''}`}
                 >
                   {link.name}
-                  <span 
-                    className={`absolute bottom-0 left-0 h-[2px] bg-[#C5A059] rounded-full transition-all duration-[180ms] ease-out ${
-                      isActive ? 'w-full' : 'w-0 group-hover:w-full'
-                    }`}
-                  />
+                  <span className="underline-indicator" />
                 </a>
               );
             })}
