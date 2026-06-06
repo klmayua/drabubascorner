@@ -131,9 +131,7 @@ export default function Navbar() {
                 <Link
                   key={link.name}
                   href={link.href}
-                  className={`relative transition-all duration-200 py-2 group ${
-                    isActive ? 'font-semibold text-[#1F2937]' : 'font-medium text-[#1F1F1F] group-hover:text-[#1F2937] group-hover:font-semibold'
-                  }`}
+                  className={`relative transition-all duration-200 py-2 group font-medium ${isActive ? 'text-[#1F2937] font-semibold' : 'text-neutral-800 hover:text-[#1F2937] hover:font-semibold'}`}
                 >
                   {link.name}
                   <span 
