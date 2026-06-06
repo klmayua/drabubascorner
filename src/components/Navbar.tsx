@@ -138,8 +138,8 @@ export default function Navbar() {
                 >
                   {link.name}
                   <span 
-                    className="absolute bottom-0 left-0 h-[2px] bg-[#C5A059] rounded-full transition-all duration-200 ease-out"
-                    style={{ width: isActive ? '100%' : '0%', backgroundColor: '#C5A059' }} 
+                    className={`absolute bottom-0 left-0 h-[2px] bg-[#C5A059] rounded-full transition-all duration-200 ease-out ${isActive ? 'w-full' : 'w-0 group-hover:w-full'}`}
+                    style={{ backgroundColor: '#C5A059' }} 
                   />
                 </Link>
               );
