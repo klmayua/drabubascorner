@@ -111,6 +111,37 @@ export default function Navbar() {
 
   return (
     <>
+      <style>{`
+        /* Navigation Link States (Antigravity Inlined CSS) */
+        .desktop-nav-link {
+          color: #222222 !important;
+          font-weight: 500 !important;
+          background-color: transparent !important;
+          transition: color 180ms ease-out, font-weight 180ms ease-out !important;
+        }
+        
+        .desktop-nav-link:hover,
+        .desktop-nav-link.active {
+          color: #00030f !important;
+          font-weight: 600 !important;
+        }
+        
+        .desktop-nav-link .underline-indicator {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          height: 2px;
+          background-color: #C5A059;
+          border-radius: 9999px;
+          width: 0;
+          transition: width 180ms ease-out !important;
+        }
+        
+        .desktop-nav-link.active .underline-indicator,
+        .desktop-nav-link:hover .underline-indicator {
+          width: 100% !important;
+        }
+      `}</style>
       <header className="w-full sticky top-0 bg-surface border-b border-neutral-200 z-50 transition-all duration-300">
         <nav className="max-w-[1440px] mx-auto px-margin-desktop flex justify-between items-center h-24 lg:h-24">
           
@@ -131,7 +162,7 @@ export default function Navbar() {
                 <a
                   key={link.name}
                   href={link.href}
-                  className={`relative block py-2 text-[15px] nav-link ${isActive ? 'active' : ''}`}
+                  className={`relative block py-2 text-[15px] desktop-nav-link ${isActive ? 'active' : ''}`}
                 >
                   {link.name}
                   <span className="underline-indicator" />

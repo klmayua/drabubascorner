@@ -195,33 +195,3 @@ body {
   margin-right: 8px;
   vertical-align: middle;
 }
-
-/* Custom Navigation Link States (Antigravity Correction) */
-.nav-link {
-  color: #222222 !important;
-  font-weight: 500 !important;
-  background-color: transparent !important;
-  transition: color 180ms ease-out, font-weight 180ms ease-out !important;
-}
-
-.nav-link:hover,
-.nav-link.active {
-  color: #00030f !important;
-  font-weight: 600 !important;
-}
-
-.nav-link .underline-indicator {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  height: 2px;
-  background-color: #C5A059;
-  border-radius: 9999px;
-  width: 0;
-  transition: width 180ms ease-out !important;
-}
-
-.nav-link.active .underline-indicator,
-.nav-link:hover .underline-indicator {
-  width: 100% !important;
-}
