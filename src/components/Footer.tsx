@@ -48,14 +48,14 @@ export default function Footer() {
   };
 
   return (
-    <footer className="w-full mt-auto bg-[#0B2341] border-t border-[rgba(255,255,255,0.08)] text-white/80 pt-20 pb-[60px] transition-all duration-300">
+    <footer className="w-full mt-auto bg-[#0B2341] border-t border-[rgba(255,255,255,0.08)] text-white/80 pt-20 pb-[60px] transition-all duration-150">
       <div className="max-w-[1440px] mx-auto px-margin-desktop grid grid-cols-1 md:grid-cols-12 gap-gutter">
         
         {/* Column 1: Brand & Logo (30% width ratio) */}
         <div className="col-span-12 md:col-span-6 lg:col-span-4 flex flex-col gap-unit-md">
           <img
             alt="Institutional Logo Footer"
-            className="h-10 w-auto object-contain brightness-0 invert opacity-80 self-start hover:scale-[1.02] transition-transform"
+            className="h-10 w-auto object-contain brightness-0 invert opacity-80 self-start hover:translate-y-[-1px] transition-transform"
             src="/images/Dr_Abuba_Logo_Full-no_bg.png"
           />
           <p className="font-body-sm text-body-sm text-white/80 leading-relaxed max-w-sm">
@@ -146,19 +146,19 @@ export default function Footer() {
 
         {/* Centered Social Row (Centered, below main content, above copyright) */}
         <div className="col-span-12 flex justify-center items-center gap-6 my-8 border-t border-[rgba(255,255,255,0.08)] pt-8">
-          <a href="mailto:info@drabubascorner.edu" className="p-2 hover:bg-white/10 rounded-full transition-all hover:scale-105 opacity-75 hover:opacity-100" aria-label="Email Address">
+          <a href="mailto:info@drabubascorner.edu" className="p-2 hover:bg-white/10 rounded-full transition-all hover:translate-y-[-1px] opacity-75 hover:opacity-100" aria-label="Email Address">
             <Mail className="w-5 h-5 text-white" />
           </a>
-          <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="p-2 hover:bg-white/10 rounded-full transition-all hover:scale-105 opacity-75 hover:opacity-100" aria-label="LinkedIn Profile">
+          <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="p-2 hover:bg-white/10 rounded-full transition-all hover:translate-y-[-1px] opacity-75 hover:opacity-100" aria-label="LinkedIn Profile">
             <LinkedinIcon className="w-5 h-5 text-white" />
           </a>
-          <a href="https://youtube.com" target="_blank" rel="noreferrer" className="p-2 hover:bg-white/10 rounded-full transition-all hover:scale-105 opacity-75 hover:opacity-100" aria-label="YouTube Channel">
+          <a href="https://youtube.com" target="_blank" rel="noreferrer" className="p-2 hover:bg-white/10 rounded-full transition-all hover:translate-y-[-1px] opacity-75 hover:opacity-100" aria-label="YouTube Channel">
             <YoutubeIcon className="w-5 h-5 text-white" />
           </a>
-          <a href="/podcast" className="p-2 hover:bg-white/10 rounded-full transition-all hover:scale-105 opacity-75 hover:opacity-100" aria-label="Podcast Archive">
+          <a href="/podcast" className="p-2 hover:bg-white/10 rounded-full transition-all hover:translate-y-[-1px] opacity-75 hover:opacity-100" aria-label="Podcast Archive">
             <Radio className="w-5 h-5 text-white" />
           </a>
-          <a href="https://drabubascorner.edu" target="_blank" rel="noreferrer" className="p-2 hover:bg-white/10 rounded-full transition-all hover:scale-105 opacity-75 hover:opacity-100" aria-label="Institutional Network">
+          <a href="https://drabubascorner.edu" target="_blank" rel="noreferrer" className="p-2 hover:bg-white/10 rounded-full transition-all hover:translate-y-[-1px] opacity-75 hover:opacity-100" aria-label="Institutional Network">
             <Globe className="w-5 h-5 text-white" />
           </a>
         </div>
@@ -178,13 +178,13 @@ export default function Footer() {
           </div>
           
           <div className="flex gap-4">
-            <a href="mailto:info@drabubascorner.edu" className="p-1 hover:bg-white/10 rounded-full transition-all hover:scale-105 opacity-75 hover:opacity-100" aria-label="Email Address">
+            <a href="mailto:info@drabubascorner.edu" className="p-1 hover:bg-white/10 rounded-full transition-all hover:translate-y-[-1px] opacity-75 hover:opacity-100" aria-label="Email Address">
               <Mail className="w-4 h-4 text-white" />
             </a>
-            <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="p-1 hover:bg-white/10 rounded-full transition-all hover:scale-105 opacity-75 hover:opacity-100" aria-label="LinkedIn Profile">
+            <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="p-1 hover:bg-white/10 rounded-full transition-all hover:translate-y-[-1px] opacity-75 hover:opacity-100" aria-label="LinkedIn Profile">
               <LinkedinIcon className="w-4 h-4 text-white" />
             </a>
-            <a href="https://drabubascorner.edu" target="_blank" rel="noreferrer" className="p-1 hover:bg-white/10 rounded-full transition-all hover:scale-105 opacity-75 hover:opacity-100" aria-label="Institutional Network">
+            <a href="https://drabubascorner.edu" target="_blank" rel="noreferrer" className="p-1 hover:bg-white/10 rounded-full transition-all hover:translate-y-[-1px] opacity-75 hover:opacity-100" aria-label="Institutional Network">
               <Globe className="w-4 h-4 text-white" />
             </a>
           </div>

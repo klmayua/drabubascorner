@@ -161,7 +161,7 @@ export default function Navbar() {
           width: 100% !important;
         }
       `}</style>
-      <header className="w-full sticky top-0 bg-surface border-b border-neutral-200 z-50 transition-all duration-300">
+      <header className="w-full sticky top-0 bg-surface border-b border-neutral-200 z-50 transition-all duration-150">
         <nav className="max-w-[1440px] mx-auto px-margin-desktop flex justify-between items-center h-24 lg:h-24">
           
           {/* Brand Logo */}

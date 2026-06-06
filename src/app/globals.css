@@ -163,7 +163,7 @@
 @keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(12px);
+    transform: translateY(8px);
   }
   to {
     opacity: 1;
@@ -171,7 +171,7 @@
   }
 }
 .animate-fade-in-up {
-  animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: fadeInUp 250ms ease-out forwards;
 }
 
 /* Focus and Base Resets */
@@ -195,3 +195,142 @@ body {
   margin-right: 8px;
   vertical-align: middle;
 }
+
+/* ==========================================
+   UNIFIED MOTION SYSTEM STANDARDIZATION
+   ========================================== */
+
+/* Enforce smooth scrolling on all pages */
+html {
+  scroll-behavior: smooth !important;
+}
+
+/* Global Transition Timings */
+:root {
+  --transition-hover: 150ms ease-out;
+  --transition-active: 100ms ease-out;
+  --transition-dropdown: 200ms ease-out;
+  --transition-page: 250ms ease-out;
+  --transition-modal: 250ms ease-out;
+  --transition-drawer: 300ms ease-out;
+}
+
+/* Base interactive transitions */
+a, button, select, input, textarea, [role="button"] {
+  transition: color var(--transition-hover), 
+              background-color var(--transition-hover), 
+              border-color var(--transition-hover), 
+              transform var(--transition-hover),
+              box-shadow var(--transition-hover) !important;
+}
+
+/* Header & Navbar link states */
+.desktop-nav-link, 
+.desktop-nav-link .underline-indicator,
+nav a {
+  transition: color var(--transition-hover), 
+              background-color var(--transition-hover), 
+              width var(--transition-hover), 
+              transform var(--transition-hover) !important;
+}
+
+nav a:hover,
+.desktop-nav-link:hover {
+  transform: translateY(-1px) !important;
+}
+
+nav a:active,
+.desktop-nav-link:active {
+  transform: translateY(0px) !important;
+  transition: transform var(--transition-active) !important;
+}
+
+/* Buttons hover and pressed states */
+button,
+.btn,
+[type="button"],
+[type="submit"] {
+  transition: transform var(--transition-hover), 
+              background-color var(--transition-hover), 
+              opacity var(--transition-hover), 
+              box-shadow var(--transition-hover) !important;
+}
+
+button:hover,
+.btn:hover,
+[type="button"]:hover,
+[type="submit"]:hover {
+  transform: translateY(-1px) !important;
+}
+
+button:active,
+.btn:active,
+[type="button"]:active,
+[type="submit"]:active {
+  transform: translateY(0px) !important;
+  transition: transform var(--transition-active) !important;
+}
+
+/* Cards (Grid items, bento blocks) */
+.card-hover,
+.academic-card,
+article,
+.group {
+  transition: transform var(--transition-hover), 
+              box-shadow var(--transition-hover), 
+              opacity var(--transition-hover) !important;
+}
+
+.card-hover:hover,
+.academic-card:hover {
+  transform: translateY(-1.5px) !important;
+}
+
+.card-hover:active,
+.academic-card:active {
+  transform: translateY(0px) !important;
+  transition: transform var(--transition-active) !important;
+}
+
+/* Section entry transitions */
+section {
+  animation: fadeInUp var(--transition-page) forwards !important;
+}
+
+/* Image entry and hover rules: Fade-in only, no scaling/zooms allowed */
+img,
+.image-container img {
+  opacity: 1;
+  transition: opacity var(--transition-page) !important;
+}
+
+/* Disable any zoom/rotation hover styles on images globally */
+img:hover,
+.group:hover img,
+.card-hover:hover img,
+[class*="group-hover:scale-"],
+[class*="hover:scale-"] {
+  transform: none !important;
+}
+
+/* Modal, Dropdown, and Drawer specific classes */
+.dropdown-enter {
+  transition: opacity var(--transition-dropdown), transform var(--transition-dropdown) !important;
+}
+.modal-enter {
+  transition: opacity var(--transition-modal), transform var(--transition-modal) !important;
+}
+.drawer-enter {
+  transition: transform var(--transition-drawer) !important;
+}
+
+/* Layout Stability controls */
+img, video, iframe {
+  aspect-ratio: attr(width) / attr(height);
+  content-visibility: auto;
+  contain-intrinsic-size: auto;
+}
+header {
+  height: 96px; /* 24 Tailwind height is 96px - forces stability */
+}
+

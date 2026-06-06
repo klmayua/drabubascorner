@@ -312,7 +312,7 @@ export default function Page() {
         <div className="px-6 mb-10">
           <img
             alt="Dr. Ayuba's Corner"
-            className="w-full h-auto object-contain hover:scale-[1.02] transition-transform"
+            className="w-full h-auto object-contain hover:translate-y-[-1px] transition-transform"
             src="/images/Dr_Abuba_Logo_Full-no_bg.png"
           />
         </div>
@@ -449,7 +449,7 @@ export default function Page() {
                   
                   <div className="group relative overflow-hidden h-64 bg-primary flex items-end p-unit-md premium-shadow rounded-lg cursor-pointer">
                     <div 
-                      className="absolute inset-0 opacity-40 group-hover:scale-105 transition-transform duration-700 bg-cover bg-center" 
+                      className="absolute inset-0 opacity-40 group-hover:translate-y-[-1px] transition-transform duration-150 bg-cover bg-center" 
                       style={{ backgroundImage: "url('https://lh3.googleusercontent.com/aida-public/AB6AXuDhGBEUnzW4i2oCnG_EveRrz5wyOwC7_r_L3b6s4mmQ-MFosnKWnZpEpZx4gSx-8LW2tEJjP08Ks8_hnpCRa2_iao0Ut22y__gMJcQo_ZzayrXz2XDaAzMpZeG74UMIyaAAfuWYdO2u-pUTZLjEOdS4hBbqE37NwbGb1yxCz89GF6uTgZigp7wo2xZBWanvbQ_Ot_-_O40Oc3ybOWGGibrI2rCQPEAs2KbVZduvhJtwuWBK5J2HddEEHo6IDnVppI7wRCb0kmIggho')" }}
                     />
                     <div className="relative z-10 space-y-1">
@@ -460,7 +460,7 @@ export default function Page() {
 
                   <div className="group relative overflow-hidden h-64 bg-primary flex items-end p-unit-md premium-shadow rounded-lg cursor-pointer">
                     <div 
-                      className="absolute inset-0 opacity-40 group-hover:scale-105 transition-transform duration-700 bg-cover bg-center" 
+                      className="absolute inset-0 opacity-40 group-hover:translate-y-[-1px] transition-transform duration-150 bg-cover bg-center" 
                       style={{ backgroundImage: "url('https://lh3.googleusercontent.com/aida-public/AB6AXuBrg3TImOU2X5siC_lzv96kI5Em6NbkcUki80Xi0SG8q1dJzDLy_h5exAdcTTL7Zs1p-BdwJI9sVVYfoxv-xi3sk_Yqf6Z-Cb1fIhaAkBEBg23OUIZnjkBzG2W-mh596laNf03RxhQWDAAii9hs7P6ngQ0KyO3a5j__CNdx1rKiPVTtWQCJbhtKaGmXrh3SaecLML7bEwJlS02rv6LwqZy310JgnZDYCxy13QLA0aU2_PsiabNDXL4Ib5Lz40gcBmqrfw5lmPjMCqI')" }}
                     />
                     <div className="relative z-10 space-y-1">
@@ -471,7 +471,7 @@ export default function Page() {
 
                   <div className="group relative overflow-hidden h-64 bg-primary flex items-end p-unit-md premium-shadow rounded-lg cursor-pointer">
                     <div 
-                      className="absolute inset-0 opacity-40 group-hover:scale-105 transition-transform duration-700 bg-cover bg-center" 
+                      className="absolute inset-0 opacity-40 group-hover:translate-y-[-1px] transition-transform duration-150 bg-cover bg-center" 
                       style={{ backgroundImage: "url('https://lh3.googleusercontent.com/aida-public/AB6AXuCy9x9V5lkCi-pvIvtqJVZo9-zi2lPLcqwGNvlB8iODYV5mPBcgeapHSBzAIPlKDnH9o14J7_ia-_3mPPCIv9KZ7M1bJi5mNi_5qKMjcv5QnmWw0AHHkTJfFiTMo-p6s8RB5S8XuyYM1qsZ92VD5lP1aottaBZSq9kIlMoajj70CUINM0nA7d6LRjBHBXKRwdQvIu7IFOwVS2Mxyl9ZhcQZisevE5gHx2EhjbwnlFe-6RlNe0Waqfe4A4H_th6nqJd-nrWXo05cQ-8')" }}
                     />
                     <div className="relative z-10 space-y-1">

@@ -39,7 +39,7 @@ export default function EmptyState({
       {/* Icon */}
       <div className="w-16 h-16 rounded-full bg-primary-container/10 flex items-center justify-center text-secondary mb-unit-lg">
         {type === 'loading' && (
-          <span className="material-symbols-outlined text-[36px] animate-spin">sync</span>
+          <span className="material-symbols-outlined text-[36px] animate-pulse">sync</span>
         )}
         {type === 'no-results' && (
           <span className="material-symbols-outlined text-[36px]">find_in_page</span>
