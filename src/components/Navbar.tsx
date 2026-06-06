@@ -112,17 +112,18 @@ export default function Navbar() {
   return (
     <>
       <style>{`
-        /* Navigation Link States (Antigravity Inlined CSS) */
+        /* Navigation Link States (Antigravity Brand Alignment) */
         .desktop-nav-link {
           color: #222222 !important;
           font-weight: 500 !important;
+          font-family: var(--font-inter), sans-serif !important;
           background-color: transparent !important;
-          transition: color 180ms ease-out, font-weight 180ms ease-out !important;
+          transition: color 180ms ease-out, font-weight 180ms ease-out;
         }
         
         .desktop-nav-link:hover,
         .desktop-nav-link.active {
-          color: #00030f !important;
+          color: #0B1D3A !important;
           font-weight: 600 !important;
         }
         
@@ -131,10 +132,10 @@ export default function Navbar() {
           bottom: 0;
           left: 0;
           height: 2px;
-          background-color: #C5A059;
+          background-color: #C79A2E;
           border-radius: 9999px;
           width: 0;
-          transition: width 180ms ease-out !important;
+          transition: width 180ms ease-out;
         }
         
         .desktop-nav-link.active .underline-indicator,
