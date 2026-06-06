@@ -46,7 +46,6 @@ export default function Navbar() {
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState<string[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const { cart, removeFromCart, updateQuantity, cartTotal } = useCart();
 
   // Determine nav variant based on pathname
@@ -126,29 +125,24 @@ export default function Navbar() {
 
           {/* Desktop Navigation Links */}
           <div className="hidden lg:flex items-center gap-10 whitespace-nowrap">
-            {navLinks.map((link, index) => {
+            {navLinks.map((link) => {
               const isActive = pathname === link.href || (pathname === '/' && link.href === '/about');
-              const isHovered = hoveredIndex === index;
               return (
                 <a
                   key={link.name}
                   href={link.href}
-                  onMouseEnter={() => setHoveredIndex(index)}
-                  onMouseLeave={() => setHoveredIndex(null)}
-                  className="relative block py-2 text-[15px]"
-                  style={{
-                    color: isActive || isHovered ? '#00030f' : '#222222',
-                    fontWeight: isActive || isHovered ? 600 : 500,
-                    transition: 'color 180ms ease-out, font-weight 180ms ease-out',
-                    backgroundColor: 'transparent',
-                  }}
+                  className={`group relative block py-2 text-[15px] transition-all duration-[180ms] ease-out ${
+                    isActive
+                      ? '!text-[#00030f] !font-semibold'
+                      : '!text-[#222222] !font-medium hover:!text-[#00030f] hover:!font-semibold'
+                  }`}
+                  style={{ backgroundColor: 'transparent' }}
                 >
                   {link.name}
                   <span 
-                    className="absolute bottom-0 left-0 h-[2px] bg-[#C5A059] rounded-full transition-all duration-[180ms] ease-out"
-                    style={{
-                      width: isActive || isHovered ? '100%' : '0%',
-                    }}
+                    className={`absolute bottom-0 left-0 h-[2px] bg-[#C5A059] rounded-full transition-all duration-[180ms] ease-out ${
+                      isActive ? 'w-full' : 'w-0 group-hover:w-full'
+                    }`}
                   />
                 </a>
               );
