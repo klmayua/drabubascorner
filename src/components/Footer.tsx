@@ -70,7 +70,7 @@ export default function Footer() {
         <div className="col-span-12 md:col-span-6 lg:col-span-2 flex flex-col border-b border-white/5 md:border-b-0 pb-4 md:pb-0">
           <button
             onClick={() => setIsNavOpen(!isNavOpen)}
-            className="flex justify-between items-center w-full text-left md:pointer-events-none focus:outline-none focus:ring-0 select-none bg-transparent border-none p-0 cursor-pointer"
+            className="flex justify-between items-center w-full text-left md:pointer-events-none focus:outline-none focus:ring-0 select-none bg-transparent border-none p-3 md:p-0 cursor-pointer active:scale-95 transition-transform"
           >
             <h6 className="font-label-lg text-label-lg text-white font-semibold uppercase tracking-wider mb-2">Navigation</h6>
             <span className="md:hidden text-white/60">
@@ -82,7 +82,7 @@ export default function Footer() {
               <Link
                 key={link.name}
                 href={link.href}
-                className="font-body-sm text-body-sm text-white/80 hover:text-white transition-all py-1 md:py-0"
+                className="font-body-sm text-body-sm text-white/80 hover:text-white transition-all py-2 md:py-0 active:scale-95"
               >
                 {link.name}
               </Link>
@@ -94,7 +94,7 @@ export default function Footer() {
         <div className="col-span-12 md:col-span-6 lg:col-span-2 flex flex-col border-b border-white/5 md:border-b-0 pb-4 md:pb-0">
           <button
             onClick={() => setIsInstOpen(!isInstOpen)}
-            className="flex justify-between items-center w-full text-left md:pointer-events-none focus:outline-none focus:ring-0 select-none bg-transparent border-none p-0 cursor-pointer"
+            className="flex justify-between items-center w-full text-left md:pointer-events-none focus:outline-none focus:ring-0 select-none bg-transparent border-none p-3 md:p-0 cursor-pointer active:scale-95 transition-transform"
           >
             <h6 className="font-label-lg text-label-lg text-white font-semibold uppercase tracking-wider mb-2">Institution</h6>
             <span className="md:hidden text-white/60">
@@ -102,22 +102,22 @@ export default function Footer() {
             </span>
           </button>
           <div className={`flex-col gap-unit-xs mt-2 md:mt-0 ${isInstOpen ? 'flex animate-fade-in-up' : 'hidden md:flex'}`}>
-            <Link href="/dashboard" className="font-body-sm text-body-sm text-white/80 hover:text-white transition-all py-1 md:py-0">
+            <Link href="/dashboard" className="font-body-sm text-body-sm text-white/80 hover:text-white transition-all py-2 md:py-0 active:scale-95">
               Member Dashboard
             </Link>
-            <Link href="/library" className="font-body-sm text-body-sm text-white/80 hover:text-white transition-all py-1 md:py-0">
+            <Link href="/library" className="font-body-sm text-body-sm text-white/80 hover:text-white transition-all py-2 md:py-0 active:scale-95">
               Research Library
             </Link>
-            <Link href="/partners" className="font-body-sm text-body-sm text-white/80 hover:text-white transition-all py-1 md:py-0">
+            <Link href="/partners" className="font-body-sm text-body-sm text-white/80 hover:text-white transition-all py-2 md:py-0 active:scale-95">
               Academic Cohort
             </Link>
-            <Link href="/speaking-consulting" className="font-body-sm text-body-sm text-white/80 hover:text-white transition-all py-1 md:py-0">
+            <Link href="/speaking-consulting" className="font-body-sm text-body-sm text-white/80 hover:text-white transition-all py-2 md:py-0 active:scale-95">
               Speaking
             </Link>
-            <Link href="/library" className="font-body-sm text-body-sm text-white/80 hover:text-white transition-all py-1 md:py-0">
+            <Link href="/library" className="font-body-sm text-body-sm text-white/80 hover:text-white transition-all py-2 md:py-0 active:scale-95">
               Resources
             </Link>
-            <Link href="mailto:info@drabubascorner.edu" className="font-body-sm text-body-sm text-white/80 hover:text-white transition-all py-1 md:py-0">
+            <Link href="mailto:info@drabubascorner.edu" className="font-body-sm text-body-sm text-white/80 hover:text-white transition-all py-2 md:py-0 active:scale-95">
               Contact
             </Link>
           </div>
