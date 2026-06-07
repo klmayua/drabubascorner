@@ -126,7 +126,7 @@ export default function Page() {
             </div>
             <div className="pt-unit-lg border-t border-outline-variant/10 mt-unit-lg">
               <p className="font-label-lg text-label-lg text-primary font-bold">NOV 05, 2024</p>
-              <a className="text-accent-gold font-label-md text-label-md uppercase tracking-wider flex items-center gap-1 mt-unit-sm hover:underline" href="#">
+              <a className="text-accent-gold font-label-md text-label-md uppercase tracking-wider flex items-center gap-1 mt-unit-sm hover:underline" href="/events">
                 Event Details <span className="material-symbols-outlined text-sm">arrow_forward</span>
               </a>
             </div>
@@ -144,7 +144,7 @@ export default function Page() {
             </div>
             <div className="pt-unit-lg border-t border-outline-variant/10 mt-unit-lg">
               <p className="font-label-lg text-label-lg text-primary font-bold">DEC 01, 2024</p>
-              <a className="text-accent-gold font-label-md text-label-md uppercase tracking-wider flex items-center gap-1 mt-unit-sm hover:underline" href="#">
+              <a className="text-accent-gold font-label-md text-label-md uppercase tracking-wider flex items-center gap-1 mt-unit-sm hover:underline" href="/events">
                 Event Details <span className="material-symbols-outlined text-sm">arrow_forward</span>
               </a>
             </div>

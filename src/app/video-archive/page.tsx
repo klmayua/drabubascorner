@@ -120,12 +120,12 @@ export default function Page() {
                 </h4>
                 <ul className="space-y-2">
                   <li>
-                    <a className="text-accent-gold font-label-md text-label-md hover:underline flex items-center gap-2" href="#">
+                    <a className="text-accent-gold font-label-md text-label-md hover:underline flex items-center gap-2" href="/video-archive">
                       View Whitepaper PDF <span className="material-symbols-outlined text-xs">open_in_new</span>
                     </a>
                   </li>
                   <li>
-                    <a className="text-accent-gold font-label-md text-label-md hover:underline flex items-center gap-2" href="#">
+                    <a className="text-accent-gold font-label-md text-label-md hover:underline flex items-center gap-2" href="/video-archive">
                       Cite this Lecture <span className="material-symbols-outlined text-xs">format_quote</span>
                     </a>
                   </li>

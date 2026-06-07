@@ -105,7 +105,7 @@ export default function Footer() {
             <Link href="/dashboard" className="font-body-sm text-body-sm text-white/80 hover:text-white transition-all py-1 md:py-0">
               Member Dashboard
             </Link>
-            <Link href="/research-search" className="font-body-sm text-body-sm text-white/80 hover:text-white transition-all py-1 md:py-0">
+            <Link href="/library" className="font-body-sm text-body-sm text-white/80 hover:text-white transition-all py-1 md:py-0">
               Research Library
             </Link>
             <Link href="/partners" className="font-body-sm text-body-sm text-white/80 hover:text-white transition-all py-1 md:py-0">

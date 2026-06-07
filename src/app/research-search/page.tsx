@@ -156,7 +156,7 @@ export default function Page() {
                   </div>
                   <div className="flex items-center gap-2 text-on-surface-variant font-label-md">
                     <span className="material-symbols-outlined text-[16px]">link</span>
-                    <a className="text-primary hover:underline" href="#">DOI: {res.doi}</a>
+                    <a className="text-primary hover:underline" href="/research-detail">DOI: {res.doi}</a>
                   </div>
                   <button className="ml-auto text-accent-gold font-bold font-label-md hover:underline underline-offset-4">
                     VIEW FULL PAPER
@@ -204,15 +204,15 @@ export default function Page() {
             <ul className="space-y-4">
               <li className="flex items-center gap-3 py-1">
                 <span className="w-1.5 h-1.5 bg-accent-gold rotate-45"></span>
-                <a className="font-body-sm text-body-sm text-on-surface hover:text-secondary transition-colors" href="#">Library of Metadata</a>
+                <a className="font-body-sm text-body-sm text-on-surface hover:text-secondary transition-colors" href="/library">Library of Metadata</a>
               </li>
               <li className="flex items-center gap-3 py-1">
                 <span className="w-1.5 h-1.5 bg-accent-gold rotate-45"></span>
-                <a className="font-body-sm text-body-sm text-on-surface hover:text-secondary transition-colors" href="#">Citation Guide v4.0</a>
+                <a className="font-body-sm text-body-sm text-on-surface hover:text-secondary transition-colors" href="/library">Citation Guide v4.0</a>
               </li>
               <li className="flex items-center gap-3 py-1">
                 <span className="w-1.5 h-1.5 bg-accent-gold rotate-45"></span>
-                <a className="font-body-sm text-body-sm text-on-surface hover:text-secondary transition-colors" href="#">Academic Ethics Board</a>
+                <a className="font-body-sm text-body-sm text-on-surface hover:text-secondary transition-colors" href="/community-networking-hub-desktop-refined">Academic Ethics Board</a>
               </li>
             </ul>
           </div>

@@ -131,7 +131,7 @@ export default function Page() {
                 <h4 className="font-label-lg text-label-lg text-primary font-bold">Media Kit 2024</h4>
                 <p className="font-body-sm text-body-sm text-on-surface-variant">Bio, headshots, and technical requirements (PDF, 12MB)</p>
               </div>
-              <a className="ml-auto text-accent-gold font-bold font-label-lg text-label-lg border-b border-accent-gold pb-1 hover:text-secondary transition-colors" href="#">Download</a>
+              <a className="ml-auto text-accent-gold font-bold font-label-lg text-label-lg border-b border-accent-gold pb-1 hover:text-secondary transition-colors" href="/library">Download</a>
             </div>
           </div>
           <div className="md:border-l border-outline-variant/30 md:pl-gutter space-y-unit-xl mt-8 md:mt-0">

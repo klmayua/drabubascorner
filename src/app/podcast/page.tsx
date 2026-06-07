@@ -131,9 +131,9 @@ export default function Page() {
             </p>
             <div className="w-full h-px bg-outline-variant/30 mb-unit-md"></div>
             <div className="flex justify-center gap-unit-md">
-              <a className="text-primary hover:text-on-tertiary-container transition-colors" href="#"><span className="material-symbols-outlined">share</span></a>
-              <a className="text-primary hover:text-on-tertiary-container transition-colors" href="#"><span className="material-symbols-outlined">mail</span></a>
-              <a className="text-primary hover:text-on-tertiary-container transition-colors" href="#"><span className="material-symbols-outlined">rss_feed</span></a>
+              <a className="text-primary hover:text-on-tertiary-container transition-colors" href="/about"><span className="material-symbols-outlined">share</span></a>
+              <a className="text-primary hover:text-on-tertiary-container transition-colors" href="/about"><span className="material-symbols-outlined">mail</span></a>
+              <a className="text-primary hover:text-on-tertiary-container transition-colors" href="/about"><span className="material-symbols-outlined">rss_feed</span></a>
             </div>
           </div>
         </div>
@@ -176,7 +176,7 @@ export default function Page() {
               </p>
             </div>
             <div className="flex items-center justify-between mt-auto pt-unit-md border-t border-outline-variant/10">
-              <a className="text-on-tertiary-container font-label-lg flex items-center gap-1 hover:underline underline-offset-4" href="#">
+              <a className="text-on-tertiary-container font-label-lg flex items-center gap-1 hover:underline underline-offset-4" href="/about">
                 <span className="material-symbols-outlined">description</span> Read Transcript
               </a>
               <button className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white group-hover:bg-secondary transition-colors duration-200">

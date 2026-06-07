@@ -141,7 +141,7 @@ export default function Page() {
                   Exploring the shift from charismatic leadership to systemic reliability in healthcare administration. This brief analyzes historical case studies of institutions that maintained excellence across century-long transitions.
                 </p>
               </div>
-              <a className="font-label-lg text-label-lg text-primary underline flex items-center gap-2 font-bold hover:text-secondary transition-colors" href="#">
+              <a className="font-label-lg text-label-lg text-primary underline flex items-center gap-2 font-bold hover:text-secondary transition-colors" href="/research-detail">
                 Read Full Brief <span className="material-symbols-outlined text-[18px]">open_in_new</span>
               </a>
             </div>

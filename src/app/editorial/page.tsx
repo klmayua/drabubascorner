@@ -50,7 +50,7 @@ export default function Page() {
       <div className="flex flex-col lg:flex-row gap-gutter mt-unit-lg">
         {/* Main Content Area (Left) */}
         <div className="flex-1 space-y-unit-2xl">
-          {/* Featured Editorial Grid */}
+            {/* Featured Editorial Grid */}
           <section className="grid grid-cols-12 gap-gutter">
             {/* Large Featured Card */}
             <div className="col-span-12 lg:col-span-8">
@@ -62,7 +62,7 @@ export default function Page() {
                 category="LEADERSHIP"
                 publishDate="JUNE 12, 2024"
                 readTime="12 MIN READ"
-                href="#"
+                href="/research-detail"
               />
             </div>
 
@@ -73,7 +73,7 @@ export default function Page() {
                 description="New biological insights into maintaining neurological sharpness during the transition to elder statesmanship."
                 category="FAMILY HEALTH"
                 readTime="4 MIN READ"
-                href="#"
+                href="/research-detail"
                 className="bg-transparent border-t border-b-0 border-l-0 border-r-0 border-outline-variant/30 pt-unit-md rounded-none shadow-none hover:shadow-none hover:translate-y-0"
               />
               <ArticleCard
@@ -81,7 +81,7 @@ export default function Page() {
                 description="Transitioning from accumulation to distribution through institutional foundations and global impact frameworks."
                 category="WEALTH"
                 readTime="8 MIN READ"
-                href="#"
+                href="/research-detail"
                 className="bg-transparent border-t border-b-0 border-l-0 border-r-0 border-outline-variant/30 pt-unit-md rounded-none shadow-none hover:shadow-none hover:translate-y-0"
               />
             </div>
@@ -94,7 +94,7 @@ export default function Page() {
               title="The Heritage Protocol"
               description="How a 200-year-old estate reorganized for the digital era without losing its core identity."
               category="CASE STUDY"
-              href="#"
+              href="/research-detail"
               className="bg-white border border-primary/10 rounded-xl"
             />
 
@@ -118,7 +118,7 @@ export default function Page() {
               title="Education for the 1%"
               description="Redefining elite schooling for the coming challenges of automation and climate shifts."
               category="GLOBAL POLICY"
-              href="#"
+              href="/research-detail"
               className="bg-white border border-primary/10 rounded-xl"
             />
           </section>
@@ -148,10 +148,10 @@ export default function Page() {
                 <span className="material-symbols-outlined text-sm">trending_up</span>
               </h6>
               <ul className="space-y-unit-sm">
-                <li><a className="flex justify-between text-body-sm text-on-surface-variant hover:text-secondary py-1" href="#"><span className="">Endowment Management</span> <span className="text-xs opacity-50">12</span></a></li>
-                <li><a className="flex justify-between text-body-sm text-on-surface-variant hover:text-secondary py-1" href="#"><span className="">Bio-Hacking for Executives</span> <span className="text-xs opacity-50">8</span></a></li>
-                <li><a className="flex justify-between text-body-sm text-on-surface-variant hover:text-secondary py-1" href="#"><span className="">Ethical Leadership</span> <span className="text-xs opacity-50">15</span></a></li>
-                <li><a className="flex justify-between text-body-sm text-on-surface-variant hover:text-secondary py-1" href="#"><span className="">Legacy Trusts</span> <span className="text-xs opacity-50">21</span></a></li>
+                <li><a className="flex justify-between text-body-sm text-on-surface-variant hover:text-secondary py-1" href="/about"><span className="">Endowment Management</span> <span className="text-xs opacity-50">12</span></a></li>
+                <li><a className="flex justify-between text-body-sm text-on-surface-variant hover:text-secondary py-1" href="/about"><span className="">Bio-Hacking for Executives</span> <span className="text-xs opacity-50">8</span></a></li>
+                <li><a className="flex justify-between text-body-sm text-on-surface-variant hover:text-secondary py-1" href="/about"><span className="">Ethical Leadership</span> <span className="text-xs opacity-50">15</span></a></li>
+                <li><a className="flex justify-between text-body-sm text-on-surface-variant hover:text-secondary py-1" href="/about"><span className="">Legacy Trusts</span> <span className="text-xs opacity-50">21</span></a></li>
               </ul>
             </div>
 

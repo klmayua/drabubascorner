@@ -128,7 +128,7 @@ export default function Page() {
                 Strategic oversight for non-profit foundations, academic boards, and institutional governing bodies. Specialized in conflict resolution and long-term strategic roadmapping.
               </p>
             </div>
-            <a className="text-primary font-label-lg text-label-lg underline hover:text-secondary mt-unit-xl inline-block font-bold" href="#">View Advisory Credentials</a>
+            <a className="text-primary font-label-lg text-label-lg underline hover:text-secondary mt-unit-xl inline-block font-bold" href="/speaking-consulting">View Advisory Credentials</a>
           </div>
 
           {/* Institutional Audits */}
@@ -141,7 +141,7 @@ export default function Page() {
               </p>
             </div>
             <div className="mt-unit-xl">
-              <a className="text-primary font-label-lg text-label-lg underline hover:text-secondary inline-block font-bold" href="#">Request Audit Framework</a>
+              <a className="text-primary font-label-lg text-label-lg underline hover:text-secondary inline-block font-bold" href="/about">Request Audit Framework</a>
             </div>
             {/* Background aesthetic element */}
             <div className="absolute -right-10 -bottom-10 opacity-5 pointer-events-none">

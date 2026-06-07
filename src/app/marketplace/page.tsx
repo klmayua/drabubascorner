@@ -141,7 +141,7 @@ export default function Page() {
       <section className="mb-unit-2xl">
         <div className="flex justify-between items-center mb-unit-lg">
           <h2 className="font-headline-md text-headline-md text-primary">Academic Publications</h2>
-          <a className="text-secondary font-label-lg text-label-lg hover:underline flex items-center gap-2" href="#">
+          <a className="text-secondary font-label-lg text-label-lg hover:underline flex items-center gap-2" href="/catalog">
             View Catalog <span className="material-symbols-outlined">arrow_forward</span>
           </a>
         </div>

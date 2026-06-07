@@ -87,11 +87,11 @@ export default function Page() {
           <div>
             <h3 className="font-label-lg text-label-lg text-primary mb-unit-md border-b border-outline-variant/10 pb-2">Learning Path</h3>
             <ul className="space-y-unit-sm">
-              <li><a className="font-body-sm text-body-sm text-secondary font-semibold" href="#">All Disciplines</a></li>
-              <li><a className="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors py-1 block" href="#">Strategic Wisdom</a></li>
-              <li><a className="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors py-1 block" href="#">Wealth Architecture</a></li>
-              <li><a className="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors py-1 block" href="#">Holistic Wellness</a></li>
-              <li><a className="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors py-1 block" href="#">Legacy Building</a></li>
+              <li><a className="font-body-sm text-body-sm text-secondary font-semibold" href="/catalog">All Disciplines</a></li>
+              <li><a className="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors py-1 block" href="/catalog">Strategic Wisdom</a></li>
+              <li><a className="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors py-1 block" href="/catalog">Wealth Architecture</a></li>
+              <li><a className="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors py-1 block" href="/catalog">Holistic Wellness</a></li>
+              <li><a className="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors py-1 block" href="/catalog">Legacy Building</a></li>
             </ul>
           </div>
           <div className="pt-4 border-t border-outline-variant/10">
@@ -115,7 +115,7 @@ export default function Page() {
               badgeText={course.badgeText}
               rating={course.rating}
               duration={course.duration}
-              href="#"
+              href="/lesson-player"
             />
           ))}
         </div>

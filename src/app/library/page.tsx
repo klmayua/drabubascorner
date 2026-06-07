@@ -74,7 +74,7 @@ export default function Page() {
           <section className="space-y-unit-lg">
             <div className="flex items-center justify-between border-b border-outline-variant/30 pb-unit-sm">
               <h2 className="font-headline-md text-headline-md text-primary">Research Briefs</h2>
-              <a className="font-label-lg text-label-lg text-accent-gold hover:underline transition-all" href="#">View All Research Briefs</a>
+              <a className="font-label-lg text-label-lg text-accent-gold hover:underline transition-all" href="/library">View All Research Briefs</a>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-unit-lg">
               {/* Card 1 */}

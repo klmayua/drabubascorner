@@ -129,7 +129,7 @@ export default function Page() {
               <h4 className="font-headline-sm text-headline-sm text-primary mb-unit-sm">Chartered Compliance</h4>
               <p className="font-body-sm text-body-sm text-on-surface-variant">Rigorous adherence to international legal frameworks and academic ethical standards.</p>
             </div>
-            <a className="font-label-lg text-label-lg text-accent-gold hover:underline mt-unit-xl inline-block" href="#">View Certificates</a>
+            <a className="font-label-lg text-label-lg text-accent-gold hover:underline mt-unit-xl inline-block" href="/about">View Certificates</a>
           </div>
           <div className="md:col-span-8 border border-outline-variant/30 rounded-xl bg-surface-container-low p-unit-xl relative overflow-hidden group">
             <div className="relative z-10 flex flex-col justify-between h-full">

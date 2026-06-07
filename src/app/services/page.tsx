@@ -66,7 +66,7 @@ export default function Page() {
                 <span className="px-unit-md py-unit-xs bg-surface-container border border-primary/5 font-label-md text-label-md rounded">Cultural Dynamics</span>
               </div>
             </div>
-            <a className="inline-flex items-center gap-unit-sm text-[#c79a2e] font-label-lg text-label-lg uppercase tracking-widest hover:gap-unit-md transition-all font-bold" href="#">
+            <a className="inline-flex items-center gap-unit-sm text-[#c79a2e] font-label-lg text-label-lg uppercase tracking-widest hover:gap-unit-md transition-all font-bold" href="/speaking-consulting">
               Inquire for Availability <span className="material-symbols-outlined ml-1">arrow_forward</span>
             </a>
           </article>

@@ -68,7 +68,7 @@ export default function EmptyState({
         </Link>
       ) : type === 'coming-soon' ? (
         <Link
-          href="/"
+          href="/about"
           className="border border-outline text-primary px-unit-lg py-3 font-label-lg text-label-lg hover:bg-surface-container-low transition-colors"
         >
           Return to Dispatch
