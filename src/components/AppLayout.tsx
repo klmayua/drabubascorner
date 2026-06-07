@@ -41,15 +41,15 @@ function PublicLayout({ children }: { children: React.ReactNode }) {
     }
   }, [isSidebarOpen]);
 
-  return (
-    <div className="flex-grow flex flex-col min-h-screen bg-background">
-      <Navbar variant="public" />
-      <div className="w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
-        <Breadcrumbs />
-      </div>
-      <main className="flex-grow w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop pb-[calc(var(--spacing-unit-2xl)+72px)] md:pb-unit-2xl">
-        {children}
-      </main>
+    return (
+      <div className="flex-grow flex flex-col min-h-screen bg-background overflow-x-hidden">
+        <Navbar variant="public" />
+        <div className="w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop overflow-hidden">
+          <Breadcrumbs />
+        </div>
+        <main className="flex-grow w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop pb-[calc(var(--spacing-unit-2xl)+72px)] md:pb-unit-2xl overflow-hidden">
+          {children}
+        </main>
 
       {hasSidebar && (
         <>
