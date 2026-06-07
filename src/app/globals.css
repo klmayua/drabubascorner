@@ -50,6 +50,7 @@
   --color-on-surface: #191c1d;
 
   /* Spacing overrides for Tailwind */
+  --spacing-margin-mobile: 16px;
   --spacing-margin-desktop: 80px;
   --spacing-gutter: 32px;
   --spacing-unit-xs: 4px;
