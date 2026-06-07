@@ -20,8 +20,8 @@ const navItems: BottomNavItem[] = [
   },
   {
     icon: BookOpen,
-    label: 'Library',
-    route: '/library',
+    label: 'Articles',
+    route: '/editorial',
   },
   {
     icon: GraduationCap,

@@ -4,13 +4,15 @@ export interface NavLink {
 }
 
 export const PUBLIC_LINKS: NavLink[] = [
+  { name: 'Home', href: '/' },
   { name: 'About', href: '/about' },
   { name: 'Articles', href: '/editorial' },
   { name: 'Videos', href: '/video-archive' },
   { name: 'Podcast', href: '/podcast' },
-  { name: 'Community', href: '/community-networking-hub-desktop-refined' },
   { name: 'Courses', href: '/catalog' },
+  { name: 'Community', href: '/community-networking-hub-desktop-refined' },
   { name: 'Marketplace', href: '/marketplace' },
+  { name: 'Library', href: '/library' },
 ];
 
 export const DASHBOARD_LINKS: NavLink[] = [
@@ -22,6 +24,7 @@ export const DASHBOARD_LINKS: NavLink[] = [
 ];
 
 export const ACTIVE_STATE_MAPPING: Record<string, string> = {
+  '/': 'Home',
   '/about': 'About',
   '/editorial': 'Articles',
   '/editorial-legacy': 'Articles',
@@ -34,4 +37,5 @@ export const ACTIVE_STATE_MAPPING: Record<string, string> = {
   '/catalog': 'Courses',
   '/catalog-legacy': 'Courses',
   '/marketplace': 'Marketplace',
+  '/library': 'Library',
 };

@@ -145,29 +145,13 @@ export default function Navbar({ variant: propVariant }: { variant?: 'public' | 
               <Search size={20} strokeWidth={1.75} />
             </button>
 
-            {/* Shopping Cart Trigger */}
-            <button
-              onClick={() => setIsCartOpen(true)}
-              className="hidden md:inline-block p-2 transition-colors duration-200 relative focus:outline-none"
-              aria-label="Shopping Cart"
-              style={{ color: '#1F1F1F' }}
-            >
-              <ShoppingBag size={20} strokeWidth={1.75} />
-              {cartCount > 0 && (
-                <span className="absolute -top-1 -right-1 bg-[#C5A059] text-white text-[10px] w-5 h-5 rounded-full flex items-center justify-center font-bold">
-                  {cartCount}
-                </span>
-              )}
-            </button>
-
-            {/* Profile User Icon */}
+            {/* Contact Link */}
             <Link
-              href="/profile"
-              className="hidden md:inline-block p-2 transition-colors duration-200 focus:outline-none"
-              aria-label="Profile Account"
-              style={{ color: '#1F1F1F' }}
+              href="/partners"
+              className="hidden md:inline-block p-2 transition-colors duration-200 focus:outline-none font-label-lg text-label-lg text-primary hover:text-secondary"
+              aria-label="Contact"
             >
-              <CircleUser size={20} strokeWidth={1.75} />
+              Contact
             </Link>
 
             {/* Mobile Nav Toggle */}
@@ -231,164 +215,62 @@ export default function Navbar({ variant: propVariant }: { variant?: 'public' | 
         </div>
       )}
 
-      {/* Interactive Search Modal Overlay */}
-      {isSearchOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-unit-md">
-          <div
-            onClick={() => setIsSearchOpen(false)}
-            className="fixed inset-0 bg-primary/45 backdrop-blur-md transition-opacity"
-          />
-          <div className="relative w-full max-w-2xl bg-surface rounded shadow-2xl p-unit-xl z-50 animate-fade-in-up glass-panel border border-outline-variant/30">
-            <div className="flex items-center justify-between mb-unit-md border-b border-outline-variant pb-3">
-              <h3 className="font-headline-sm text-headline-sm text-primary">Platform-wide Search</h3>
-              <button
-                onClick={() => setIsSearchOpen(false)}
-                className="p-1 hover:bg-surface-container rounded-full"
-              >
-                <X size={24} />
-              </button>
-            </div>
-            
-            <form onSubmit={handleSearch} className="flex gap-unit-sm">
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search articles, research papers, videos..."
-                className="flex-1 bg-surface-container border border-outline-variant px-4 py-3 text-body-md text-primary outline-none focus:border-secondary focus:ring-1 focus:ring-secondary/40"
-                autoFocus
-              />
-              <button
-                type="submit"
-                className="bg-primary text-on-primary px-unit-lg py-3 hover:bg-opacity-90 font-label-lg text-label-lg uppercase tracking-wider"
-              >
-                Find
-              </button>
-            </form>
+       {/* Interactive Search Modal Overlay */}
+       {isSearchOpen && (
+         <div className="fixed inset-0 z-50 flex items-center justify-center p-unit-md">
+           <div
+             onClick={() => setIsSearchOpen(false)}
+             className="fixed inset-0 bg-primary/45 backdrop-blur-md transition-opacity"
+           />
+           <div className="relative w-full max-w-2xl bg-surface rounded shadow-2xl p-unit-xl z-50 animate-fade-in-up glass-panel border border-outline-variant/30">
+             <div className="flex items-center justify-between mb-unit-md border-b border-outline-variant pb-3">
+               <h3 className="font-headline-sm text-headline-sm text-primary">Platform-wide Search</h3>
+               <button
+                 onClick={() => setIsSearchOpen(false)}
+                 className="p-1 hover:bg-surface-container rounded-full"
+               >
+                 <X size={24} />
+               </button>
+             </div>
+             
+             <form onSubmit={handleSearch} className="flex gap-unit-sm">
+               <input
+                 type="text"
+                 value={searchQuery}
+                 onChange={(e) => setSearchQuery(e.target.value)}
+                 placeholder="Search articles, research papers, videos..."
+                 className="flex-1 bg-surface-container border border-outline-variant px-4 py-3 text-body-md text-primary outline-none focus:border-secondary focus:ring-1 focus:ring-secondary/40"
+                 autoFocus
+               />
+               <button
+                 type="submit"
+                 className="bg-primary text-on-primary px-unit-lg py-3 hover:bg-opacity-90 font-label-lg text-label-lg uppercase tracking-wider"
+               >
+                 Find
+               </button>
+             </form>
 
-            <div className="mt-unit-lg max-h-[300px] overflow-y-auto space-y-unit-sm">
-              {searchResults.length > 0 ? (
-                <div>
-                  <h4 className="text-xs font-bold text-on-surface-variant uppercase mb-2 tracking-wider">Simulated Results</h4>
-                  <div className="space-y-1">
-                    {searchResults.map((result, idx) => (
-                      <div key={idx} dangerouslySetInnerHTML={{ __html: result }} />
-                    ))}
-                  </div>
-                </div>
-              ) : searchQuery ? (
-                <p className="text-on-surface-variant text-center py-unit-lg">No simulated matches found. Try typing &quot;Resilience&quot; or &quot;Stoic&quot;.</p>
-              ) : (
-                <div className="text-center py-unit-lg text-on-surface-variant opacity-60">
-                  <p className="text-sm">Type a search term above (e.g. &quot;Wealth&quot; or &quot;Stress&quot;).</p>
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* E-Commerce Cart Slide-out Drawer */}
-      {isCartOpen && (
-        <div className="fixed inset-0 z-50 flex justify-end">
-          {/* Overlay background */}
-          <div
-            onClick={() => setIsCartOpen(false)}
-            className="fixed inset-0 bg-primary/40 backdrop-blur-sm transition-opacity"
-          />
-          {/* Drawer Panel */}
-          <div className="relative w-full max-w-md bg-surface p-unit-xl shadow-2xl z-50 h-full flex flex-col animate-fade-in-up">
-            <div className="flex items-center justify-between mb-unit-xl border-b border-outline-variant pb-unit-sm">
-              <div className="flex items-center gap-2">
-                <ShoppingBag size={24} strokeWidth={1.75} />
-                <span className="font-headline-sm text-headline-sm text-primary font-bold">Shopping Cart</span>
-              </div>
-              <button
-                onClick={() => setIsCartOpen(false)}
-                className="p-1 hover:bg-surface-container rounded-full"
-              >
-                <X size={24} />
-              </button>
-            </div>
-
-            {/* Cart Items List */}
-            <div className="flex-1 overflow-y-auto space-y-unit-md pr-2">
-              {cart.length > 0 ? (
-                cart.map((item) => (
-                  <div key={item.id} className="flex gap-unit-md p-unit-sm border border-outline-variant/50 rounded bg-surface-container-low">
-                    {item.image ? (
-                      <img src={item.image} alt={item.name} className="w-16 h-16 object-cover rounded" />
-                    ) : (
-                      <div className="w-16 h-16 bg-surface-container-high rounded flex items-center justify-center">
-                        <BookOpen size={20} className="text-on-surface-variant" />
-                      </div>
-                    )}
-                    <div className="flex-1">
-                      <h4 className="font-label-lg text-label-lg text-primary line-clamp-1">{item.name}</h4>
-                      <p className="text-xs text-on-surface-variant">{item.category}</p>
-                      <p className="font-bold text-sm text-secondary mt-1">{item.price}</p>
-                      
-                      {/* Quantity Controls */}
-                      <div className="flex items-center gap-2 mt-2">
-                        <button
-                          onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                          className="px-2 py-0.5 border border-outline-variant hover:bg-surface-container rounded"
-                        >
-                          -
-                        </button>
-                        <span className="text-sm font-bold w-4 text-center">{item.quantity}</span>
-                        <button
-                          onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                          className="px-2 py-0.5 border border-outline-variant hover:bg-surface-container rounded"
-                        >
-                          +
-                        </button>
-                      </div>
-                    </div>
-                    <button
-                      onClick={() => removeFromCart(item.id)}
-                      className="text-error hover:text-opacity-80 self-start"
-                      aria-label="Remove item"
-                    >
-                      <Delete size={18} />
-                    </button>
-                  </div>
-                ))
-              ) : (
-                <div className="h-48 flex flex-col items-center justify-center text-on-surface-variant opacity-60">
-                  <ShoppingBag size={48} className="mb-2 opacity-50" />
-                  <p>Your shopping cart is currently empty.</p>
-                </div>
-              )}
-            </div>
-
-            {/* Cart Summary & Checkout */}
-            <div className="border-t border-outline-variant pt-unit-xl mt-unit-xl space-y-unit-md">
-              <div className="flex justify-between items-center text-body-lg font-bold text-primary">
-                <span>Total:</span>
-                <span className="text-secondary font-headline-sm text-headline-sm">${cartTotal.toLocaleString()}</span>
-              </div>
-              <p className="text-xs text-on-surface-variant">Simulated prices based on academic resources and limited items.</p>
-              
-              <div className="grid grid-cols-2 gap-unit-sm">
-                <Link
-                  href="/checkout"
-                  onClick={() => setIsCartOpen(false)}
-                  className={`w-full bg-primary text-on-primary text-center py-4 font-label-lg text-label-lg uppercase tracking-wider hover:bg-opacity-95 ${cart.length === 0 ? 'pointer-events-none opacity-50' : ''}`}
-                >
-                  Checkout
-                </Link>
-                <button
-                  onClick={() => setIsCartOpen(false)}
-                  className="w-full border border-outline px-4 text-center py-4 font-label-lg text-label-lg uppercase tracking-wider hover:bg-surface-container-low"
-                >
-                  Keep Shopping
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-    </>
-  );
-}
+             <div className="mt-unit-lg max-h-[300px] overflow-y-auto space-y-unit-sm">
+               {searchResults.length > 0 ? (
+                 <div>
+                   <h4 className="text-xs font-bold text-on-surface-variant uppercase mb-2 tracking-wider">Simulated Results</h4>
+                   <div className="space-y-1">
+                     {searchResults.map((result, idx) => (
+                       <div key={idx} dangerouslySetInnerHTML={{ __html: result }} />
+                     ))}
+                   </div>
+                 </div>
+               ) : searchQuery ? (
+                 <p className="text-on-surface-variant text-center py-unit-lg">No simulated matches found. Try typing &quot;Resilience&quot; or &quot;Stoic&quot;.</p>
+               ) : (
+                 <div className="text-center py-unit-lg text-on-surface-variant opacity-60">
+                   <p className="text-sm">Type a search term above (e.g. &quot;Wealth&quot; or &quot;Stress&quot;).</p>
+                 </div>
+               )}
+             </div>
+           </div>
+         </div>
+       )}
+     </>
+   );
+ }

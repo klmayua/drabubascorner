@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { X, Video, Radio, ShoppingBag, Info, ShieldAlert } from 'lucide-react';
+import { X, Video, Radio, ShoppingBag, Info, ShieldAlert, BookOpen } from 'lucide-react';
 
 interface SheetLink {
   name: string;
@@ -29,6 +29,12 @@ const sheetLinks: SheetLink[] = [
     href: '/marketplace',
     icon: ShoppingBag,
     description: 'Purchase publications, seals, and materials.',
+  },
+  {
+    name: 'Library',
+    href: '/library',
+    icon: BookOpen,
+    description: 'Digital archive of research and resources.',
   },
   {
     name: 'About',
