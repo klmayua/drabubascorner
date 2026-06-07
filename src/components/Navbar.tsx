@@ -154,66 +154,19 @@ export default function Navbar({ variant: propVariant }: { variant?: 'public' | 
               Contact
             </Link>
 
-            {/* Mobile Nav Toggle */}
-            <button
-              onClick={() => {
-                if (window.innerWidth < 768) {
-                  window.dispatchEvent(new Event('toggle-more-menu'));
-                } else {
-                  setIsMobileMenuOpen(!isMobileMenuOpen);
-                }
-              }}
-              className="p-2 lg:hidden hover:text-primary text-neutral-800 transition-colors focus:outline-none"
-              aria-label="Toggle Menu"
+            {/* Mobile CTA */}
+            <Link
+              href="/newsletter"
+              className="lg:hidden bg-primary text-on-primary px-4 py-2 text-xs font-label-lg uppercase tracking-wider rounded-none hover:bg-opacity-90 transition-all"
             >
-              {isMobileMenuOpen ? <X size={22} strokeWidth={1.75} /> : <Menu size={22} strokeWidth={1.75} />}
-            </button>
-
+              Join Now
+            </Link>
           </div>
         </nav>
       </header>
-
-      {/* Mobile Sliding Navigation Menu */}
-      {isMobileMenuOpen && (
-        <div className="fixed inset-0 z-40 lg:hidden flex">
-          {/* Overlay background */}
-          <div
-            onClick={() => setIsMobileMenuOpen(false)}
-            className="fixed inset-0 bg-primary/40 backdrop-blur-sm transition-opacity"
-          />
-          {/* Content Menu Panel */}
-          <div className="relative flex flex-col w-4/5 max-w-sm bg-surface p-unit-xl shadow-2xl z-50 h-full animate-fade-in-up">
-            <div className="flex items-center justify-between mb-unit-xl border-b border-outline-variant pb-unit-sm">
-              <span className="font-display-md text-headline-sm text-primary font-bold">Portal Menu</span>
-              <button
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="p-1 hover:bg-surface-container rounded-full"
-              >
-                <X size={24} />
-              </button>
-            </div>
-            <div className="flex flex-col gap-unit-md overflow-y-auto pr-2">
-              <span className="text-[10px] font-bold tracking-widest text-on-surface-variant opacity-60 uppercase mb-2">Navigation Links</span>
-              {navLinks.map((link) => {
-                const isActive = getIsActive(link);
-                return (
-                  <Link
-                    key={link.name}
-                    href={link.href}
-                    className={`block py-3 px-4 rounded font-label-lg text-label-lg transition-all ${
-                      isActive
-                        ? 'bg-secondary text-white font-bold'
-                        : 'text-on-surface-variant hover:bg-surface-container'
-                    }`}
-                  >
-                    {link.name}
-                  </Link>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-      )}
+    </>
+  );
+}
 
        {/* Interactive Search Modal Overlay */}
        {isSearchOpen && (

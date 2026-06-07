@@ -382,28 +382,33 @@ header {
 
   /* Typography scale-downs to prevent horizontal scrolling or wrapping issues */
   .text-display-xl {
-    font-size: 38px !important;
-    line-height: 44px !important;
+    font-size: 32px !important;
+    line-height: 38px !important;
+    overflow-wrap: break-word !important;
   }
   
   .text-display-lg {
-    font-size: 30px !important;
-    line-height: 36px !important;
+    font-size: 26px !important;
+    line-height: 32px !important;
+    overflow-wrap: break-word !important;
   }
   
   .text-headline-lg {
-    font-size: 26px !important;
-    line-height: 32px !important;
+    font-size: 22px !important;
+    line-height: 28px !important;
+    overflow-wrap: break-word !important;
   }
   
   .text-headline-md {
-    font-size: 20px !important;
-    line-height: 26px !important;
+    font-size: 18px !important;
+    line-height: 24px !important;
+    overflow-wrap: break-word !important;
   }
   
   .text-headline-sm {
-    font-size: 18px !important;
-    line-height: 24px !important;
+    font-size: 16px !important;
+    line-height: 22px !important;
+    overflow-wrap: break-word !important;
   }
 
   /* Transform aside element into a mobile side drawer */
@@ -443,6 +448,8 @@ header {
   /* General stability */
   body, html {
     overflow-x: hidden !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
   }
 }
 
