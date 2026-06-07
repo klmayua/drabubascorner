@@ -23,11 +23,11 @@ export default function Page() {
 </div>
 </div>
 <div class="col-span-12 lg:col-span-6 relative flex justify-center lg:justify-end">
-<div class="relative z-10 p-unit-lg bg-surface-container-low border border-outline-variant/30 w-full max-w-[624px] flex flex-col items-center overflow-hidden">
-<img alt="Dr. Ayuba - Founder, Principal & Lead Researcher" class="w-full h-auto object-cover grayscale hover:grayscale-0 transition-all duration-150 shadow-2xl mb-unit-md" src="/images/DrAyuba.jpeg">
-<div class="text-center">
-<p class="font-headline-sm text-headline-sm text-primary font-bold">Dr. Ayuba</p>
-<p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest">Founder & Principal Researcher</p>
+<div class="relative z-10 p-unit-lg bg-surface-container-low border border-outline-variant/30 w-full lg:max-w-[624px] overflow-hidden">
+<img alt="Dr. Timothy N. Abuba" class="w-full h-auto object-cover grayscale hover:grayscale-0 transition-all duration-150 shadow-2xl" src="/images/DrAyuba.jpeg">
+<div class="absolute bottom-0 left-0 w-full lg:w-auto p-unit-lg bg-gradient-to-t from-black/80 via-black/20 to-transparent lg:bg-transparent text-white lg:text-primary transition-all">
+<p class="font-headline-sm text-headline-sm font-bold leading-tight">Dr. Timothy N. Abuba | MBBS, FWACP, FGAM</p>
+<p class="font-label-md text-label-md text-white/80 lg:text-on-surface-variant uppercase tracking-widest text-xs">Founder & Principal Researcher</p>
 </div>
 <!-- Decorative Elements -->
 <div class="absolute -top-10 -right-10 w-40 h-40 border-t-2 border-r-2 border-secondary/20 z-0 pointer-events-none"></div>
@@ -137,7 +137,7 @@ export default function Page() {
 </div>
 <div class="flex-1 min-w-0">
 <h5 class="font-headline-sm text-headline-sm truncate">The Sovereign Wealth Retreat</h5>
-<p class="text-body-sm opacity-70 truncate">Swiss Alps | Platinum Members</p>
+<p class="text-body-sm opacity-70 truncate">Lagos, Nigeria | Platinum Members</p>
 </div>
 <span class="material-symbols-outlined opacity-0 group-hover:opacity-100 transition-all shrink-0">north_east</span>
 </div>
