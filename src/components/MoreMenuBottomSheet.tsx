@@ -84,18 +84,21 @@ export default function MoreMenuBottomSheet() {
 
   if (!isOpen) return null;
 
-    return (
-      <div className="md:hidden fixed inset-0 z-[100] flex flex-col justify-end animate-fade-in-up">
-        {/* Backdrop Backdrop Overlay */}
-        <div 
-          onClick={() => setIsOpen(false)}
-          className="fixed inset-0 bg-primary/40 backdrop-blur-sm transition-opacity duration-200 z-0"
-        />
-        {/* Bottom Sheet Menu Card Container */}
-        <div className="relative bg-white dark:bg-neutral-900 rounded-t-2xl shadow-2xl p-unit-lg z-10 max-h-[85vh] overflow-y-auto pb-[calc(safe-area-inset-bottom+80px)] transition-transform duration-300 transform translate-y-0 border-t border-neutral-200 dark:border-neutral-800">
+  return (
+    <>
+      {/* Backdrop Overlay - Set to z-40 to be behind the Bottom Nav (z-50) */}
+      <div 
+        onClick={() => setIsOpen(false)}
+        className="fixed inset-0 bg-primary/40 backdrop-blur-sm transition-opacity duration-200 z-40"
+      />
+
+      {/* Bottom Sheet Menu - Set to z-60 to be above everything */}
+      <div className="fixed inset-x-0 bottom-0 z-60 flex flex-col justify-end animate-fade-in-up pointer-events-none">
+        <div className="relative bg-white dark:bg-neutral-900 rounded-t-2xl shadow-2xl p-unit-lg pointer-events-auto max-h-[85vh] overflow-y-auto pb-[calc(safe-area-inset-bottom+80px)] transition-transform duration-300 transform translate-y-0 border-t border-neutral-200 dark:border-neutral-800">
           
           {/* Drag handle decoration */}
           <div className="w-12 h-1 bg-neutral-300 dark:bg-neutral-700 rounded-full mx-auto mb-unit-md pointer-events-none" />
+
 
 
         <div className="flex items-center justify-between mb-unit-lg pb-unit-xs border-b border-neutral-100 dark:border-neutral-800">
@@ -144,7 +147,5 @@ export default function MoreMenuBottomSheet() {
             </div>
           ))}
         </div>
-      </div>
-    </div>
   );
 }
